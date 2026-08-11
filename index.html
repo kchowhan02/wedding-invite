@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,848 +9,1388 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
 
 <style>
+
+/* =========================
+   BASE
+========================= */
+
 * {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
 
 html {
-  scroll-behavior: smooth;
+    scroll-behavior: smooth;
 }
 
 body {
-  background: #080808;
-  color: #fff;
-  font-family: "DM Sans", sans-serif;
+    background: #080808;
+    color: white;
+    font-family: "DM Sans", sans-serif;
 }
 
-button, a {
-  font-family: inherit;
+body.intro-playing {
+    overflow: hidden;
+}
+
+button,
+a {
+    font-family: inherit;
 }
 
 a {
-  color: inherit;
-  text-decoration: none;
+    color: inherit;
+    text-decoration: none;
 }
 
-.gold {
-  color: #c9a96e;
+
+/* =========================
+   VIDEO INTRO
+========================= */
+
+#videoIntro {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+
+    background: black;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    opacity: 1;
+
+    transition: opacity 1.2s ease;
 }
 
-/* NAVIGATION */
+#introVideo {
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+
+    background: black;
+}
+
+#videoIntro.fade-out {
+    opacity: 0;
+    pointer-events: none;
+}
+
+
+/* =========================
+   NAVIGATION
+========================= */
 
 nav {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  z-index: 100;
-  padding: 18px 6vw;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background: linear-gradient(to bottom, rgba(0,0,0,.9), transparent);
+    position: fixed;
+    top: 0;
+    left: 0;
+
+    width: 100%;
+
+    z-index: 100;
+
+    padding: 18px 6vw;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    background:
+    linear-gradient(
+        to bottom,
+        rgba(0,0,0,.9),
+        transparent
+    );
 }
 
 .logo {
-  font-family: "Playfair Display", serif;
-  color: #c9a96e;
-  font-size: 20px;
+    font-family: "Playfair Display", serif;
+
+    color: #c9a96e;
+
+    font-size: 20px;
 }
 
 .nav-links {
-  display: flex;
-  gap: 25px;
-  font-size: 14px;
+    display: flex;
+
+    gap: 25px;
+
+    font-size: 14px;
 }
 
 .nav-links a:hover {
-  color: #c9a96e;
+    color: #c9a96e;
 }
 
-/* HOME */
+
+/* =========================
+   HOME
+========================= */
 
 #home {
-  min-height: 100vh;
-  position: relative;
-  background:
-    linear-gradient(to top, rgba(0,0,0,.96), rgba(0,0,0,.15), rgba(0,0,0,.45)),
+    min-height: 100vh;
+
+    position: relative;
+
+    background:
+    linear-gradient(
+        to top,
+        rgba(0,0,0,.96),
+        rgba(0,0,0,.15),
+        rgba(0,0,0,.45)
+    ),
     url("https://images.pexels.com/photos/1024993/pexels-photo-1024993.jpeg");
-  background-size: cover;
-  background-position: center;
-  display: flex;
-  align-items: flex-end;
+
+    background-size: cover;
+
+    background-position: center;
+
+    display: flex;
+
+    align-items: flex-end;
 }
 
 .home-content {
-  padding: 8vw;
-  padding-bottom: 12vh;
-  max-width: 850px;
+    padding: 8vw;
+
+    padding-bottom: 12vh;
+
+    max-width: 850px;
 }
 
 .series-label {
-  color: #c9a96e;
-  text-transform: uppercase;
-  letter-spacing: 5px;
-  font-size: 11px;
-  margin-bottom: 18px;
+    color: #c9a96e;
+
+    text-transform: uppercase;
+
+    letter-spacing: 5px;
+
+    font-size: 11px;
+
+    margin-bottom: 18px;
 }
 
 .home-content h1 {
-  font-family: "Playfair Display", serif;
-  font-size: clamp(50px, 8vw, 95px);
-  line-height: .95;
-  font-weight: 600;
+    font-family: "Playfair Display", serif;
+
+    font-size: clamp(50px, 8vw, 95px);
+
+    line-height: .95;
+
+    font-weight: 600;
 }
 
 .coming {
-  color: #c9a96e;
-  margin-top: 22px;
-  font-size: 20px;
+    color: #c9a96e;
+
+    margin-top: 22px;
+
+    font-size: 20px;
 }
 
 .description {
-  max-width: 600px;
-  margin-top: 18px;
-  line-height: 1.7;
-  opacity: .85;
+    max-width: 600px;
+
+    margin-top: 18px;
+
+    line-height: 1.7;
+
+    opacity: .85;
 }
 
 .home-buttons {
-  display: flex;
-  gap: 12px;
-  margin-top: 30px;
-  flex-wrap: wrap;
+    display: flex;
+
+    gap: 12px;
+
+    margin-top: 30px;
+
+    flex-wrap: wrap;
 }
 
 .primary-btn,
 .secondary-btn {
-  border: 0;
-  border-radius: 5px;
-  padding: 14px 27px;
-  font-size: 16px;
-  font-weight: 600;
-  cursor: pointer;
+    border: 0;
+
+    border-radius: 5px;
+
+    padding: 14px 27px;
+
+    font-size: 16px;
+
+    font-weight: 600;
+
+    cursor: pointer;
 }
 
 .primary-btn {
-  background: white;
-  color: black;
+    background: white;
+
+    color: black;
 }
 
 .secondary-btn {
-  background: rgba(255,255,255,.18);
-  color: white;
-  backdrop-filter: blur(5px);
+    background: rgba(255,255,255,.18);
+
+    color: white;
+
+    backdrop-filter: blur(5px);
 }
 
-/* GENERAL SECTIONS */
+
+/* =========================
+   GENERAL SECTIONS
+========================= */
 
 .section {
-  padding: 90px 6vw;
+    padding: 90px 6vw;
 }
 
 .dark-section {
-  background: #101010;
+    background: #101010;
 }
 
 .section-small {
-  color: #c9a96e;
-  text-transform: uppercase;
-  letter-spacing: 4px;
-  font-size: 11px;
+    color: #c9a96e;
+
+    text-transform: uppercase;
+
+    letter-spacing: 4px;
+
+    font-size: 11px;
 }
 
 .section h2 {
-  font-family: "Playfair Display", serif;
-  font-size: clamp(35px, 5vw, 50px);
-  margin: 8px 0 35px;
+    font-family: "Playfair Display", serif;
+
+    font-size: clamp(35px, 5vw, 50px);
+
+    margin: 8px 0 35px;
 }
 
-/* EPISODES */
+
+/* =========================
+   EPISODES
+========================= */
 
 .episode-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
-  gap: 18px;
+    display: grid;
+
+    grid-template-columns:
+    repeat(auto-fit, minmax(190px, 1fr));
+
+    gap: 18px;
 }
 
 .episode {
-  background: #161616;
-  border-radius: 7px;
-  overflow: hidden;
-  cursor: pointer;
-  transition: transform .3s ease;
+    background: #161616;
+
+    border-radius: 7px;
+
+    overflow: hidden;
+
+    cursor: pointer;
+
+    transition: transform .3s ease;
 }
 
 .episode:hover {
-  transform: scale(1.035);
+    transform: scale(1.035);
 }
 
 .episode img {
-  width: 100%;
-  height: 290px;
-  object-fit: cover;
-  display: block;
+    width: 100%;
+
+    height: 290px;
+
+    object-fit: cover;
+
+    display: block;
 }
 
 .ep-info {
-  padding: 16px;
+    padding: 16px;
 }
 
 .ep-number {
-  color: #c9a96e;
-  text-transform: uppercase;
-  letter-spacing: 2px;
-  font-size: 10px;
+    color: #c9a96e;
+
+    text-transform: uppercase;
+
+    letter-spacing: 2px;
+
+    font-size: 10px;
 }
 
 .ep-info h3 {
-  font-family: "Playfair Display", serif;
-  margin-top: 6px;
-  font-size: 20px;
+    font-family: "Playfair Display", serif;
+
+    margin-top: 6px;
+
+    font-size: 20px;
 }
 
-/* EVENT OVERLAY */
+
+/* =========================
+   EVENT SCREEN
+========================= */
 
 #eventScreen {
-  position: fixed;
-  inset: 0;
-  z-index: 1000;
-  display: none;
-  background: #000;
+    position: fixed;
+
+    inset: 0;
+
+    z-index: 1000;
+
+    display: none;
+
+    background: black;
 }
 
 .event-background {
-  position: absolute;
-  inset: 0;
-  background-size: cover;
-  background-position: center;
+    position: absolute;
+
+    inset: 0;
+
+    background-size: cover;
+
+    background-position: center;
 }
 
 .event-shade {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    to top,
-    rgba(0,0,0,.98) 5%,
-    rgba(0,0,0,.65) 45%,
-    rgba(0,0,0,.25) 100%
-  );
+    position: absolute;
+
+    inset: 0;
+
+    background:
+    linear-gradient(
+        to top,
+        rgba(0,0,0,.98) 5%,
+        rgba(0,0,0,.65) 45%,
+        rgba(0,0,0,.25) 100%
+    );
 }
 
 .event-content {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  max-width: 780px;
-  padding: 7vw;
-  padding-bottom: 8vh;
+    position: absolute;
+
+    bottom: 0;
+
+    left: 0;
+
+    max-width: 780px;
+
+    padding: 7vw;
+
+    padding-bottom: 8vh;
 }
 
 .event-number {
-  color: #c9a96e;
-  text-transform: uppercase;
-  letter-spacing: 4px;
-  font-size: 11px;
+    color: #c9a96e;
+
+    text-transform: uppercase;
+
+    letter-spacing: 4px;
+
+    font-size: 11px;
 }
 
 .event-content h2 {
-  font-family: "Playfair Display", serif;
-  font-size: clamp(45px, 7vw, 80px);
-  margin: 8px 0 20px;
+    font-family: "Playfair Display", serif;
+
+    font-size: clamp(45px, 7vw, 80px);
+
+    margin: 8px 0 20px;
 }
 
 .event-meta {
-  display: flex;
-  gap: 18px;
-  flex-wrap: wrap;
-  font-weight: 500;
-  margin-bottom: 12px;
+    display: flex;
+
+    gap: 18px;
+
+    flex-wrap: wrap;
+
+    font-weight: 500;
+
+    margin-bottom: 12px;
 }
 
 #eventVenue {
-  color: #c9a96e;
-  font-size: 18px;
-  margin-bottom: 8px;
+    color: #c9a96e;
+
+    font-size: 18px;
+
+    margin-bottom: 8px;
 }
 
 #eventAddress {
-  opacity: .7;
-  margin-bottom: 10px;
+    opacity: .7;
+
+    margin-bottom: 10px;
 }
 
 #eventDress {
-  opacity: .8;
-  margin-bottom: 18px;
+    opacity: .8;
+
+    margin-bottom: 18px;
 }
 
 #eventDescription {
-  line-height: 1.7;
-  opacity: .9;
+    line-height: 1.7;
+
+    opacity: .9;
 }
 
 .more-episodes {
-  margin-top: 28px;
-  border: 1px solid rgba(255,255,255,.7);
-  background: rgba(0,0,0,.5);
-  color: white;
-  padding: 13px 22px;
-  border-radius: 5px;
-  cursor: pointer;
+    margin-top: 28px;
+
+    border: 1px solid rgba(255,255,255,.7);
+
+    background: rgba(0,0,0,.5);
+
+    color: white;
+
+    padding: 13px 22px;
+
+    border-radius: 5px;
+
+    cursor: pointer;
 }
 
-/* MORE INFO */
+
+/* =========================
+   INFO CARDS
+========================= */
 
 .info-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 20px;
+    display: grid;
+
+    grid-template-columns: repeat(3, 1fr);
+
+    gap: 20px;
 }
 
 .info-card {
-  border: 1px solid rgba(255,255,255,.12);
-  padding: 28px;
-  border-radius: 8px;
+    border: 1px solid rgba(255,255,255,.12);
+
+    padding: 28px;
+
+    border-radius: 8px;
 }
 
 .info-card h3 {
-  color: #c9a96e;
-  font-family: "Playfair Display", serif;
-  margin-bottom: 10px;
-  font-size: 22px;
+    color: #c9a96e;
+
+    font-family: "Playfair Display", serif;
+
+    margin-bottom: 10px;
+
+    font-size: 22px;
 }
 
 .info-card p {
-  opacity: .75;
-  line-height: 1.6;
+    opacity: .75;
+
+    line-height: 1.6;
 }
 
-/* STORY */
+
+/* =========================
+   STORY
+========================= */
 
 .story-wrap {
-  max-width: 800px;
+    max-width: 800px;
 }
 
 .story-wrap p {
-  font-size: 18px;
-  line-height: 1.9;
-  opacity: .78;
+    font-size: 18px;
+
+    line-height: 1.9;
+
+    opacity: .78;
 }
 
-/* RSVP */
+
+/* =========================
+   RSVP
+========================= */
 
 #rsvp {
-  text-align: center;
-  padding: 110px 20px;
+    text-align: center;
+
+    padding: 110px 20px;
 }
 
 #rsvp p {
-  opacity: .7;
-  margin-bottom: 28px;
+    opacity: .7;
+
+    margin-bottom: 28px;
 }
 
 .rsvp-button {
-  display: inline-block;
-  background: #c9a96e;
-  color: #080808;
-  padding: 15px 35px;
-  border-radius: 5px;
-  font-weight: 600;
+    display: inline-block;
+
+    background: #c9a96e;
+
+    color: #080808;
+
+    padding: 15px 35px;
+
+    border-radius: 5px;
+
+    font-weight: 600;
 }
 
-/* FOOTER */
+
+/* =========================
+   FOOTER
+========================= */
 
 footer {
-  border-top: 1px solid rgba(255,255,255,.1);
-  padding: 30px;
-  text-align: center;
-  opacity: .45;
-  font-size: 13px;
+    border-top:
+    1px solid rgba(255,255,255,.1);
+
+    padding: 30px;
+
+    text-align: center;
+
+    opacity: .45;
+
+    font-size: 13px;
 }
 
-/* MOBILE */
+
+/* =========================
+   MOBILE
+========================= */
 
 @media(max-width: 700px) {
-  .nav-links {
-    display: none;
-  }
 
-  nav {
-    padding: 18px 20px;
-  }
+    .nav-links {
+        display: none;
+    }
 
-  .home-content {
-    padding: 25px;
-    padding-bottom: 10vh;
-  }
+    nav {
+        padding: 18px 20px;
+    }
 
-  .section {
-    padding: 70px 20px;
-  }
+    .home-content {
+        padding: 25px;
 
-  .episode-grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 12px;
-  }
+        padding-bottom: 10vh;
+    }
 
-  .episode img {
-    height: 220px;
-  }
+    .section {
+        padding: 70px 20px;
+    }
 
-  .info-grid {
-    grid-template-columns: 1fr;
-  }
+    .episode-grid {
+        grid-template-columns:
+        repeat(2, 1fr);
 
-  .event-content {
-    padding: 25px;
-    padding-bottom: 45px;
-  }
+        gap: 12px;
+    }
+
+    .episode img {
+        height: 220px;
+    }
+
+    .info-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .event-content {
+        padding: 25px;
+
+        padding-bottom: 45px;
+    }
 }
+
 </style>
+
 </head>
 
-<body>
 
-<nav>
-  <a class="logo" href="#home">MANJOT+KHUSHI</a>
+<body class="intro-playing">
 
-  <div class="nav-links">
-    <a href="#episodes">Episodes</a>
-    <a href="#more-info">More Info</a>
-    <a href="#story">Our Story</a>
-    <a href="#wedding-info">Wedding Info</a>
-    <a href="#rsvp">RSVP</a>
-  </div>
-</nav>
 
-<!-- HOME -->
+<!-- =========================
+     VIDEO INTRO
+========================= -->
 
-<section id="home">
+<div id="videoIntro">
 
-  <div class="home-content">
+    <video
+        id="introVideo"
+        autoplay
+        muted
+        playsinline
+        preload="auto"
+    >
 
-    <div class="series-label">
-      A Limited Wedding Series
-    </div>
+        <source
+            src="intro.mp4"
+            type="video/mp4"
+        >
 
-    <h1>
-      Khushi & Manjot
-    </h1>
-
-    <div class="coming">
-      Coming May 2027
-    </div>
-
-    <p class="description">
-      Seven celebrations. Two families. One story.
-      Join us for a week of love, family, tradition and celebration.
-    </p>
-
-    <div class="home-buttons">
-
-      <button class="primary-btn" onclick="showEpisodes()">
-        ▶ Play
-      </button>
-
-      <button class="secondary-btn" onclick="showMoreInfo()">
-        ⓘ More Info
-      </button>
-
-    </div>
-
-  </div>
-
-</section>
-
-<!-- EPISODES -->
-
-<section id="episodes" class="section">
-
-  <div class="section-small">
-    Season One
-  </div>
-
-  <h2>Episodes</h2>
-
-  <div class="episode-grid" id="episodeGrid"></div>
-
-</section>
-
-<!-- MORE INFO -->
-
-<section id="more-info" class="section dark-section">
-
-  <div class="section-small">
-    About This Series
-  </div>
-
-  <h2>More Info</h2>
-
-  <div class="info-grid">
-
-    <div class="info-card">
-      <h3>7 Episodes</h3>
-      <p>
-        Seven events make up our wedding week, each celebrating
-        a different part of our families, culture and traditions.
-      </p>
-    </div>
-
-    <div class="info-card">
-      <h3>May 2027</h3>
-      <p>
-        Join us in Calgary as we celebrate the beginning of our
-        next chapter together.
-      </p>
-    </div>
-
-    <div class="info-card">
-      <h3>Your Invitation</h3>
-      <p>
-        Select an episode to see the time, location, attire and
-        important details for that celebration.
-      </p>
-    </div>
-
-  </div>
-
-</section>
-
-<!-- OUR STORY -->
-
-<section id="story" class="section">
-
-  <div class="story-wrap">
-
-    <div class="section-small">
-      The Story So Far
-    </div>
-
-    <h2>Khushi & Manjot</h2>
-
-    <p>
-      Our story brought two people and two families together.
-      In May 2027, we get to celebrate the next chapter with
-      the people who have been part of it.
-    </p>
-
-  </div>
-
-</section>
-
-<!-- WEDDING INFO -->
-
-<section id="wedding-info" class="section dark-section">
-
-  <div class="section-small">
-    Before You Watch
-  </div>
-
-  <h2>Wedding Info</h2>
-
-  <div class="info-grid">
-
-    <div class="info-card">
-      <h3>Locations</h3>
-      <p>
-        Events will take place at the Chowhan Farmhouse,
-        Dashmesh Culture and Empire Banquet Hall.
-      </p>
-    </div>
-
-    <div class="info-card">
-      <h3>Anand Karaj</h3>
-      <p>
-        Please wear appropriate traditional attire.
-        Head coverings will be required for the Gurdwara ceremony.
-      </p>
-    </div>
-
-    <div class="info-card">
-      <h3>Event Details</h3>
-      <p>
-        Click each episode above for its individual time,
-        venue, attire and event information.
-      </p>
-    </div>
-
-  </div>
-
-</section>
-
-<!-- RSVP -->
-
-<section id="rsvp">
-
-  <div class="section-small">
-    The Guest List
-  </div>
-
-  <h2 style="font-family:'Playfair Display',serif; font-size:45px; margin:10px 0 15px;">
-    Will You Join Us?
-  </h2>
-
-  <p>
-    RSVP information coming soon.
-  </p>
-
-  <a href="#" class="rsvp-button">
-    RSVP Coming Soon
-  </a>
-
-</section>
-
-<footer>
-  Khushi & Manjot · May 2027 · Calgary
-</footer>
-
-<!-- FULL SCREEN EVENT -->
-
-<div id="eventScreen">
-
-  <div class="event-background" id="eventBackground"></div>
-
-  <div class="event-shade"></div>
-
-  <div class="event-content">
-
-    <div class="event-number" id="eventNumber"></div>
-
-    <h2 id="eventTitle"></h2>
-
-    <div class="event-meta">
-      <span id="eventDate"></span>
-      <span id="eventTime"></span>
-    </div>
-
-    <div id="eventVenue"></div>
-
-    <div id="eventAddress"></div>
-
-    <div id="eventDress"></div>
-
-    <p id="eventDescription"></p>
-
-    <button class="more-episodes" onclick="closeEpisode()">
-      ← More Episodes
-    </button>
-
-  </div>
+    </video>
 
 </div>
 
+
+<!-- =========================
+     NAVIGATION
+========================= -->
+
+<nav>
+
+    <a
+        class="logo"
+        href="#home"
+    >
+        K & M
+    </a>
+
+    <div class="nav-links">
+
+        <a href="#episodes">
+            Episodes
+        </a>
+
+        <a href="#more-info">
+            More Info
+        </a>
+
+        <a href="#story">
+            Our Story
+        </a>
+
+        <a href="#wedding-info">
+            Wedding Info
+        </a>
+
+        <a href="#rsvp">
+            RSVP
+        </a>
+
+    </div>
+
+</nav>
+
+
+<!-- =========================
+     HOME
+========================= -->
+
+<section id="home">
+
+    <div class="home-content">
+
+        <div class="series-label">
+            A Limited Wedding Series
+        </div>
+
+        <h1>
+            Khushi & Manjot
+        </h1>
+
+        <div class="coming">
+            Coming May 2027
+        </div>
+
+        <p class="description">
+            Seven celebrations. Two families.
+            One story. Join us for a week of
+            love, family, tradition and celebration.
+        </p>
+
+        <div class="home-buttons">
+
+            <button
+                class="primary-btn"
+                onclick="showEpisodes()"
+            >
+                ▶ Play
+            </button>
+
+            <button
+                class="secondary-btn"
+                onclick="showMoreInfo()"
+            >
+                ⓘ More Info
+            </button>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     EPISODES
+========================= -->
+
+<section
+    id="episodes"
+    class="section"
+>
+
+    <div class="section-small">
+        Season One
+    </div>
+
+    <h2>
+        Episodes
+    </h2>
+
+    <div
+        class="episode-grid"
+        id="episodeGrid"
+    ></div>
+
+</section>
+
+
+<!-- =========================
+     MORE INFO
+========================= -->
+
+<section
+    id="more-info"
+    class="section dark-section"
+>
+
+    <div class="section-small">
+        About This Series
+    </div>
+
+    <h2>
+        More Info
+    </h2>
+
+    <div class="info-grid">
+
+        <div class="info-card">
+
+            <h3>
+                7 Episodes
+            </h3>
+
+            <p>
+                Seven events make up our wedding week,
+                each celebrating a different part of
+                our families, culture and traditions.
+            </p>
+
+        </div>
+
+
+        <div class="info-card">
+
+            <h3>
+                May 2027
+            </h3>
+
+            <p>
+                Join us in Calgary as we celebrate
+                the beginning of our next chapter together.
+            </p>
+
+        </div>
+
+
+        <div class="info-card">
+
+            <h3>
+                Your Invitation
+            </h3>
+
+            <p>
+                Select an episode to see the time,
+                location, attire and important details
+                for that celebration.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     OUR STORY
+========================= -->
+
+<section
+    id="story"
+    class="section"
+>
+
+    <div class="story-wrap">
+
+        <div class="section-small">
+            The Story So Far
+        </div>
+
+        <h2>
+            Khushi & Manjot
+        </h2>
+
+        <p>
+            Our story brought two people and two
+            families together. In May 2027, we get
+            to celebrate the next chapter with the
+            people who have been part of it.
+        </p>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     WEDDING INFO
+========================= -->
+
+<section
+    id="wedding-info"
+    class="section dark-section"
+>
+
+    <div class="section-small">
+        Before You Watch
+    </div>
+
+    <h2>
+        Wedding Info
+    </h2>
+
+    <div class="info-grid">
+
+        <div class="info-card">
+
+            <h3>
+                Locations
+            </h3>
+
+            <p>
+                Events will take place at the
+                Chowhan Farmhouse, Dashmesh Culture
+                and Empire Banquet Hall.
+            </p>
+
+        </div>
+
+
+        <div class="info-card">
+
+            <h3>
+                Anand Karaj
+            </h3>
+
+            <p>
+                Please wear appropriate traditional
+                attire. Head coverings will be required
+                for the Gurdwara ceremony.
+            </p>
+
+        </div>
+
+
+        <div class="info-card">
+
+            <h3>
+                Event Details
+            </h3>
+
+            <p>
+                Select each episode for its individual
+                time, venue, attire and event information.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     RSVP
+========================= -->
+
+<section id="rsvp">
+
+    <div class="section-small">
+        The Guest List
+    </div>
+
+    <h2
+        style="
+        font-family:'Playfair Display',serif;
+        font-size:45px;
+        margin:10px 0 15px;"
+    >
+        Will You Join Us?
+    </h2>
+
+    <p>
+        RSVP information coming soon.
+    </p>
+
+    <a
+        href="#"
+        class="rsvp-button"
+    >
+        RSVP Coming Soon
+    </a>
+
+</section>
+
+
+<footer>
+    Khushi & Manjot · May 2027 · Calgary
+</footer>
+
+
+<!-- =========================
+     EVENT SCREEN
+========================= -->
+
+<div id="eventScreen">
+
+    <div
+        class="event-background"
+        id="eventBackground"
+    ></div>
+
+    <div class="event-shade"></div>
+
+    <div class="event-content">
+
+        <div
+            class="event-number"
+            id="eventNumber"
+        ></div>
+
+        <h2 id="eventTitle"></h2>
+
+        <div class="event-meta">
+
+            <span id="eventDate"></span>
+
+            <span id="eventTime"></span>
+
+        </div>
+
+        <div id="eventVenue"></div>
+
+        <div id="eventAddress"></div>
+
+        <div id="eventDress"></div>
+
+        <p id="eventDescription"></p>
+
+        <button
+            class="more-episodes"
+            onclick="closeEpisode()"
+        >
+            ← More Episodes
+        </button>
+
+    </div>
+
+</div>
+
+
 <script>
 
-/* ================================
+/* =========================
    WEDDING EVENTS
-================================ */
+========================= */
 
 const events = [
 
 {
-  title: "Paath",
-  date: "May 2027",
-  time: "10:00 AM",
-  venue: "Chowhan Farmhouse",
-  address: "Calgary, Alberta",
-  dress: "Traditional attire",
-  description:
+    title: "Paath",
+    date: "May 2027",
+    time: "10:00 AM",
+    venue: "Chowhan Farmhouse",
+    address: "Calgary, Alberta",
+    dress: "Traditional attire",
+
+    description:
     "A morning of prayer and blessings to officially launch our wedding celebrations.",
-  image:
+
+    image:
     "https://images.pexels.com/photos/1306248/pexels-photo-1306248.jpeg"
 },
 
 {
-  title: "Mehndi",
-  date: "May 2027",
-  time: "5:00 PM",
-  venue: "Chowhan Farmhouse",
-  address: "Calgary, Alberta",
-  dress: "Colourful traditional attire",
-  description:
+    title: "Mehndi",
+    date: "May 2027",
+    time: "5:00 PM",
+    venue: "Chowhan Farmhouse",
+    address: "Calgary, Alberta",
+    dress: "Colourful traditional attire",
+
+    description:
     "An evening of mehndi, colour, music and celebration with our family and friends.",
-  image:
+
+    image:
     "https://images.pexels.com/photos/169193/pexels-photo-169193.jpeg"
 },
 
 {
-  title: "Haldi",
-  date: "May 2027",
-  time: "10:00 AM",
-  venue: "Chowhan Farmhouse",
-  address: "Calgary, Alberta",
-  dress: "Details to come",
-  description:
+    title: "Haldi",
+    date: "May 2027",
+    time: "10:00 AM",
+    venue: "Chowhan Farmhouse",
+    address: "Calgary, Alberta",
+    dress: "Details to come",
+
+    description:
     "A joyful morning celebrating our Haldi ceremony with family before the evening festivities begin.",
-  image:
+
+    image:
     "https://images.pexels.com/photos/169198/pexels-photo-169198.jpeg"
 },
 
 {
-  title: "Jaggo",
-  date: "May 2027",
-  time: "6:00 PM",
-  venue: "Chowhan Farmhouse",
-  address: "Calgary, Alberta",
-  dress: "Punjabi festive attire",
-  description:
+    title: "Jaggo",
+    date: "May 2027",
+    time: "6:00 PM",
+    venue: "Chowhan Farmhouse",
+    address: "Calgary, Alberta",
+    dress: "Punjabi festive attire",
+
+    description:
     "An evening of dhol, dancing and Punjabi wedding celebrations at the Chowhan Farmhouse.",
-  image:
+
+    image:
     "https://images.pexels.com/photos/8887166/pexels-photo-8887166.jpeg"
 },
 
 {
-  title: "Choora + Chowhan BBQ",
-  date: "May 2027",
-  time: "3:00 PM",
-  venue: "Chowhan Farmhouse",
-  address: "Calgary, Alberta",
-  dress: "Details to come",
-  description:
+    title: "Choora + Chowhan BBQ",
+    date: "May 2027",
+    time: "3:00 PM",
+    venue: "Chowhan Farmhouse",
+    address: "Calgary, Alberta",
+    dress: "Details to come",
+
+    description:
     "Our Choora celebrations followed by the Chowhan BBQ with family and friends.",
-  image:
+
+    image:
     "https://images.pexels.com/photos/13984639/pexels-photo-13984639.jpeg"
 },
 
 {
-  title: "Anand Karaj",
-  date: "May 7, 2027",
-  time: "9:00 AM",
-  venue: "Dashmesh Culture",
-  address: "Calgary, Alberta",
-  dress: "Formal traditional attire · Head covering required",
-  description:
+    title: "Anand Karaj",
+    date: "May 7, 2027",
+    time: "9:00 AM",
+    venue: "Dashmesh Culture",
+    address: "Calgary, Alberta",
+
+    dress:
+    "Formal traditional attire · Head covering required",
+
+    description:
     "Join us for our Anand Karaj as we begin our marriage surrounded by our families and loved ones.",
-  image:
+
+    image:
     "https://images.pexels.com/photos/13146927/pexels-photo-13146927.jpeg"
 },
 
 {
-  title: "Reception",
-  date: "May 2027",
-  time: "6:00 PM",
-  venue: "Empire Banquet Hall",
-  address: "Calgary, Alberta",
-  dress: "Formal attire",
-  description:
+    title: "Reception",
+    date: "May 2027",
+    time: "6:00 PM",
+    venue: "Empire Banquet Hall",
+    address: "Calgary, Alberta",
+    dress: "Formal attire",
+
+    description:
     "The grand finale of our wedding week. Dinner, dancing and one final celebration together.",
-  image:
+
+    image:
     "https://images.pexels.com/photos/16935897/pexels-photo-16935897.jpeg"
 }
 
 ];
 
 
-/* BUILD EPISODE CARDS */
+/* =========================
+   CREATE EPISODE CARDS
+========================= */
 
-const grid = document.getElementById("episodeGrid");
+const grid =
+document.getElementById("episodeGrid");
+
 
 events.forEach((event, index) => {
 
-  const card = document.createElement("div");
+    const card =
+    document.createElement("div");
 
-  card.className = "episode";
+    card.className =
+    "episode";
 
-  card.innerHTML = `
-    <img src="${event.image}" alt="${event.title}">
+    card.innerHTML = `
 
-    <div class="ep-info">
+        <img
+            src="${event.image}"
+            alt="${event.title}"
+        >
 
-      <div class="ep-number">
-        Episode ${String(index + 1).padStart(2, "0")}
-      </div>
+        <div class="ep-info">
 
-      <h3>${event.title}</h3>
+            <div class="ep-number">
 
-    </div>
-  `;
+                Episode
+                ${String(index + 1).padStart(2, "0")}
 
-  card.addEventListener("click", () => {
-    openEpisode(index);
-  });
+            </div>
 
-  grid.appendChild(card);
+            <h3>
+                ${event.title}
+            </h3>
+
+        </div>
+    `;
+
+
+    card.addEventListener(
+        "click",
+        () => openEpisode(index)
+    );
+
+
+    grid.appendChild(card);
 
 });
 
 
-/* OPEN EVENT */
+/* =========================
+   OPEN EPISODE
+========================= */
 
 function openEpisode(index) {
 
-  const event = events[index];
+    const event =
+    events[index];
 
-  document.getElementById("eventNumber").textContent =
+
+    document.getElementById(
+        "eventNumber"
+    ).textContent =
     `Episode ${String(index + 1).padStart(2, "0")}`;
 
-  document.getElementById("eventTitle").textContent =
+
+    document.getElementById(
+        "eventTitle"
+    ).textContent =
     event.title;
 
-  document.getElementById("eventDate").textContent =
+
+    document.getElementById(
+        "eventDate"
+    ).textContent =
     event.date;
 
-  document.getElementById("eventTime").textContent =
+
+    document.getElementById(
+        "eventTime"
+    ).textContent =
     event.time;
 
-  document.getElementById("eventVenue").textContent =
+
+    document.getElementById(
+        "eventVenue"
+    ).textContent =
     event.venue;
 
-  document.getElementById("eventAddress").textContent =
+
+    document.getElementById(
+        "eventAddress"
+    ).textContent =
     event.address;
 
-  document.getElementById("eventDress").textContent =
+
+    document.getElementById(
+        "eventDress"
+    ).textContent =
     "Dress Code: " + event.dress;
 
-  document.getElementById("eventDescription").textContent =
+
+    document.getElementById(
+        "eventDescription"
+    ).textContent =
     event.description;
 
-  document.getElementById("eventBackground").style.backgroundImage =
+
+    document.getElementById(
+        "eventBackground"
+    ).style.backgroundImage =
     `url("${event.image}")`;
 
-  document.getElementById("eventScreen").style.display =
+
+    document.getElementById(
+        "eventScreen"
+    ).style.display =
     "block";
 
-  document.body.style.overflow =
+
+    document.body.style.overflow =
     "hidden";
 }
 
 
-/* CLOSE EVENT */
+/* =========================
+   CLOSE EPISODE
+========================= */
 
 function closeEpisode() {
 
-  document.getElementById("eventScreen").style.display =
+    document.getElementById(
+        "eventScreen"
+    ).style.display =
     "none";
 
-  document.body.style.overflow =
+
+    document.body.style.overflow =
     "";
 
-  document.getElementById("episodes").scrollIntoView({
-    behavior: "smooth"
-  });
+
+    document.getElementById(
+        "episodes"
+    ).scrollIntoView({
+        behavior: "smooth"
+    });
 }
 
 
-/* HOME BUTTONS */
+/* =========================
+   HOME BUTTONS
+========================= */
 
 function showEpisodes() {
 
-  document.getElementById("episodes").scrollIntoView({
-    behavior: "smooth"
-  });
+    document.getElementById(
+        "episodes"
+    ).scrollIntoView({
+        behavior: "smooth"
+    });
 }
+
 
 function showMoreInfo() {
 
-  document.getElementById("more-info").scrollIntoView({
-    behavior: "smooth"
-  });
+    document.getElementById(
+        "more-info"
+    ).scrollIntoView({
+        behavior: "smooth"
+    });
 }
+
+
+/* =========================
+   INTRO VIDEO
+========================= */
+
+const introVideo =
+document.getElementById("introVideo");
+
+const videoIntro =
+document.getElementById("videoIntro");
+
+
+function finishIntro() {
+
+    videoIntro.classList.add(
+        "fade-out"
+    );
+
+
+    setTimeout(() => {
+
+        videoIntro.style.display =
+        "none";
+
+
+        document.body.classList.remove(
+            "intro-playing"
+        );
+
+
+        window.scrollTo(
+            0,
+            0
+        );
+
+    }, 1200);
+}
+
+
+/* Video ends normally */
+
+introVideo.addEventListener(
+    "ended",
+    finishIntro
+);
+
+
+/* If video cannot load,
+   don't trap guest on black screen */
+
+introVideo.addEventListener(
+    "error",
+    finishIntro
+);
+
+
+/* Try autoplay */
+
+window.addEventListener(
+    "load",
+    () => {
+
+        const attempt =
+        introVideo.play();
+
+
+        if (
+            attempt !== undefined
+        ) {
+
+            attempt.catch(() => {
+
+                /*
+                Autoplay may be blocked
+                by some browsers.
+                */
+
+                finishIntro();
+
+            });
+
+        }
+
+    }
+);
 
 </script>
 
