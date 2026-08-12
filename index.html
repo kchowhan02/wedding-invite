@@ -64,7 +64,6 @@ img {
   position: fixed;
   inset: 0;
   z-index: 10000;
-
   background: #000;
 
   display: flex;
@@ -72,7 +71,7 @@ img {
   justify-content: center;
 
   opacity: 1;
-  transition: opacity 1.7s ease;
+  transition: opacity 1.6s ease;
 }
 
 #intro.hide {
@@ -97,30 +96,116 @@ img {
 
 #soundButton {
   right: 22px;
-
   border: 1px solid rgba(255,255,255,.4);
-  background: rgba(0,0,0,.67);
+  background: rgba(0,0,0,.68);
   color: white;
-
   padding: 11px 17px;
   border-radius: 50px;
-
   font-size: 12px;
-
   backdrop-filter: blur(8px);
 }
 
 #skipIntro {
   left: 22px;
-
   border: none;
   background: rgba(0,0,0,.5);
   color: rgba(255,255,255,.85);
-
   padding: 10px 15px;
   border-radius: 50px;
-
   font-size: 12px;
+}
+
+
+/* =========================================================
+   TITLE SEQUENCE
+========================================================= */
+
+#titleSequence {
+  position: fixed;
+  inset: 0;
+  z-index: 9000;
+  background: #000;
+
+  display: none;
+  align-items: center;
+  justify-content: center;
+
+  text-align: center;
+
+  opacity: 0;
+  transition: opacity .7s ease;
+
+  pointer-events: none;
+}
+
+#titleSequence.show {
+  display: flex;
+  opacity: 1;
+}
+
+#titleSequence.fade {
+  opacity: 0;
+}
+
+.title-inner {
+  position: relative;
+  z-index: 5;
+  padding: 30px;
+}
+
+.welcome-text {
+  color: rgba(255,255,255,.65);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: .5em;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+
+  opacity: 0;
+  transform: translateY(8px);
+
+  transition:
+    opacity .6s ease,
+    transform .6s ease;
+}
+
+.wedding-title {
+  font-family: "Playfair Display", serif;
+  font-size: clamp(46px, 8vw, 96px);
+  line-height: .98;
+  font-weight: 600;
+
+  color: white;
+
+  opacity: 0;
+  transform: scale(.97);
+
+  text-shadow:
+    0 0 30px rgba(201,169,110,.13);
+
+  transition:
+    opacity .7s ease,
+    transform .7s ease;
+}
+
+.titleSequence-active .welcome-text,
+.titleSequence-active .wedding-title {
+  opacity: 1;
+  transform: none;
+}
+
+.title-gold-line {
+  width: 85px;
+  height: 2px;
+  margin: 24px auto 0;
+  background: var(--gold);
+
+  opacity: 0;
+  transition: opacity .7s ease .2s;
+}
+
+.titleSequence-active .title-gold-line {
+  opacity: 1;
 }
 
 
@@ -130,25 +215,20 @@ img {
 
 #musicToggle {
   position: fixed;
-
   right: 18px;
   bottom: 18px;
-
   z-index: 7000;
 
   display: none;
 
   border: 1px solid rgba(255,255,255,.28);
-
   background: rgba(0,0,0,.7);
   color: white;
 
   padding: 10px 16px;
-
   border-radius: 50px;
 
   font-size: 12px;
-
   cursor: pointer;
 
   backdrop-filter: blur(9px);
@@ -161,12 +241,9 @@ img {
 
 nav {
   position: fixed;
-
   top: 0;
   left: 0;
-
   width: 100%;
-
   z-index: 500;
 
   display: flex;
@@ -177,44 +254,33 @@ nav {
   background:
     linear-gradient(
       to bottom,
-      rgba(0,0,0,.92) 0%,
-      rgba(0,0,0,.55) 42%,
-      transparent 100%
+      rgba(0,0,0,.94),
+      rgba(0,0,0,.55),
+      transparent
     );
 }
 
 .logo {
   color: var(--gold);
-
   font-size: 21px;
   font-weight: 700;
-
   letter-spacing: .045em;
-
   white-space: nowrap;
-
   margin-right: 48px;
 }
 
 .nav-links {
   display: flex;
-
-  gap: 34px;
-
+  gap: 33px;
   align-items: center;
 }
 
 .nav-links a {
   color: rgba(255,255,255,.9);
-
   font-size: 12px;
   font-weight: 600;
-
   letter-spacing: .07em;
-
   text-transform: uppercase;
-
-  transition: color .2s ease;
 }
 
 .nav-links a:hover {
@@ -223,29 +289,22 @@ nav {
 
 
 /* =========================================================
-   HOME / NETFLIX HERO
+   HOME HERO
 ========================================================= */
 
 #home {
   position: relative;
-
   min-height: 100vh;
-
   overflow: hidden;
-
   background: #000;
 
   opacity: 0;
-
-  transition: opacity 1.5s ease;
+  transition: opacity 1s ease;
 }
 
 #home.home-visible {
   opacity: 1;
 }
-
-
-/* Photo burst layers */
 
 .hero-photo {
   position: absolute;
@@ -257,89 +316,75 @@ nav {
   object-fit: cover;
 
   opacity: 0;
-
-  transform: scale(1.035);
+  transform: scale(1.04);
 
   transition:
-    opacity .34s ease,
-    transform 1.2s ease;
+    opacity .32s ease,
+    transform 1.1s ease;
 
   z-index: 1;
 }
 
 .hero-photo.active {
   opacity: 1;
-
   transform: scale(1);
 }
-
-
-/* Main cinematic dark fade */
 
 .hero-vignette {
   position: absolute;
   inset: 0;
-
   z-index: 2;
-
   pointer-events: none;
 
   background:
 
     linear-gradient(
       90deg,
-      rgba(0,0,0,.96) 0%,
+      rgba(0,0,0,.97) 0%,
       rgba(0,0,0,.84) 18%,
-      rgba(0,0,0,.56) 37%,
-      rgba(0,0,0,.16) 65%,
+      rgba(0,0,0,.56) 38%,
+      rgba(0,0,0,.18) 65%,
       rgba(0,0,0,.05) 100%
     ),
 
     linear-gradient(
       to top,
       rgba(0,0,0,1) 0%,
-      rgba(0,0,0,.75) 14%,
-      rgba(0,0,0,.13) 48%,
+      rgba(0,0,0,.73) 16%,
+      rgba(0,0,0,.12) 50%,
       rgba(0,0,0,.28) 100%
     );
 }
 
-
-/* Dark border around hero */
-
 .hero-edge {
   position: absolute;
   inset: 0;
-
   z-index: 3;
-
   pointer-events: none;
 
   box-shadow:
-    inset 0 0 120px 35px rgba(0,0,0,.45);
+    inset 0 0 130px 40px rgba(0,0,0,.48);
 }
 
 
-/* Hero wording */
+/* NETFLIX UI COPY */
 
 .home-content {
   position: relative;
-
   z-index: 10;
 
   width: 100%;
-  max-width: 760px;
+  max-width: 780px;
 
   padding-left: 5vw;
-  padding-top: 25vh;
+  padding-top: 27vh;
 
   opacity: 0;
-
-  transform: translateY(20px);
+  transform: translateY(18px);
 
   transition:
-    opacity 1.3s ease,
-    transform 1.3s ease;
+    opacity 1.2s ease,
+    transform 1.2s ease;
 }
 
 #home.copy-visible .home-content {
@@ -354,40 +399,30 @@ nav {
   font-weight: 600;
 
   letter-spacing: .42em;
-
   text-transform: uppercase;
 
-  margin-bottom: 19px;
+  margin-bottom: 18px;
 }
 
 .home-content h1 {
   font-family: "Playfair Display", serif;
-
-  font-size: clamp(65px, 8vw, 118px);
-
-  line-height: .86;
-
+  font-size: clamp(67px, 8vw, 118px);
+  line-height: .87;
   font-weight: 600;
-
   letter-spacing: -.035em;
-
-  max-width: 690px;
 }
 
 .home-meta {
   display: flex;
-
   align-items: center;
   flex-wrap: wrap;
 
   gap: 13px;
 
-  margin-top: 24px;
+  margin-top: 23px;
 
-  font-size: 13px;
-
+  font-size: 12px;
   font-weight: 600;
-
   text-transform: uppercase;
 
   color: rgba(255,255,255,.78);
@@ -398,37 +433,31 @@ nav {
 }
 
 .home-description {
-  margin-top: 20px;
+  margin-top: 19px;
 
-  max-width: 650px;
-
-  color: rgba(255,255,255,.93);
-
-  line-height: 1.55;
+  max-width: 640px;
 
   font-size: 17px;
+  line-height: 1.55;
+
+  color: rgba(255,255,255,.93);
 }
 
 .button-row {
   display: flex;
-
   gap: 11px;
-
   flex-wrap: wrap;
 
-  margin-top: 28px;
+  margin-top: 27px;
 }
 
 .play-btn,
 .info-btn {
   display: inline-flex;
-
   align-items: center;
-
   gap: 9px;
 
   border: none;
-
   border-radius: 4px;
 
   padding: 13px 24px;
@@ -437,123 +466,26 @@ nav {
   font-weight: 700;
 
   cursor: pointer;
-
-  transition:
-    transform .2s ease,
-    opacity .2s ease;
 }
 
 .play-btn {
-  background: #fff;
+  background: white;
   color: #000;
 }
 
 .info-btn {
-  background: rgba(109,109,110,.68);
+  background: rgba(109,109,110,.7);
   color: white;
-
   backdrop-filter: blur(5px);
 }
 
-.play-btn:hover,
-.info-btn:hover {
-  transform: translateY(-1px);
-  opacity: .88;
-}
-
 
 /* =========================================================
-   WEDDING WEEK THUMBNAILS ON COVER
-========================================================= */
-
-.hero-week {
-  position: absolute;
-
-  left: 4vw;
-  right: 0;
-  bottom: 22px;
-
-  z-index: 12;
-
-  opacity: 0;
-
-  transform: translateY(18px);
-
-  transition:
-    opacity 1.2s ease .25s,
-    transform 1.2s ease .25s;
-}
-
-#home.copy-visible .hero-week {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-.hero-week h3 {
-  font-size: 18px;
-  font-weight: 700;
-
-  letter-spacing: .015em;
-
-  margin-bottom: 12px;
-}
-
-.hero-thumbnails {
-  display: flex;
-
-  gap: 9px;
-
-  overflow-x: auto;
-
-  padding-right: 25px;
-  padding-bottom: 4px;
-
-  scrollbar-width: none;
-}
-
-.hero-thumbnails::-webkit-scrollbar {
-  display: none;
-}
-
-.hero-thumb {
-  flex: 0 0 205px;
-
-  height: 112px;
-
-  border-radius: 5px;
-
-  overflow: hidden;
-
-  background: #222;
-
-  cursor: pointer;
-
-  border: 1px solid rgba(255,255,255,.12);
-
-  transition:
-    transform .22s ease,
-    border-color .22s ease;
-}
-
-.hero-thumb:hover {
-  transform: scale(1.035);
-  border-color: rgba(255,255,255,.45);
-}
-
-.hero-thumb img {
-  width: 100%;
-  height: 100%;
-
-  object-fit: cover;
-}
-
-
-/* =========================================================
-   STANDARD SECTIONS
+   GENERAL SECTIONS
 ========================================================= */
 
 .section {
-  padding: 90px 6vw;
+  padding: 90px 5vw;
 }
 
 .alt-section {
@@ -562,92 +494,102 @@ nav {
 
 .section-label {
   color: var(--gold);
-
   text-transform: uppercase;
-
   letter-spacing: .35em;
-
   font-size: 10px;
 }
 
 .section-title {
   font-family: "Playfair Display", serif;
-
   font-size: clamp(36px, 5vw, 52px);
-
   margin-top: 8px;
-  margin-bottom: 36px;
+  margin-bottom: 32px;
 }
 
 
 /* =========================================================
-   EPISODES
+   EPISODES - NETFLIX STYLE ROW
 ========================================================= */
 
 .episode-grid {
   display: grid;
 
   grid-template-columns:
-    repeat(auto-fit, minmax(200px, 1fr));
+    repeat(3, minmax(0, 1fr));
 
-  gap: 17px;
+  gap: 14px;
 }
 
 .episode-card {
+  position: relative;
+
+  min-height: 220px;
+
   background: #151515;
 
+  border-radius: 6px;
   overflow: hidden;
-
-  border-radius: 7px;
 
   cursor: pointer;
 
   transition:
-    transform .28s ease,
-    box-shadow .28s ease;
+    transform .25s ease,
+    box-shadow .25s ease;
 }
 
 .episode-card:hover {
   transform: scale(1.035);
 
   box-shadow:
-    0 10px 35px rgba(0,0,0,.45);
+    0 14px 40px rgba(0,0,0,.5);
 }
 
 .episode-image {
   width: 100%;
-  height: 285px;
-
+  height: 220px;
   object-fit: cover;
 }
 
+.episode-dark {
+  position: absolute;
+  inset: 0;
+
+  background:
+    linear-gradient(
+      to top,
+      rgba(0,0,0,.92),
+      rgba(0,0,0,.08) 62%
+    );
+}
+
 .episode-copy {
-  padding: 15px;
+  position: absolute;
+
+  left: 0;
+  right: 0;
+  bottom: 0;
+
+  z-index: 4;
+
+  padding: 18px;
 }
 
 .episode-number {
   color: var(--gold);
-
   text-transform: uppercase;
-
   letter-spacing: .22em;
-
   font-size: 9px;
 }
 
 .episode-copy h3 {
   font-family: "Playfair Display", serif;
-
-  font-size: 20px;
-
+  font-size: 23px;
   margin-top: 5px;
 }
 
 .episode-copy p {
-  margin-top: 7px;
-
-  opacity: .55;
-
+  margin-top: 5px;
+  opacity: .68;
   font-size: 12px;
 }
 
@@ -684,10 +626,9 @@ nav {
   background:
     linear-gradient(
       to top,
-      rgba(0,0,0,.98) 0%,
-      rgba(0,0,0,.77) 35%,
-      rgba(0,0,0,.2) 70%,
-      rgba(0,0,0,.35) 100%
+      rgba(0,0,0,.98),
+      rgba(0,0,0,.76) 35%,
+      rgba(0,0,0,.2) 72%
     );
 }
 
@@ -706,28 +647,21 @@ nav {
 
 .event-episode {
   color: var(--gold);
-
   text-transform: uppercase;
-
   letter-spacing: .35em;
-
   font-size: 10px;
 }
 
 .event-details h2 {
   font-family: "Playfair Display", serif;
-
   font-size: clamp(48px, 7vw, 86px);
-
   margin-top: 8px;
   margin-bottom: 17px;
 }
 
 .event-meta {
   display: flex;
-
   gap: 18px;
-
   flex-wrap: wrap;
 
   font-size: 15px;
@@ -738,29 +672,23 @@ nav {
 
 .event-venue {
   color: var(--gold);
-
   font-size: 19px;
-
   margin-bottom: 7px;
 }
 
 .event-address {
   opacity: .65;
-
   margin-bottom: 11px;
 }
 
 .event-dress {
   opacity: .8;
-
   margin-bottom: 18px;
 }
 
 .event-description {
   max-width: 620px;
-
   line-height: 1.65;
-
   opacity: .88;
 }
 
@@ -770,13 +698,10 @@ nav {
 
 .event-button {
   border: 1px solid rgba(255,255,255,.55);
-
   background: rgba(0,0,0,.55);
-
   color: white;
 
   padding: 12px 19px;
-
   border-radius: 5px;
 
   cursor: pointer;
@@ -790,34 +715,25 @@ nav {
 .info-grid,
 .wedding-info-grid {
   display: grid;
-
-  grid-template-columns:
-    repeat(3, 1fr);
-
+  grid-template-columns: repeat(3, 1fr);
   gap: 18px;
 }
 
 .info-box {
   border: 1px solid rgba(255,255,255,.1);
-
   padding: 28px;
-
   border-radius: 8px;
 }
 
 .info-box h3 {
   color: var(--gold);
-
   font-family: "Playfair Display", serif;
-
   font-size: 22px;
-
   margin-bottom: 10px;
 }
 
 .info-box p {
   opacity: .7;
-
   line-height: 1.6;
 }
 
@@ -828,13 +744,9 @@ nav {
 
 .cast-grid {
   display: grid;
-
   grid-template-columns: 1fr 1fr;
-
   gap: 30px;
-
   max-width: 900px;
-
   margin: auto;
 }
 
@@ -845,31 +757,22 @@ nav {
 .cast-person img {
   width: 230px;
   height: 300px;
-
   object-fit: cover;
-
   margin: auto;
-
   border-radius: 8px;
 }
 
 .cast-person h3 {
   font-family: "Playfair Display", serif;
-
   font-size: 28px;
-
   margin-top: 17px;
 }
 
 .cast-role {
   color: var(--gold);
-
   text-transform: uppercase;
-
   letter-spacing: .25em;
-
   font-size: 10px;
-
   margin-top: 5px;
 }
 
@@ -880,20 +783,15 @@ nav {
 
 .story-grid {
   display: grid;
-
   grid-template-columns: 1fr 1fr;
-
   gap: 20px;
-
   align-items: center;
 }
 
 .story-image {
   width: 100%;
   height: 550px;
-
   object-fit: cover;
-
   border-radius: 8px;
 }
 
@@ -903,18 +801,32 @@ nav {
 
 .story-copy h3 {
   font-family: "Playfair Display", serif;
-
   font-size: clamp(34px, 4vw, 48px);
-
   margin-bottom: 17px;
 }
 
 .story-copy p {
   opacity: .75;
-
   line-height: 1.8;
-
   font-size: 17px;
+}
+
+
+/* SECOND MEMORY STRIP */
+
+.memory-strip {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+
+  margin-top: 40px;
+}
+
+.memory-strip img {
+  width: 100%;
+  height: 260px;
+  object-fit: cover;
+  border-radius: 6px;
 }
 
 
@@ -924,7 +836,6 @@ nav {
 
 .family-feature {
   position: relative;
-
   min-height: 600px;
 
   background:
@@ -933,10 +844,9 @@ nav {
       rgba(0,0,0,.85),
       rgba(0,0,0,.08)
     ),
-    url("MLS-539.jpg");
+    url("farmhouse.jpg");
 
   background-size: cover;
-
   background-position: center;
 }
 
@@ -951,15 +861,12 @@ nav {
 
 .family-copy h2 {
   font-family: "Playfair Display", serif;
-
   font-size: clamp(40px, 6vw, 62px);
 }
 
 .family-copy p {
   margin-top: 14px;
-
   line-height: 1.6;
-
   opacity: .85;
 }
 
@@ -986,10 +893,9 @@ nav {
       rgba(0,0,0,.73),
       rgba(0,0,0,.86)
     ),
-    url("MLS-262.jpg");
+    url("formal.jpg");
 
   background-size: cover;
-
   background-position: center;
 }
 
@@ -999,17 +905,13 @@ nav {
 
 .rsvp-inner h2 {
   font-family: "Playfair Display", serif;
-
   font-size: clamp(46px, 7vw, 76px);
-
   margin-top: 10px;
 }
 
 .rsvp-inner p {
   margin-top: 15px;
-
   line-height: 1.6;
-
   opacity: .78;
 }
 
@@ -1022,22 +924,18 @@ nav {
   color: black;
 
   padding: 14px 30px;
-
   border-radius: 5px;
-
   font-weight: 600;
 }
 
 footer {
   padding: 35px 20px;
-
   text-align: center;
 
   border-top:
     1px solid rgba(255,255,255,.08);
 
   opacity: .45;
-
   font-size: 12px;
 }
 
@@ -1050,8 +948,6 @@ footer {
 
   nav {
     padding: 17px 19px;
-
-    justify-content: flex-start;
   }
 
   .logo {
@@ -1067,60 +963,46 @@ footer {
     min-height: 100svh;
   }
 
-  .hero-photo {
-    object-position: center;
-  }
-
   .hero-vignette {
     background:
 
       linear-gradient(
         to top,
-        rgba(0,0,0,1) 0%,
-        rgba(0,0,0,.8) 27%,
-        rgba(0,0,0,.22) 62%,
-        rgba(0,0,0,.2) 100%
+        rgba(0,0,0,1),
+        rgba(0,0,0,.82) 30%,
+        rgba(0,0,0,.22) 65%
       ),
 
       linear-gradient(
         90deg,
-        rgba(0,0,0,.55),
-        rgba(0,0,0,.08)
+        rgba(0,0,0,.52),
+        transparent
       );
   }
 
   .home-content {
     position: absolute;
-
+    bottom: 72px;
     left: 0;
 
-    bottom: 180px;
-
     padding: 0 21px;
-
     max-width: 100%;
   }
 
   .home-content h1 {
-    font-size: clamp(53px, 16vw, 78px);
+    font-size: clamp(54px, 16vw, 78px);
   }
 
   .home-meta {
     font-size: 10px;
-
     gap: 8px;
-
     margin-top: 16px;
   }
 
   .home-description {
     font-size: 14px;
-
     line-height: 1.5;
-
-    max-width: 94%;
-
-    margin-top: 14px;
+    max-width: 95%;
   }
 
   .button-row {
@@ -1130,25 +1012,7 @@ footer {
   .play-btn,
   .info-btn {
     font-size: 13px;
-
     padding: 11px 16px;
-  }
-
-  .hero-week {
-    left: 20px;
-    bottom: 16px;
-  }
-
-  .hero-week h3 {
-    font-size: 15px;
-
-    margin-bottom: 9px;
-  }
-
-  .hero-thumb {
-    flex-basis: 135px;
-
-    height: 76px;
   }
 
   .section {
@@ -1156,28 +1020,15 @@ footer {
   }
 
   .episode-grid {
-    grid-template-columns:
-      repeat(2, 1fr);
+    grid-template-columns: 1fr;
+  }
 
-    gap: 11px;
+  .episode-card {
+    min-height: 200px;
   }
 
   .episode-image {
-    height: 215px;
-  }
-
-  .episode-copy {
-    padding: 12px;
-  }
-
-  .episode-copy h3 {
-    font-size: 17px;
-  }
-
-  .event-details {
-    padding: 25px;
-
-    padding-bottom: 45px;
+    height: 200px;
   }
 
   .info-grid,
@@ -1187,13 +1038,11 @@ footer {
 
   .cast-grid {
     grid-template-columns: 1fr 1fr;
-
     gap: 15px;
   }
 
   .cast-person img {
     width: 100%;
-
     height: 230px;
   }
 
@@ -1209,6 +1058,14 @@ footer {
     padding: 15px 5px;
   }
 
+  .memory-strip {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .memory-strip img {
+    height: 200px;
+  }
+
   .family-feature {
     min-height: 480px;
   }
@@ -1222,7 +1079,7 @@ footer {
 <body class="locked">
 
 
-<!-- BACKGROUND SONG -->
+<!-- BACKGROUND MUSIC -->
 
 <audio
   id="backgroundMusic"
@@ -1268,7 +1125,30 @@ footer {
 </div>
 
 
-<!-- NAVIGATION -->
+<!-- TITLE SEQUENCE -->
+
+<div id="titleSequence">
+
+  <div class="title-inner">
+
+    <div class="welcome-text">
+      WELCOME TO
+    </div>
+
+    <div class="wedding-title">
+      BITTU DI KURI
+      <br>
+      DA VIYAH
+    </div>
+
+    <div class="title-gold-line"></div>
+
+  </div>
+
+</div>
+
+
+<!-- NAV -->
 
 <nav>
 
@@ -1310,11 +1190,11 @@ footer {
 </nav>
 
 
-<!-- HOME / PHOTO BURST -->
+<!-- HOME HERO -->
 
 <section id="home">
 
-  <!-- BURST IMAGES -->
+  <!-- RELATIONSHIP BURST -->
 
   <img
     class="hero-photo"
@@ -1358,8 +1238,6 @@ footer {
     alt=""
   >
 
-  <!-- FINAL IMAGE -->
-
   <img
     class="hero-photo"
     src="MLS-171.jpg"
@@ -1368,7 +1246,6 @@ footer {
 
 
   <div class="hero-vignette"></div>
-
   <div class="hero-edge"></div>
 
 
@@ -1387,7 +1264,7 @@ footer {
     <div class="home-meta">
 
       <span class="gold">
-        MAY 2027
+        MAY 2–7
       </span>
 
       <span>
@@ -1399,7 +1276,7 @@ footer {
       </span>
 
       <span>
-        WEDDING SERIES
+        CALGARY
       </span>
 
     </div>
@@ -1425,91 +1302,6 @@ footer {
       >
         ⓘ MORE INFO
       </button>
-
-    </div>
-
-  </div>
-
-
-  <!-- WEDDING WEEK ROW -->
-
-  <div class="hero-week">
-
-    <h3>
-      WEDDING WEEK
-    </h3>
-
-    <div class="hero-thumbnails">
-
-      <div
-        class="hero-thumb"
-        onclick="openEpisode(0)"
-      >
-        <img
-          src="MLS-84.jpg"
-          alt="Paath"
-        >
-      </div>
-
-      <div
-        class="hero-thumb"
-        onclick="openEpisode(1)"
-      >
-        <img
-          src="MLS-274.jpg"
-          alt="Mehndi"
-        >
-      </div>
-
-      <div
-        class="hero-thumb"
-        onclick="openEpisode(2)"
-      >
-        <img
-          src="MLS-113.jpg"
-          alt="Haldi"
-        >
-      </div>
-
-      <div
-        class="hero-thumb"
-        onclick="openEpisode(3)"
-      >
-        <img
-          src="MLS-147.jpg"
-          alt="Jaggo"
-        >
-      </div>
-
-      <div
-        class="hero-thumb"
-        onclick="openEpisode(4)"
-      >
-        <img
-          src="MLS-355.jpg"
-          alt="Choora and BBQ"
-        >
-      </div>
-
-      <div
-        class="hero-thumb"
-        onclick="openEpisode(5)"
-      >
-        <img
-          src="MLS-262.jpg"
-          alt="Anand Karaj"
-        >
-      </div>
-
-      <div
-        class="hero-thumb"
-        onclick="openEpisode(6)"
-      >
-        <img
-          src="MLS-479.jpg"
-          alt="Reception"
-        >
-      </div>
 
     </div>
 
@@ -1703,10 +1495,45 @@ footer {
 
   </div>
 
+
+  <div class="memory-strip">
+
+    <img
+      src="red-hoodie.jpg"
+      alt=""
+    >
+
+    <img
+      src="black-hoodies.jpg"
+      alt=""
+    >
+
+    <img
+      src="birthday.jpg"
+      alt=""
+    >
+
+    <img
+      src="mirror.jpg"
+      alt=""
+    >
+
+    <img
+      src="MLS-160.jpg"
+      alt=""
+    >
+
+    <img
+      src="MLS-284.jpg"
+      alt=""
+    >
+
+  </div>
+
 </section>
 
 
-<!-- FAMILY -->
+<!-- FAMILY / FARMHOUSE -->
 
 <section class="family-feature">
 
@@ -1900,7 +1727,7 @@ footer {
 <script>
 
 /* =========================================================
-   WEDDING EVENTS
+   EVENTS
 ========================================================= */
 
 const events = [
@@ -1914,7 +1741,7 @@ const events = [
     dress: "Traditional attire",
     description:
       "A morning of prayer and blessings to officially begin our wedding week and launch the celebrations ahead.",
-    image: "MLS-84.jpg"
+    image: "farmhouse.jpg"
   },
 
   {
@@ -1926,7 +1753,7 @@ const events = [
     dress: "Colourful traditional attire",
     description:
       "An evening of mehndi, colour, music and celebration with our family and friends.",
-    image: "MLS-274.jpg"
+    image: "red-hoodie.jpg"
   },
 
   {
@@ -1938,7 +1765,7 @@ const events = [
     dress: "Details to come",
     description:
       "A joyful morning filled with colour, family and one of our favourite pre-wedding traditions.",
-    image: "MLS-113.jpg"
+    image: "birthday.jpg"
   },
 
   {
@@ -1962,7 +1789,7 @@ const events = [
     dress: "Details to come",
     description:
       "A meaningful Choora celebration followed by the Chowhan BBQ and an afternoon with family and friends.",
-    image: "MLS-355.jpg"
+    image: "black-hoodies.jpg"
   },
 
   {
@@ -1987,14 +1814,14 @@ const events = [
     dress: "Formal attire",
     description:
       "The grand finale. Dinner, dancing and one final celebration together as we close out our wedding week.",
-    image: "MLS-479.jpg"
+    image: "formal.jpg"
   }
 
 ];
 
 
 /* =========================================================
-   BUILD EPISODE CARDS
+   BUILD EPISODES
 ========================================================= */
 
 const grid =
@@ -2021,13 +1848,12 @@ events.forEach(
         alt="${event.title}"
       >
 
+      <div class="episode-dark"></div>
+
       <div class="episode-copy">
 
         <div class="episode-number">
-
-          EPISODE
-          ${String(index + 1).padStart(2,"0")}
-
+          EPISODE ${String(index + 1).padStart(2,"0")}
         </div>
 
         <h3>
@@ -2039,6 +1865,7 @@ events.forEach(
         </p>
 
       </div>
+
     `;
 
     card.addEventListener(
@@ -2101,8 +1928,7 @@ function openEpisode(index) {
   document.getElementById(
     "eventDress"
   ).textContent =
-    "Dress Code: " +
-    event.dress;
+    "Dress Code: " + event.dress;
 
   document.getElementById(
     "eventDescription"
@@ -2129,10 +1955,6 @@ function openEpisode(index) {
 
 }
 
-
-/* =========================================================
-   CLOSE EPISODE
-========================================================= */
 
 function closeEpisode() {
 
@@ -2198,23 +2020,13 @@ function startPhotoBurst() {
   heroBurstStarted =
     true;
 
-
-  /* Start with first image */
-
   heroPhotos[0].classList.add(
     "active"
   );
 
-
   let index =
     0;
 
-
-  /*
-    Seven quick memories,
-    then hold permanently
-    on the final professional photo.
-  */
 
   const burstTimer =
     setInterval(
@@ -2241,24 +2053,6 @@ function startPhotoBurst() {
             "active"
           );
 
-          /*
-            Reveal cover copy once
-            final hero photo lands.
-          */
-
-          setTimeout(
-            function() {
-
-              document.getElementById(
-                "home"
-              ).classList.add(
-                "copy-visible"
-              );
-
-            },
-            400
-          );
-
           return;
 
         }
@@ -2270,15 +2064,14 @@ function startPhotoBurst() {
 
       },
 
-      560
-
+      600
     );
 
 }
 
 
 /* =========================================================
-   BACKGROUND MUSIC
+   MUSIC
 ========================================================= */
 
 const backgroundMusic =
@@ -2315,16 +2108,8 @@ async function startBackgroundMusic() {
     ) {
 
       try {
-
         await backgroundMusic.play();
-
-      } catch(error) {
-
-        console.log(
-          "Music playback blocked."
-        );
-
-      }
+      } catch(error) {}
 
     }
 
@@ -2335,52 +2120,37 @@ async function startBackgroundMusic() {
 
   try {
 
-    backgroundMusic.volume =
-      0;
-
-    backgroundMusic.muted =
-      false;
+    backgroundMusic.volume = 0;
+    backgroundMusic.muted = false;
 
     await backgroundMusic.play();
 
-    musicStarted =
-      true;
+    musicStarted = true;
 
     musicToggle.style.display =
       "block";
 
+    let volume = 0;
 
-    let volume =
-      0;
-
-    const targetVolume =
-      0.48;
-
-    const fadeDuration =
-      6000;
-
-    const intervalTime =
-      100;
+    const targetVolume = .48;
+    const fadeDuration = 6000;
+    const intervalTime = 100;
 
     const totalSteps =
-      fadeDuration /
-      intervalTime;
+      fadeDuration / intervalTime;
 
     const increase =
-      targetVolume /
-      totalSteps;
+      targetVolume / totalSteps;
 
 
     musicFadeInterval =
       setInterval(
         function() {
 
-          volume +=
-            increase;
+          volume += increase;
 
           if (
-            volume >=
-            targetVolume
+            volume >= targetVolume
           ) {
 
             volume =
@@ -2401,16 +2171,9 @@ async function startBackgroundMusic() {
         },
 
         intervalTime
-
       );
 
-  } catch(error) {
-
-    console.log(
-      "Background music requires user interaction."
-    );
-
-  }
+  } catch(error) {}
 
 }
 
@@ -2419,8 +2182,7 @@ musicToggle.addEventListener(
   "click",
   function() {
 
-    userInteracted =
-      true;
+    userInteracted = true;
 
     if (
       musicMuted
@@ -2458,8 +2220,7 @@ musicToggle.addEventListener(
 
 function showEpisodes() {
 
-  userInteracted =
-    true;
+  userInteracted = true;
 
   startBackgroundMusic();
 
@@ -2474,8 +2235,7 @@ function showEpisodes() {
 
 function showInfo() {
 
-  userInteracted =
-    true;
+  userInteracted = true;
 
   startBackgroundMusic();
 
@@ -2489,7 +2249,7 @@ function showInfo() {
 
 
 /* =========================================================
-   INTRO VIDEO
+   INTRO
 ========================================================= */
 
 const intro =
@@ -2512,18 +2272,22 @@ const skipIntro =
     "skipIntro"
   );
 
+const titleSequence =
+  document.getElementById(
+    "titleSequence"
+  );
+
 let introEnded =
   false;
 
 
-/* INTRO SOUND */
+/* SOUND */
 
 soundButton.addEventListener(
   "click",
   async function() {
 
-    userInteracted =
-      true;
+    userInteracted = true;
 
     try {
 
@@ -2548,25 +2312,19 @@ soundButton.addEventListener(
         800
       );
 
-    } catch(error) {
-
-      soundButton.textContent =
-        "SOUND UNAVAILABLE";
-
-    }
+    } catch(error) {}
 
   }
 );
 
 
-/* SKIP INTRO */
+/* SKIP */
 
 skipIntro.addEventListener(
   "click",
   function() {
 
-    userInteracted =
-      true;
+    userInteracted = true;
 
     finishIntro();
 
@@ -2582,20 +2340,12 @@ introVideo.addEventListener(
 
 introVideo.addEventListener(
   "error",
-  function() {
-
-    console.log(
-      "Intro video could not be loaded."
-    );
-
-    finishIntro();
-
-  }
+  finishIntro
 );
 
 
 /* =========================================================
-   INTRO → PHOTO BURST → HERO
+   INTRO → TITLE → BURST → NETFLIX HOME
 ========================================================= */
 
 function finishIntro() {
@@ -2608,10 +2358,7 @@ function finishIntro() {
 
   }
 
-
-  introEnded =
-    true;
-
+  introEnded = true;
 
   intro.classList.add(
     "hide"
@@ -2624,46 +2371,120 @@ function finishIntro() {
       intro.style.display =
         "none";
 
-      document.body.classList.remove(
-        "locked"
+
+      /* TITLE SCREEN */
+
+      titleSequence.classList.add(
+        "show"
       );
 
-      window.scrollTo(
-        0,
-        0
-      );
+      setTimeout(
+        function() {
 
+          titleSequence.classList.add(
+            "titleSequence-active"
+          );
 
-      const home =
-        document.getElementById(
-          "home"
-        );
-
-
-      home.classList.add(
-        "home-visible"
+        },
+        120
       );
 
 
       /*
-        Slight pause on black before
-        relationship memories begin.
+        Start photo burst behind title
+        after title has been visible.
       */
 
       setTimeout(
         function() {
 
+          const home =
+            document.getElementById(
+              "home"
+            );
+
+          home.classList.add(
+            "home-visible"
+          );
+
           startPhotoBurst();
 
         },
-        450
+        1800
       );
 
 
       /*
-        If guest already interacted
-        with intro, begin wedding song.
+        Fade title away while burst
+        is still running.
       */
+
+      setTimeout(
+        function() {
+
+          titleSequence.classList.add(
+            "fade"
+          );
+
+        },
+        3300
+      );
+
+
+      /*
+        Remove title completely.
+      */
+
+      setTimeout(
+        function() {
+
+          titleSequence.style.display =
+            "none";
+
+        },
+        4100
+      );
+
+
+      /*
+        Netflix UI appears while burst
+        continues.
+      */
+
+      setTimeout(
+        function() {
+
+          document.getElementById(
+            "home"
+          ).classList.add(
+            "copy-visible"
+          );
+
+        },
+        3550
+      );
+
+
+      /*
+        Page becomes interactive.
+      */
+
+      setTimeout(
+        function() {
+
+          document.body.classList.remove(
+            "locked"
+          );
+
+          window.scrollTo(
+            0,
+            0
+          );
+
+        },
+        4100
+      );
+
 
       if (
         userInteracted
@@ -2675,29 +2496,26 @@ function finishIntro() {
             startBackgroundMusic();
 
           },
-          850
+          1100
         );
 
       }
 
     },
 
-    1700
+    1600
   );
 
 }
 
 
-/* INTRO AUTOPLAY */
+/* =========================================================
+   LOAD
+========================================================= */
 
 window.addEventListener(
   "load",
   function() {
-
-    /*
-      Preload burst photos so
-      they do not flash blank.
-    */
 
     heroPhotos.forEach(
       function(photo) {
@@ -2711,14 +2529,11 @@ window.addEventListener(
       }
     );
 
-
     introVideo.muted =
       true;
 
-
     const attempt =
       introVideo.play();
-
 
     if (
       attempt !== undefined
@@ -2726,10 +2541,6 @@ window.addEventListener(
 
       attempt.catch(
         function() {
-
-          console.log(
-            "Browser blocked intro autoplay."
-          );
 
           finishIntro();
 
@@ -2742,7 +2553,7 @@ window.addEventListener(
 );
 
 
-/* SAFETY FALLBACK */
+/* SAFETY */
 
 setTimeout(
   function() {
