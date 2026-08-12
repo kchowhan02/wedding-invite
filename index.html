@@ -9,16 +9,21 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
 
 <style>
 
 :root {
   --gold: #c9a96e;
-  --black: #080808;
+  --black: #070707;
   --soft-black: #101010;
   --white: #faf8f5;
 }
+
+/* ======================================
+   GLOBAL
+====================================== */
 
 * {
   box-sizing: border-box;
@@ -28,12 +33,14 @@
 
 html {
   scroll-behavior: smooth;
+  scroll-snap-type: y proximity;
 }
 
 body {
   background: var(--black);
   color: var(--white);
   font-family: "DM Sans", sans-serif;
+  overflow-x: hidden;
 }
 
 body.locked {
@@ -54,20 +61,25 @@ img {
   display: block;
 }
 
-/* ==============================
+/* ======================================
    INTRO VIDEO
-============================== */
+====================================== */
 
 #intro {
   position: fixed;
   inset: 0;
   z-index: 10000;
+
   background: #000;
+
   display: flex;
   align-items: center;
   justify-content: center;
+
   opacity: 1;
-  transition: opacity 1.2s ease;
+
+  transition:
+    opacity 1.8s ease;
 }
 
 #intro.hide {
@@ -78,116 +90,266 @@ img {
 #introVideo {
   width: 100%;
   height: 100%;
+
   object-fit: contain;
+
   background: #000;
 }
 
 #soundButton,
 #skipIntro {
   position: absolute;
+
   bottom: 22px;
+
   z-index: 10002;
+
   cursor: pointer;
 }
 
 #soundButton {
   right: 22px;
-  border: 1px solid rgba(255,255,255,.45);
-  background: rgba(0,0,0,.65);
+
+  border: 1px solid rgba(255,255,255,.35);
+
+  background: rgba(0,0,0,.55);
+
   color: white;
+
   padding: 11px 17px;
+
   border-radius: 50px;
-  font-size: 13px;
-  backdrop-filter: blur(8px);
+
+  font-size: 12px;
+
+  backdrop-filter: blur(10px);
 }
 
 #skipIntro {
   left: 22px;
+
   border: none;
+
   background: rgba(0,0,0,.45);
-  color: rgba(255,255,255,.85);
+
+  color: rgba(255,255,255,.75);
+
   padding: 10px 14px;
+
   border-radius: 50px;
-  font-size: 13px;
+
+  font-size: 12px;
 }
 
-/* ==============================
+/* ======================================
+   BACKGROUND MUSIC
+====================================== */
+
+#musicToggle {
+  position: fixed;
+
+  right: 18px;
+  bottom: 18px;
+
+  z-index: 7000;
+
+  display: none;
+
+  border: 1px solid rgba(255,255,255,.25);
+
+  background: rgba(0,0,0,.62);
+
+  color: white;
+
+  padding: 10px 15px;
+
+  border-radius: 50px;
+
+  font-size: 11px;
+
+  letter-spacing: .06em;
+
+  cursor: pointer;
+
+  backdrop-filter: blur(10px);
+}
+
+/* ======================================
+   AUTO CONTROL
+====================================== */
+
+#autoToggle {
+  position: fixed;
+
+  left: 18px;
+  bottom: 18px;
+
+  z-index: 7000;
+
+  display: none;
+
+  border: 1px solid rgba(255,255,255,.25);
+
+  background: rgba(0,0,0,.62);
+
+  color: white;
+
+  padding: 10px 15px;
+
+  border-radius: 50px;
+
+  font-size: 11px;
+
+  letter-spacing: .08em;
+
+  cursor: pointer;
+
+  backdrop-filter: blur(10px);
+}
+
+#autoToggle.active {
+  border-color: rgba(201,169,110,.7);
+
+  color: var(--gold);
+}
+
+/* ======================================
    NAVIGATION
-============================== */
+====================================== */
 
 nav {
   position: fixed;
+
   top: 0;
   left: 0;
+
   width: 100%;
+
   z-index: 500;
+
   display: flex;
   align-items: center;
   justify-content: space-between;
+
   padding: 20px 6vw;
 
-  background: linear-gradient(
-    to bottom,
-    rgba(0,0,0,.9),
-    rgba(0,0,0,.35),
-    transparent
-  );
+  background:
+    linear-gradient(
+      to bottom,
+      rgba(0,0,0,.85),
+      rgba(0,0,0,.28),
+      transparent
+    );
+
+  opacity: 0;
+
+  transition:
+    opacity 2s ease;
+}
+
+body.site-ready nav {
+  opacity: 1;
 }
 
 .logo {
   color: var(--gold);
+
   font-family: "Playfair Display", serif;
+
   font-size: 21px;
-  font-weight: 600;
 }
 
 .nav-links {
   display: flex;
-  gap: 26px;
-  font-size: 13px;
+
+  gap: 25px;
+
+  font-size: 12px;
+
+  opacity: .85;
 }
 
 .nav-links a:hover {
   color: var(--gold);
 }
 
-/* ==============================
-   HOME
-============================== */
+/* ======================================
+   CINEMATIC SECTION SYSTEM
+====================================== */
 
-#home {
-  min-height: 100vh;
+.cinematic-section {
   position: relative;
 
+  min-height: 100vh;
+
+  scroll-snap-align: start;
+
+  opacity: .72;
+
+  transition:
+    opacity 1.5s ease;
+}
+
+.cinematic-section.in-view {
+  opacity: 1;
+}
+
+/* ======================================
+   HOME
+====================================== */
+
+#home {
   background:
     linear-gradient(
       to top,
       rgba(0,0,0,.98) 0%,
-      rgba(0,0,0,.62) 35%,
-      rgba(0,0,0,.15) 68%,
-      rgba(0,0,0,.35) 100%
+      rgba(0,0,0,.7) 32%,
+      rgba(0,0,0,.15) 70%,
+      rgba(0,0,0,.32) 100%
     ),
     url("MLS-171.jpg");
 
   background-size: cover;
+
   background-position: center 45%;
 
   display: flex;
+
   align-items: flex-end;
 }
 
 .home-content {
   width: 100%;
-  max-width: 880px;
+
+  max-width: 900px;
+
   padding: 8vw;
+
   padding-bottom: 11vh;
+
+  opacity: 0;
+
+  transform: translateY(25px);
+
+  transition:
+    opacity 2.5s ease,
+    transform 2.5s ease;
+}
+
+body.site-ready .home-content {
+  opacity: 1;
+
+  transform: translateY(0);
 }
 
 .eyebrow,
 .section-label {
   color: var(--gold);
+
   text-transform: uppercase;
-  letter-spacing: .35em;
+
+  letter-spacing: .36em;
+
   font-size: 10px;
 }
 
@@ -197,57 +359,49 @@ nav {
 
 .home-content h1 {
   font-family: "Playfair Display", serif;
-  font-size: clamp(52px, 8vw, 100px);
-  line-height: .95;
+
+  font-size: clamp(55px, 9vw, 105px);
+
+  line-height: .93;
+
   font-weight: 600;
 }
 
 .release-date {
   margin-top: 22px;
+
   color: var(--gold);
-  font-size: 20px;
-  font-weight: 500;
+
+  font-size: 19px;
 }
 
 .home-description {
-  margin-top: 16px;
-  max-width: 620px;
-  line-height: 1.65;
+  margin-top: 17px;
+
+  max-width: 600px;
+
   font-size: 17px;
-  opacity: .88;
+
+  line-height: 1.7;
+
+  opacity: .82;
 }
 
-.button-row {
-  display: flex;
-  gap: 12px;
-  flex-wrap: wrap;
+.continue-note {
   margin-top: 30px;
+
+  font-size: 11px;
+
+  letter-spacing: .22em;
+
+  text-transform: uppercase;
+
+  opacity: .55;
 }
 
-.play-btn,
-.info-btn {
-  padding: 14px 28px;
-  border: none;
-  border-radius: 5px;
-  font-weight: 600;
-  font-size: 16px;
-  cursor: pointer;
-}
-
-.play-btn {
-  background: white;
-  color: black;
-}
-
-.info-btn {
-  background: rgba(255,255,255,.18);
-  color: white;
-  backdrop-filter: blur(8px);
-}
-
-/* ==============================
-   SECTIONS
-============================== */
+/* ======================================
+   BASIC SECTIONS
+====================================== */
 
 .section {
   padding: 90px 6vw;
@@ -259,37 +413,61 @@ nav {
 
 .section-title {
   font-family: "Playfair Display", serif;
-  font-size: clamp(36px, 5vw, 52px);
-  margin-top: 8px;
-  margin-bottom: 36px;
+
+  font-size: clamp(38px, 5vw, 54px);
+
+  margin-top: 9px;
+
+  margin-bottom: 38px;
 }
 
-/* ==============================
+/* ======================================
    EPISODES
-============================== */
+====================================== */
+
+#episodes {
+  display: flex;
+
+  flex-direction: column;
+
+  justify-content: center;
+}
 
 .episode-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 17px;
+
+  grid-template-columns:
+    repeat(auto-fit, minmax(190px, 1fr));
+
+  gap: 16px;
 }
 
 .episode-card {
   background: #151515;
+
   overflow: hidden;
+
   border-radius: 7px;
+
   cursor: pointer;
-  transition: transform .28s ease, box-shadow .28s ease;
+
+  transition:
+    transform .35s ease,
+    box-shadow .35s ease;
 }
 
 .episode-card:hover {
-  transform: scale(1.035);
-  box-shadow: 0 10px 35px rgba(0,0,0,.45);
+  transform: scale(1.04);
+
+  box-shadow:
+    0 14px 38px rgba(0,0,0,.5);
 }
 
 .episode-image {
   width: 100%;
-  height: 285px;
+
+  height: 280px;
+
   object-fit: cover;
 }
 
@@ -299,162 +477,239 @@ nav {
 
 .episode-number {
   color: var(--gold);
+
   text-transform: uppercase;
-  letter-spacing: .22em;
+
+  letter-spacing: .24em;
+
   font-size: 9px;
 }
 
 .episode-copy h3 {
   font-family: "Playfair Display", serif;
+
   font-size: 20px;
+
   margin-top: 5px;
 }
 
 .episode-copy p {
   margin-top: 7px;
+
   opacity: .55;
+
   font-size: 12px;
 }
 
-/* ==============================
-   EVENT SCREEN
-============================== */
+/* ======================================
+   EVENT OVERLAY
+====================================== */
 
 #eventOverlay {
   position: fixed;
+
   inset: 0;
-  z-index: 5000;
+
+  z-index: 9000;
+
   background: #000;
+
   display: none;
+
+  opacity: 0;
+
+  transition:
+    opacity .8s ease;
+}
+
+#eventOverlay.visible {
+  opacity: 1;
 }
 
 .event-photo {
   position: absolute;
+
   inset: 0;
+
   width: 100%;
   height: 100%;
+
   object-fit: cover;
 }
 
 .event-gradient {
   position: absolute;
+
   inset: 0;
 
-  background: linear-gradient(
-    to top,
-    rgba(0,0,0,.98) 0%,
-    rgba(0,0,0,.77) 35%,
-    rgba(0,0,0,.2) 70%,
-    rgba(0,0,0,.35) 100%
-  );
+  background:
+    linear-gradient(
+      to top,
+      rgba(0,0,0,.98) 0%,
+      rgba(0,0,0,.78) 36%,
+      rgba(0,0,0,.18) 72%,
+      rgba(0,0,0,.35) 100%
+    );
 }
 
 .event-details {
   position: absolute;
+
   left: 0;
   bottom: 0;
+
   width: 100%;
-  max-width: 840px;
+
+  max-width: 850px;
+
   padding: 7vw;
+
   padding-bottom: 7vh;
 }
 
 .event-episode {
   color: var(--gold);
+
   text-transform: uppercase;
+
   letter-spacing: .35em;
+
   font-size: 10px;
 }
 
 .event-details h2 {
   font-family: "Playfair Display", serif;
+
   font-size: clamp(48px, 7vw, 86px);
+
   margin-top: 8px;
+
   margin-bottom: 17px;
 }
 
 .event-meta {
   display: flex;
+
   gap: 18px;
+
   flex-wrap: wrap;
-  font-size: 15px;
+
   font-weight: 500;
+
   margin-bottom: 13px;
 }
 
 .event-venue {
   color: var(--gold);
+
   font-size: 19px;
+
   margin-bottom: 7px;
 }
 
 .event-address {
   opacity: .65;
+
   margin-bottom: 11px;
 }
 
 .event-dress {
   opacity: .8;
+
   margin-bottom: 18px;
 }
 
 .event-description {
   max-width: 620px;
-  line-height: 1.65;
+
+  line-height: 1.7;
+
   opacity: .88;
 }
 
-.event-actions {
-  margin-top: 27px;
-}
-
 .event-button {
-  border: 1px solid rgba(255,255,255,.55);
+  margin-top: 26px;
+
+  border: 1px solid rgba(255,255,255,.45);
+
   background: rgba(0,0,0,.55);
+
   color: white;
+
   padding: 12px 19px;
+
   border-radius: 5px;
+
   cursor: pointer;
 }
 
-/* ==============================
-   INFO
-============================== */
+/* ======================================
+   MORE INFO
+====================================== */
+
+#more-info {
+  display: flex;
+
+  flex-direction: column;
+
+  justify-content: center;
+}
 
 .info-grid,
 .wedding-info-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+
+  grid-template-columns:
+    repeat(3, 1fr);
+
   gap: 18px;
 }
 
 .info-box {
   border: 1px solid rgba(255,255,255,.1);
+
   padding: 28px;
+
   border-radius: 8px;
 }
 
 .info-box h3 {
   color: var(--gold);
+
   font-family: "Playfair Display", serif;
+
   font-size: 22px;
+
   margin-bottom: 10px;
 }
 
 .info-box p {
   opacity: .7;
-  line-height: 1.6;
+
+  line-height: 1.65;
 }
 
-/* ==============================
+/* ======================================
    CAST
-============================== */
+====================================== */
+
+#cast {
+  display: flex;
+
+  flex-direction: column;
+
+  justify-content: center;
+}
 
 .cast-grid {
   display: grid;
+
   grid-template-columns: 1fr 1fr;
+
   gap: 30px;
+
   max-width: 900px;
+
   margin: auto;
 }
 
@@ -463,122 +718,179 @@ nav {
 }
 
 .cast-person img {
-  width: 230px;
-  height: 300px;
+  width: 240px;
+
+  height: 310px;
+
   object-fit: cover;
+
   margin: auto;
+
   border-radius: 8px;
 }
 
 .cast-person h3 {
   font-family: "Playfair Display", serif;
+
   font-size: 28px;
+
   margin-top: 17px;
 }
 
 .cast-role {
   color: var(--gold);
+
   text-transform: uppercase;
+
   letter-spacing: .25em;
+
   font-size: 10px;
+
   margin-top: 5px;
 }
 
-/* ==============================
+/* ======================================
    STORY
-============================== */
+====================================== */
+
+#story {
+  display: flex;
+
+  align-items: center;
+}
 
 .story-grid {
+  width: 100%;
+
   display: grid;
+
   grid-template-columns: 1fr 1fr;
-  gap: 20px;
+
+  gap: 30px;
+
   align-items: center;
 }
 
 .story-image {
   width: 100%;
-  height: 550px;
+
+  height: 560px;
+
   object-fit: cover;
+
   border-radius: 8px;
 }
 
 .story-copy {
-  padding: 30px;
+  padding: 35px;
 }
 
 .story-copy h3 {
   font-family: "Playfair Display", serif;
-  font-size: clamp(34px, 4vw, 48px);
-  margin-bottom: 17px;
+
+  font-size: clamp(36px, 4vw, 50px);
+
+  margin-bottom: 18px;
 }
 
 .story-copy p {
-  opacity: .75;
-  line-height: 1.8;
+  opacity: .76;
+
+  line-height: 1.85;
+
   font-size: 17px;
 }
 
-/* ==============================
-   FAMILY
-============================== */
+/* ======================================
+   FAMILY FEATURE
+====================================== */
 
 .family-feature {
   position: relative;
-  min-height: 600px;
+
+  min-height: 100vh;
+
+  scroll-snap-align: start;
 
   background:
     linear-gradient(
       to top,
-      rgba(0,0,0,.85),
+      rgba(0,0,0,.9),
       rgba(0,0,0,.08)
     ),
     url("MLS-539.jpg");
 
   background-size: cover;
+
   background-position: center;
 }
 
 .family-copy {
   position: absolute;
+
   left: 6vw;
-  bottom: 60px;
+
+  bottom: 10vh;
+
   max-width: 600px;
 }
 
 .family-copy h2 {
   font-family: "Playfair Display", serif;
-  font-size: clamp(40px, 6vw, 62px);
+
+  font-size: clamp(42px, 6vw, 65px);
 }
 
 .family-copy p {
-  margin-top: 14px;
-  line-height: 1.6;
-  opacity: .85;
+  margin-top: 15px;
+
+  line-height: 1.7;
+
+  opacity: .82;
 }
 
-/* ==============================
+/* ======================================
+   WEDDING INFO
+====================================== */
+
+#wedding-info {
+  display: flex;
+
+  flex-direction: column;
+
+  justify-content: center;
+}
+
+/* ======================================
    RSVP
-============================== */
+====================================== */
 
 #rsvp {
+  min-height: 100vh;
+
+  scroll-snap-align: start;
+
   position: relative;
-  min-height: 650px;
 
   display: flex;
+
   align-items: center;
+
   justify-content: center;
 
   text-align: center;
+
   padding: 70px 20px;
 
   background:
     linear-gradient(
-      rgba(0,0,0,.73),
-      rgba(0,0,0,.86)
+      rgba(0,0,0,.72),
+      rgba(0,0,0,.88)
     ),
     url("MLS-262.jpg");
 
   background-size: cover;
+
   background-position: center;
 }
 
@@ -588,39 +900,55 @@ nav {
 
 .rsvp-inner h2 {
   font-family: "Playfair Display", serif;
-  font-size: clamp(46px, 7vw, 76px);
+
+  font-size: clamp(48px, 7vw, 78px);
+
   margin-top: 10px;
 }
 
 .rsvp-inner p {
-  margin-top: 15px;
-  line-height: 1.6;
+  margin-top: 16px;
+
+  line-height: 1.7;
+
   opacity: .78;
 }
 
 .rsvp-button {
   display: inline-block;
-  margin-top: 27px;
+
+  margin-top: 28px;
+
   background: var(--gold);
+
   color: black;
+
   padding: 14px 30px;
+
   border-radius: 5px;
+
   font-weight: 600;
 }
 
 footer {
   padding: 35px 20px;
+
   text-align: center;
-  border-top: 1px solid rgba(255,255,255,.08);
+
   opacity: .45;
+
   font-size: 12px;
 }
 
-/* ==============================
+/* ======================================
    MOBILE
-============================== */
+====================================== */
 
 @media(max-width: 760px) {
+
+  html {
+    scroll-snap-type: none;
+  }
 
   nav {
     padding: 18px 20px;
@@ -636,7 +964,8 @@ footer {
 
   .home-content {
     padding: 25px;
-    padding-bottom: 9vh;
+
+    padding-bottom: 10vh;
   }
 
   .home-description {
@@ -648,7 +977,9 @@ footer {
   }
 
   .episode-grid {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns:
+      repeat(2, 1fr);
+
     gap: 11px;
   }
 
@@ -666,6 +997,7 @@ footer {
 
   .event-details {
     padding: 25px;
+
     padding-bottom: 45px;
   }
 
@@ -676,11 +1008,13 @@ footer {
 
   .cast-grid {
     grid-template-columns: 1fr 1fr;
+
     gap: 15px;
   }
 
   .cast-person img {
     width: 100%;
+
     height: 230px;
   }
 
@@ -693,11 +1027,23 @@ footer {
   }
 
   .story-copy {
-    padding: 15px 5px;
+    padding: 15px 4px;
   }
 
   .family-feature {
-    min-height: 480px;
+    min-height: 520px;
+  }
+
+  #autoToggle {
+    left: 12px;
+
+    bottom: 12px;
+  }
+
+  #musicToggle {
+    right: 12px;
+
+    bottom: 12px;
   }
 
 }
@@ -707,7 +1053,9 @@ footer {
 
 <body class="locked">
 
-<!-- INTRO -->
+<!-- ======================================
+     INTRO VIDEO
+====================================== -->
 
 <div id="intro">
 
@@ -718,7 +1066,10 @@ footer {
     playsinline
     preload="auto"
   >
-    <source src="intro.mp4" type="video/mp4">
+    <source
+      src="intro.mp4"
+      type="video/mp4"
+    >
   </video>
 
   <button id="skipIntro">
@@ -731,27 +1082,81 @@ footer {
 
 </div>
 
-<!-- NAV -->
+
+<!-- ======================================
+     BACKGROUND MUSIC
+====================================== -->
+
+<audio
+  id="backgroundMusic"
+  loop
+  preload="auto"
+>
+  <source
+    src="wedding-song.mp3"
+    type="audio/mpeg"
+  >
+</audio>
+
+
+<button id="autoToggle" class="active">
+  AUTO ON
+</button>
+
+
+<button id="musicToggle">
+  ♫ MUSIC
+</button>
+
+
+<!-- ======================================
+     NAVIGATION
+====================================== -->
 
 <nav>
 
-  <a href="#home" class="logo">
+  <a
+    href="#home"
+    class="logo"
+  >
     K & M
   </a>
 
   <div class="nav-links">
-    <a href="#episodes">Episodes</a>
-    <a href="#cast">Cast</a>
-    <a href="#story">Story</a>
-    <a href="#wedding-info">Info</a>
-    <a href="#rsvp">RSVP</a>
+
+    <a href="#episodes">
+      Episodes
+    </a>
+
+    <a href="#cast">
+      Cast
+    </a>
+
+    <a href="#story">
+      Story
+    </a>
+
+    <a href="#wedding-info">
+      Info
+    </a>
+
+    <a href="#rsvp">
+      RSVP
+    </a>
+
   </div>
 
 </nav>
 
-<!-- HOME -->
 
-<section id="home">
+<!-- ======================================
+     HOME
+====================================== -->
+
+<section
+  id="home"
+  class="cinematic-section"
+>
 
   <div class="home-content">
 
@@ -769,35 +1174,27 @@ footer {
 
     <p class="home-description">
       Seven celebrations. Two families. One story.
-      Join us for a week of love, family, tradition
-      and celebration.
+      Join us for a week of love, family,
+      tradition and celebration.
     </p>
 
-    <div class="button-row">
-
-      <button
-        class="play-btn"
-        onclick="showEpisodes()"
-      >
-        ▶ Play
-      </button>
-
-      <button
-        class="info-btn"
-        onclick="showInfo()"
-      >
-        ⓘ More Info
-      </button>
-
+    <div class="continue-note">
+      The story continues below
     </div>
 
   </div>
 
 </section>
 
-<!-- EPISODES -->
 
-<section id="episodes" class="section">
+<!-- ======================================
+     EPISODES
+====================================== -->
+
+<section
+  id="episodes"
+  class="section cinematic-section"
+>
 
   <div class="section-label">
     Season One
@@ -808,17 +1205,20 @@ footer {
   </h2>
 
   <div
-    class="episode-grid"
     id="episodeGrid"
+    class="episode-grid"
   ></div>
 
 </section>
 
-<!-- MORE INFO -->
+
+<!-- ======================================
+     MORE INFO
+====================================== -->
 
 <section
   id="more-info"
-  class="section alt-section"
+  class="section alt-section cinematic-section"
 >
 
   <div class="section-label">
@@ -838,9 +1238,9 @@ footer {
       </h3>
 
       <p>
-        Our wedding week unfolds across seven celebrations,
-        each representing a different part of our traditions,
-        families and story.
+        Our wedding week unfolds across seven
+        celebrations, each representing a different
+        part of our traditions, families and story.
       </p>
 
     </div>
@@ -875,9 +1275,15 @@ footer {
 
 </section>
 
-<!-- CAST -->
 
-<section id="cast" class="section">
+<!-- ======================================
+     CAST
+====================================== -->
+
+<section
+  id="cast"
+  class="section cinematic-section"
+>
 
   <div
     class="section-label"
@@ -912,6 +1318,7 @@ footer {
 
     </div>
 
+
     <div class="cast-person">
 
       <img
@@ -933,11 +1340,14 @@ footer {
 
 </section>
 
-<!-- STORY -->
+
+<!-- ======================================
+     STORY
+====================================== -->
 
 <section
   id="story"
-  class="section alt-section"
+  class="section alt-section cinematic-section"
 >
 
   <div class="story-grid">
@@ -961,9 +1371,10 @@ footer {
       </h3>
 
       <p>
-        What started as our story has grown into two families
-        coming together. In May 2027, we get to begin our next
-        chapter surrounded by the people who have been part of it.
+        What started as our story has grown into
+        two families coming together. In May 2027,
+        we get to begin our next chapter surrounded
+        by the people who have been part of it.
       </p>
 
     </div>
@@ -972,9 +1383,15 @@ footer {
 
 </section>
 
-<!-- FAMILY -->
 
-<section class="family-feature">
+<!-- ======================================
+     FAMILY
+====================================== -->
+
+<section
+  id="family"
+  class="family-feature cinematic-section"
+>
 
   <div class="family-copy">
 
@@ -987,19 +1404,23 @@ footer {
     </h2>
 
     <p>
-      The people who shaped us, supported us and now get
-      to celebrate this next chapter alongside us.
+      The people who shaped us, supported us,
+      and now get to celebrate this next chapter
+      alongside us.
     </p>
 
   </div>
 
 </section>
 
-<!-- WEDDING INFO -->
+
+<!-- ======================================
+     WEDDING INFO
+====================================== -->
 
 <section
   id="wedding-info"
-  class="section alt-section"
+  class="section alt-section cinematic-section"
 >
 
   <div class="section-label">
@@ -1033,8 +1454,8 @@ footer {
 
       <p>
         May 6 at Dashmesh Culture.
-        Traditional attire is requested and
-        head coverings are required.
+        Traditional attire is requested
+        and head coverings are required.
       </p>
 
     </div>
@@ -1056,9 +1477,15 @@ footer {
 
 </section>
 
-<!-- RSVP -->
 
-<section id="rsvp">
+<!-- ======================================
+     RSVP
+====================================== -->
+
+<section
+  id="rsvp"
+  class="cinematic-section"
+>
 
   <div class="rsvp-inner">
 
@@ -1087,11 +1514,15 @@ footer {
 
 </section>
 
+
 <footer>
   Khushi & Manjot · May 2–7, 2027 · Calgary
 </footer>
 
-<!-- EVENT OVERLAY -->
+
+<!-- ======================================
+     EVENT OVERLAY
+====================================== -->
 
 <div id="eventOverlay">
 
@@ -1141,26 +1572,23 @@ footer {
       class="event-description"
     ></p>
 
-    <div class="event-actions">
-
-      <button
-        class="event-button"
-        onclick="closeEpisode()"
-      >
-        ← More Episodes
-      </button>
-
-    </div>
+    <button
+      class="event-button"
+      onclick="closeEpisode()"
+    >
+      ← More Episodes
+    </button>
 
   </div>
 
 </div>
 
+
 <script>
 
-/* ==============================
-   WEDDING EVENTS
-============================== */
+/* ======================================
+   EVENT DATA
+====================================== */
 
 const events = [
 
@@ -1171,9 +1599,12 @@ const events = [
     venue: "Chowhan Farmhouse",
     address: "Calgary, Alberta",
     dress: "Traditional attire",
+
     description:
       "A morning of prayer and blessings to officially begin our wedding week and launch the celebrations ahead.",
-    image: "MLS-84.jpg"
+
+    image:
+      "MLS-84.jpg"
   },
 
   {
@@ -1183,9 +1614,12 @@ const events = [
     venue: "Chowhan Farmhouse",
     address: "Calgary, Alberta",
     dress: "Colourful traditional attire",
+
     description:
       "An evening of mehndi, colour, music and celebration with our family and friends.",
-    image: "MLS-274.jpg"
+
+    image:
+      "MLS-274.jpg"
   },
 
   {
@@ -1195,9 +1629,12 @@ const events = [
     venue: "Chowhan Farmhouse",
     address: "Calgary, Alberta",
     dress: "Details to come",
+
     description:
       "A joyful morning filled with colour, family and one of our favourite pre-wedding traditions.",
-    image: "MLS-113.jpg"
+
+    image:
+      "MLS-113.jpg"
   },
 
   {
@@ -1207,9 +1644,12 @@ const events = [
     venue: "Chowhan Farmhouse",
     address: "Calgary, Alberta",
     dress: "Punjabi festive attire",
+
     description:
       "The energy turns up for an evening of dhol, dancing and Punjabi wedding celebrations.",
-    image: "MLS-147.jpg"
+
+    image:
+      "MLS-147.jpg"
   },
 
   {
@@ -1219,9 +1659,12 @@ const events = [
     venue: "Chowhan Farmhouse",
     address: "Calgary, Alberta",
     dress: "Details to come",
+
     description:
       "A meaningful Choora celebration followed by the Chowhan BBQ and an afternoon with family and friends.",
-    image: "MLS-355.jpg"
+
+    image:
+      "MLS-355.jpg"
   },
 
   {
@@ -1230,11 +1673,15 @@ const events = [
     time: "9:00 AM",
     venue: "Dashmesh Culture",
     address: "Calgary, Alberta",
+
     dress:
       "Formal traditional attire · Head covering required",
+
     description:
       "The heart of our wedding week. Join us for our Anand Karaj as we begin our marriage surrounded by our families and loved ones.",
-    image: "MLS-262.jpg"
+
+    image:
+      "MLS-262.jpg"
   },
 
   {
@@ -1244,68 +1691,92 @@ const events = [
     venue: "Empire Banquet Hall",
     address: "Calgary, Alberta",
     dress: "Formal attire",
+
     description:
       "The grand finale. Dinner, dancing and one final celebration together as we close out our wedding week.",
-    image: "MLS-479.jpg"
+
+    image:
+      "MLS-479.jpg"
   }
 
 ];
 
-/* BUILD EPISODES */
 
-const grid =
+/* ======================================
+   BUILD EPISODES
+====================================== */
+
+const episodeGrid =
   document.getElementById("episodeGrid");
 
-events.forEach((event,index) => {
 
-  const card =
-    document.createElement("div");
+events.forEach(
+  (event,index) => {
 
-  card.className =
-    "episode-card";
+    const card =
+      document.createElement("div");
 
-  card.innerHTML = `
+    card.className =
+      "episode-card";
 
-    <img
-      class="episode-image"
-      src="${event.image}"
-      alt="${event.title}"
-    >
+    card.innerHTML = `
 
-    <div class="episode-copy">
+      <img
+        class="episode-image"
+        src="${event.image}"
+        alt="${event.title}"
+      >
 
-      <div class="episode-number">
-        Episode ${String(index + 1).padStart(2,"0")}
+      <div class="episode-copy">
+
+        <div class="episode-number">
+          Episode ${String(index + 1).padStart(2,"0")}
+        </div>
+
+        <h3>
+          ${event.title}
+        </h3>
+
+        <p>
+          ${event.date}
+        </p>
+
       </div>
 
-      <h3>
-        ${event.title}
-      </h3>
+    `;
 
-      <p>
-        ${event.date}
-      </p>
+    card.addEventListener(
+      "click",
+      function() {
 
-    </div>
-  `;
+        pauseAuto();
 
-  card.addEventListener(
-    "click",
-    () => openEpisode(index)
-  );
+        startMusic();
 
-  grid.appendChild(card);
+        openEpisode(index);
 
-});
+      }
+    );
 
-/* OPEN EPISODE */
+    episodeGrid.appendChild(card);
+
+  }
+);
+
+
+/* ======================================
+   OPEN EPISODE
+====================================== */
 
 function openEpisode(index) {
 
-  const event = events[index];
+  const event =
+    events[index];
 
   const overlay =
-    document.getElementById("eventOverlay");
+    document.getElementById(
+      "eventOverlay"
+    );
 
   document.getElementById(
     "eventNumber"
@@ -1348,7 +1819,9 @@ function openEpisode(index) {
     event.description;
 
   const image =
-    document.getElementById("eventImage");
+    document.getElementById(
+      "eventImage"
+    );
 
   image.src =
     event.image;
@@ -1362,105 +1835,104 @@ function openEpisode(index) {
   document.body.classList.add(
     "locked"
   );
+
+  requestAnimationFrame(
+    function() {
+
+      overlay.classList.add(
+        "visible"
+      );
+
+    }
+  );
+
 }
 
-/* CLOSE EPISODE */
+
+/* ======================================
+   CLOSE EPISODE
+====================================== */
 
 function closeEpisode() {
 
-  document.getElementById(
-    "eventOverlay"
-  ).style.display =
-    "none";
+  const overlay =
+    document.getElementById(
+      "eventOverlay"
+    );
 
-  document.body.classList.remove(
-    "locked"
+  overlay.classList.remove(
+    "visible"
   );
 
-  document.getElementById(
-    "episodes"
-  ).scrollIntoView({
-    behavior: "smooth"
-  });
+  setTimeout(
+    function() {
+
+      overlay.style.display =
+        "none";
+
+      document.body.classList.remove(
+        "locked"
+      );
+
+    },
+    700
+  );
 
 }
 
-/* ESC CLOSE */
 
-document.addEventListener(
-  "keydown",
-  function(event) {
-
-    if (event.key === "Escape") {
-      closeEpisode();
-    }
-
-  }
-);
-
-/* HOME BUTTONS */
-
-function showEpisodes() {
-
-  document.getElementById(
-    "episodes"
-  ).scrollIntoView({
-    behavior: "smooth"
-  });
-
-}
-
-function showInfo() {
-
-  document.getElementById(
-    "more-info"
-  ).scrollIntoView({
-    behavior: "smooth"
-  });
-
-}
-
-/* ==============================
+/* ======================================
    INTRO VIDEO
-============================== */
+====================================== */
 
 const intro =
-  document.getElementById("intro");
+  document.getElementById(
+    "intro"
+  );
 
 const introVideo =
-  document.getElementById("introVideo");
+  document.getElementById(
+    "introVideo"
+  );
 
-const soundButton =
-  document.getElementById("soundButton");
+const introSound =
+  document.getElementById(
+    "soundButton"
+  );
 
 const skipIntro =
-  document.getElementById("skipIntro");
+  document.getElementById(
+    "skipIntro"
+  );
 
-let introEnded = false;
+let introFinished =
+  false;
 
-/* SOUND */
 
-soundButton.addEventListener(
+/* INTRO SOUND */
+
+introSound.addEventListener(
   "click",
   async function() {
 
     try {
 
-      introVideo.muted = false;
-      introVideo.volume = 1;
+      introVideo.muted =
+        false;
+
+      introVideo.volume =
+        1;
 
       await introVideo.play();
 
-      soundButton.textContent =
-        "Sound On";
+      introSound.style.display =
+        "none";
 
-      setTimeout(() => {
-        soundButton.style.display = "none";
-      }, 800);
+    }
 
-    } catch (error) {
+    catch(error) {
 
-      soundButton.textContent =
+      introSound.textContent =
         "Sound unavailable";
 
     }
@@ -1468,85 +1940,87 @@ soundButton.addEventListener(
   }
 );
 
-/* SKIP */
 
-skipIntro.addEventListener(
-  "click",
-  finishIntro
-);
+/* END INTRO */
 
-/* VIDEO FINISHED */
+function finishIntro() {
+
+  if (introFinished) return;
+
+  introFinished =
+    true;
+
+  intro.classList.add(
+    "hide"
+  );
+
+  setTimeout(
+    function() {
+
+      intro.style.display =
+        "none";
+
+      document.body.classList.remove(
+        "locked"
+      );
+
+      document.body.classList.add(
+        "site-ready"
+      );
+
+      document.getElementById(
+        "autoToggle"
+      ).style.display =
+        "block";
+
+      window.scrollTo(
+        0,
+        0
+      );
+
+      beginAutoExperience();
+
+    },
+    1700
+  );
+
+}
+
 
 introVideo.addEventListener(
   "ended",
   finishIntro
 );
 
-/* VIDEO FAILED */
 
 introVideo.addEventListener(
   "error",
-  function() {
-
-    console.log(
-      "Intro video could not be loaded."
-    );
-
-    finishIntro();
-
-  }
+  finishIntro
 );
 
-/* VIDEO → HOME */
 
-function finishIntro() {
+skipIntro.addEventListener(
+  "click",
+  finishIntro
+);
 
-  if (introEnded) return;
-
-  introEnded = true;
-
-  intro.classList.add("hide");
-
-  setTimeout(
-    function() {
-
-      intro.style.display = "none";
-
-      document.body.classList.remove(
-        "locked"
-      );
-
-      window.scrollTo(0,0);
-
-    },
-    1200
-  );
-
-}
-
-/* AUTOPLAY */
 
 window.addEventListener(
   "load",
   function() {
 
-    introVideo.muted = true;
+    introVideo.muted =
+      true;
 
     const attempt =
       introVideo.play();
 
-    if (attempt !== undefined) {
+    if (
+      attempt !== undefined
+    ) {
 
       attempt.catch(
-        function() {
-
-          console.log(
-            "Browser blocked autoplay."
-          );
-
-          finishIntro();
-
-        }
+        finishIntro
       );
 
     }
@@ -1554,22 +2028,519 @@ window.addEventListener(
   }
 );
 
-/* SAFETY FALLBACK */
 
-setTimeout(
+/* ======================================
+   BACKGROUND MUSIC
+====================================== */
+
+const backgroundMusic =
+  document.getElementById(
+    "backgroundMusic"
+  );
+
+const musicToggle =
+  document.getElementById(
+    "musicToggle"
+  );
+
+let musicStarted =
+  false;
+
+let musicMuted =
+  false;
+
+
+function startMusic() {
+
+  if (musicStarted) return;
+
+  musicStarted =
+    true;
+
+  backgroundMusic.volume =
+    0;
+
+  backgroundMusic.play()
+    .then(
+      function() {
+
+        musicToggle.style.display =
+          "block";
+
+        let volume =
+          0;
+
+        const targetVolume =
+          .42;
+
+        const fadeTime =
+          6000;
+
+        const interval =
+          100;
+
+        const steps =
+          fadeTime / interval;
+
+        const increase =
+          targetVolume / steps;
+
+        const fade =
+          setInterval(
+            function() {
+
+              volume +=
+                increase;
+
+              if (
+                volume >= targetVolume
+              ) {
+
+                volume =
+                  targetVolume;
+
+                clearInterval(
+                  fade
+                );
+
+              }
+
+              backgroundMusic.volume =
+                Math.min(
+                  volume,
+                  targetVolume
+                );
+
+            },
+            interval
+          );
+
+      }
+    )
+
+    .catch(
+      function() {
+
+        musicStarted =
+          false;
+
+      }
+    );
+
+}
+
+
+musicToggle.addEventListener(
+  "click",
   function() {
 
-    if (
-      !introEnded &&
-      introVideo.readyState === 0
-    ) {
+    if (musicMuted) {
 
-      finishIntro();
+      backgroundMusic.muted =
+        false;
+
+      musicToggle.textContent =
+        "♫ MUSIC";
+
+      musicMuted =
+        false;
 
     }
 
-  },
-  5000
+    else {
+
+      backgroundMusic.muted =
+        true;
+
+      musicToggle.textContent =
+        "♫ MUTED";
+
+      musicMuted =
+        true;
+
+    }
+
+  }
+);
+
+
+/* ======================================
+   START MUSIC ON FIRST REAL INTERACTION
+====================================== */
+
+function firstInteraction() {
+
+  startMusic();
+
+  window.removeEventListener(
+    "pointerdown",
+    firstInteraction
+  );
+
+  window.removeEventListener(
+    "keydown",
+    firstInteraction
+  );
+
+}
+
+
+window.addEventListener(
+  "pointerdown",
+  firstInteraction
+);
+
+
+window.addEventListener(
+  "keydown",
+  firstInteraction
+);
+
+
+/* ======================================
+   CINEMATIC AUTO EXPERIENCE
+====================================== */
+
+const autoSections = [
+
+  "home",
+  "episodes",
+  "more-info",
+  "cast",
+  "story",
+  "family",
+  "wedding-info",
+  "rsvp"
+
+];
+
+
+let autoEnabled =
+  true;
+
+let autoIndex =
+  0;
+
+let autoTimer =
+  null;
+
+
+const autoToggle =
+  document.getElementById(
+    "autoToggle"
+  );
+
+
+function beginAutoExperience() {
+
+  autoEnabled =
+    true;
+
+  autoIndex =
+    0;
+
+  autoToggle.classList.add(
+    "active"
+  );
+
+  autoToggle.textContent =
+    "AUTO ON";
+
+  scheduleNext();
+
+}
+
+
+function scheduleNext() {
+
+  clearTimeout(
+    autoTimer
+  );
+
+  if (
+    !autoEnabled
+  ) return;
+
+
+  const current =
+    autoSections[
+      autoIndex
+    ];
+
+
+  const delay =
+    current === "home"
+      ? 7000
+      : 8500;
+
+
+  autoTimer =
+    setTimeout(
+      function() {
+
+        if (
+          !autoEnabled
+        ) return;
+
+
+        autoIndex++;
+
+
+        if (
+          autoIndex >=
+          autoSections.length
+        ) {
+
+          pauseAuto();
+
+          return;
+
+        }
+
+
+        document.getElementById(
+          autoSections[
+            autoIndex
+          ]
+        ).scrollIntoView({
+          behavior: "smooth"
+        });
+
+
+        scheduleNext();
+
+      },
+      delay
+    );
+
+}
+
+
+function pauseAuto() {
+
+  autoEnabled =
+    false;
+
+  clearTimeout(
+    autoTimer
+  );
+
+  autoToggle.classList.remove(
+    "active"
+  );
+
+  autoToggle.textContent =
+    "AUTO OFF";
+
+}
+
+
+function resumeAuto() {
+
+  autoEnabled =
+    true;
+
+  autoToggle.classList.add(
+    "active"
+  );
+
+  autoToggle.textContent =
+    "AUTO ON";
+
+
+  const midpoint =
+    window.innerHeight / 2;
+
+
+  let closestIndex =
+    0;
+
+  let closestDistance =
+    Infinity;
+
+
+  autoSections.forEach(
+    function(id,index) {
+
+      const rect =
+        document
+          .getElementById(id)
+          .getBoundingClientRect();
+
+      const sectionMid =
+        rect.top +
+        rect.height / 2;
+
+      const distance =
+        Math.abs(
+          sectionMid - midpoint
+        );
+
+      if (
+        distance <
+        closestDistance
+      ) {
+
+        closestDistance =
+          distance;
+
+        closestIndex =
+          index;
+
+      }
+
+    }
+  );
+
+
+  autoIndex =
+    closestIndex;
+
+
+  scheduleNext();
+
+}
+
+
+autoToggle.addEventListener(
+  "click",
+  function(event) {
+
+    event.stopPropagation();
+
+    startMusic();
+
+    if (
+      autoEnabled
+    ) {
+
+      pauseAuto();
+
+    }
+
+    else {
+
+      resumeAuto();
+
+    }
+
+  }
+);
+
+
+/* ======================================
+   MANUAL CONTROL PAUSES AUTO
+====================================== */
+
+function manualControl() {
+
+  if (
+    document.getElementById(
+      "intro"
+    ).style.display !== "none"
+  ) {
+
+    return;
+
+  }
+
+  if (
+    autoEnabled
+  ) {
+
+    pauseAuto();
+
+  }
+
+  startMusic();
+
+}
+
+
+window.addEventListener(
+  "wheel",
+  manualControl,
+  {
+    passive: true
+  }
+);
+
+
+window.addEventListener(
+  "touchstart",
+  manualControl,
+  {
+    passive: true
+  }
+);
+
+
+/* ======================================
+   SECTION FADE-IN
+====================================== */
+
+const observer =
+  new IntersectionObserver(
+
+    function(entries) {
+
+      entries.forEach(
+        function(entry) {
+
+          if (
+            entry.isIntersecting
+          ) {
+
+            entry.target.classList.add(
+              "in-view"
+            );
+
+          }
+
+        }
+      );
+
+    },
+
+    {
+      threshold: .35
+    }
+
+  );
+
+
+document
+  .querySelectorAll(
+    ".cinematic-section"
+  )
+  .forEach(
+    function(section) {
+
+      observer.observe(
+        section
+      );
+
+    }
+  );
+
+
+/* ======================================
+   ESCAPE CLOSES EVENT
+====================================== */
+
+document.addEventListener(
+  "keydown",
+  function(event) {
+
+    if (
+      event.key === "Escape"
+    ) {
+
+      closeEpisode();
+
+    }
+
+  }
 );
 
 </script>
