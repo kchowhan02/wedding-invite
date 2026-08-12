@@ -1,16 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Khushi & Manjot | Wedding Series</title>
+<title>Khushi & Manjot | The Wedding Series</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
 
 <style>
+
+:root {
+  --gold: #c9a96e;
+  --black: #080808;
+  --soft-black: #101010;
+  --white: #faf8f5;
+}
+
 * {
   box-sizing: border-box;
   margin: 0;
@@ -22,17 +32,18 @@ html {
 }
 
 body {
-  background: #080808;
-  color: white;
+  background: var(--black);
+  color: var(--white);
   font-family: "DM Sans", sans-serif;
 }
 
-body.intro-playing {
+body.locked {
   overflow: hidden;
 }
 
-button, a {
-  font-family: inherit;
+button,
+a {
+  font: inherit;
 }
 
 a {
@@ -40,21 +51,27 @@ a {
   text-decoration: none;
 }
 
-/* INTRO */
+img {
+  display: block;
+}
 
-#videoIntro {
+/* =========================================
+   INTRO VIDEO
+========================================= */
+
+#intro {
   position: fixed;
   inset: 0;
-  z-index: 9999;
   background: #000;
+  z-index: 10000;
   display: flex;
   align-items: center;
   justify-content: center;
   opacity: 1;
-  transition: opacity 1s ease;
+  transition: opacity 1.2s ease;
 }
 
-#videoIntro.fade-out {
+#intro.hide {
   opacity: 0;
   pointer-events: none;
 }
@@ -62,407 +79,787 @@ a {
 #introVideo {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
   background: #000;
 }
 
-#introFallback {
+#soundButton {
   position: absolute;
-  inset: 0;
-  display: none;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  background: #000;
+  right: 22px;
+  bottom: 22px;
+  z-index: 10002;
+
+  border: 1px solid rgba(255,255,255,.45);
+  background: rgba(0,0,0,.65);
+  color: white;
+
+  padding: 11px 17px;
+  border-radius: 50px;
+
+  font-size: 13px;
+  cursor: pointer;
+
+  backdrop-filter: blur(8px);
 }
 
-#introFallback h1 {
-  font-family: "Playfair Display", serif;
-  font-size: clamp(44px, 8vw, 90px);
-  font-weight: 600;
+#skipIntro {
+  position: absolute;
+  left: 22px;
+  bottom: 22px;
+  z-index: 10002;
+
+  border: none;
+  background: transparent;
+  color: rgba(255,255,255,.7);
+
+  font-size: 13px;
+  cursor: pointer;
 }
 
-#introFallback p {
-  color: #c9a96e;
-  letter-spacing: 4px;
-  text-transform: uppercase;
-  font-size: 11px;
-  margin-bottom: 18px;
-}
-
-/* NAV */
+/* =========================================
+   NAV
+========================================= */
 
 nav {
   position: fixed;
   top: 0;
   left: 0;
+
   width: 100%;
-  z-index: 100;
-  padding: 18px 6vw;
+  z-index: 500;
+
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  background: linear-gradient(to bottom, rgba(0,0,0,.9), transparent);
+  justify-content: space-between;
+
+  padding: 20px 6vw;
+
+  background:
+    linear-gradient(
+      to bottom,
+      rgba(0,0,0,.9),
+      rgba(0,0,0,.35),
+      transparent
+    );
 }
 
 .logo {
+  color: var(--gold);
   font-family: "Playfair Display", serif;
-  color: #c9a96e;
-  font-size: 20px;
+  font-size: 21px;
+  font-weight: 600;
 }
 
 .nav-links {
   display: flex;
-  gap: 25px;
-  font-size: 14px;
+  gap: 26px;
+  font-size: 13px;
+}
+
+.nav-links a {
+  transition: color .2s ease;
 }
 
 .nav-links a:hover {
-  color: #c9a96e;
+  color: var(--gold);
 }
 
-/* HOME */
+/* =========================================
+   HOME
+========================================= */
 
 #home {
   min-height: 100vh;
   position: relative;
+
   background:
-    linear-gradient(to top, rgba(0,0,0,.96), rgba(0,0,0,.15), rgba(0,0,0,.45)),
-    url("https://images.pexels.com/photos/1024993/pexels-photo-1024993.jpeg");
+    linear-gradient(
+      to top,
+      rgba(0,0,0,.98) 0%,
+      rgba(0,0,0,.62) 35%,
+      rgba(0,0,0,.15) 68%,
+      rgba(0,0,0,.35) 100%
+    ),
+    url("MLS-171(2).jpg");
+
   background-size: cover;
-  background-position: center;
+  background-position: center 45%;
+
   display: flex;
   align-items: flex-end;
 }
 
 .home-content {
+  width: 100%;
+  max-width: 880px;
+
   padding: 8vw;
-  padding-bottom: 12vh;
-  max-width: 850px;
+  padding-bottom: 11vh;
 }
 
-.series-label {
-  color: #c9a96e;
+.eyebrow {
+  color: var(--gold);
   text-transform: uppercase;
-  letter-spacing: 5px;
+  letter-spacing: .35em;
   font-size: 11px;
-  margin-bottom: 18px;
+  margin-bottom: 15px;
 }
 
 .home-content h1 {
   font-family: "Playfair Display", serif;
-  font-size: clamp(50px, 8vw, 95px);
+
+  font-size: clamp(52px, 8vw, 100px);
   line-height: .95;
   font-weight: 600;
 }
 
-.coming {
-  color: #c9a96e;
+.release-date {
   margin-top: 22px;
+
+  color: var(--gold);
   font-size: 20px;
+  font-weight: 500;
 }
 
-.description {
-  max-width: 600px;
-  margin-top: 18px;
-  line-height: 1.7;
-  opacity: .85;
+.home-description {
+  margin-top: 16px;
+
+  max-width: 620px;
+
+  line-height: 1.65;
+  font-size: 17px;
+
+  opacity: .88;
 }
 
-.home-buttons {
+.button-row {
   display: flex;
   gap: 12px;
-  margin-top: 30px;
   flex-wrap: wrap;
+
+  margin-top: 30px;
 }
 
-.primary-btn,
-.secondary-btn {
-  border: 0;
+.play-btn,
+.info-btn {
+  padding: 14px 28px;
+
+  border: none;
   border-radius: 5px;
-  padding: 14px 27px;
-  font-size: 16px;
+
   font-weight: 600;
+  font-size: 16px;
+
   cursor: pointer;
 }
 
-.primary-btn {
+.play-btn {
   background: white;
   color: black;
 }
 
-.secondary-btn {
+.info-btn {
   background: rgba(255,255,255,.18);
   color: white;
+
+  backdrop-filter: blur(8px);
 }
 
-/* SECTIONS */
+/* =========================================
+   STANDARD SECTIONS
+========================================= */
 
 .section {
   padding: 90px 6vw;
 }
 
-.dark-section {
+.alt-section {
   background: #101010;
 }
 
-.section-small {
-  color: #c9a96e;
+.section-label {
+  color: var(--gold);
+
+  font-size: 10px;
+  letter-spacing: .35em;
   text-transform: uppercase;
-  letter-spacing: 4px;
-  font-size: 11px;
 }
 
-.section h2 {
+.section-title {
   font-family: "Playfair Display", serif;
-  font-size: clamp(35px, 5vw, 50px);
-  margin: 8px 0 35px;
+
+  font-size: clamp(36px, 5vw, 52px);
+
+  margin-top: 8px;
+  margin-bottom: 36px;
 }
 
-/* EPISODES */
+/* =========================================
+   EPISODES
+========================================= */
 
 .episode-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
-  gap: 18px;
+
+  grid-template-columns:
+    repeat(auto-fit, minmax(200px, 1fr));
+
+  gap: 17px;
 }
 
-.episode {
-  background: #161616;
-  border-radius: 7px;
+.episode-card {
+  background: #151515;
+
   overflow: hidden;
+
+  border-radius: 7px;
+
   cursor: pointer;
-  transition: transform .3s ease;
+
+  transition:
+    transform .28s ease,
+    box-shadow .28s ease;
 }
 
-.episode:hover {
+.episode-card:hover {
   transform: scale(1.035);
+
+  box-shadow:
+    0 10px 35px rgba(0,0,0,.45);
 }
 
-.episode img {
+.episode-image {
   width: 100%;
-  height: 290px;
+  height: 285px;
+
   object-fit: cover;
-  display: block;
 }
 
-.ep-info {
-  padding: 16px;
+.episode-copy {
+  padding: 15px;
 }
 
-.ep-number {
-  color: #c9a96e;
+.episode-number {
+  color: var(--gold);
+
   text-transform: uppercase;
-  letter-spacing: 2px;
+  letter-spacing: .22em;
+
+  font-size: 9px;
+}
+
+.episode-copy h3 {
+  font-family: "Playfair Display", serif;
+
+  font-size: 20px;
+  margin-top: 5px;
+}
+
+.episode-copy p {
+  margin-top: 7px;
+
+  opacity: .55;
+
+  font-size: 12px;
+}
+
+/* =========================================
+   FULL SCREEN EVENT
+========================================= */
+
+#eventOverlay {
+  position: fixed;
+  inset: 0;
+
+  z-index: 5000;
+
+  background: #000;
+
+  display: none;
+}
+
+.event-photo {
+  position: absolute;
+  inset: 0;
+
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+}
+
+.event-gradient {
+  position: absolute;
+  inset: 0;
+
+  background:
+    linear-gradient(
+      to top,
+      rgba(0,0,0,.98) 0%,
+      rgba(0,0,0,.77) 35%,
+      rgba(0,0,0,.2) 70%,
+      rgba(0,0,0,.35) 100%
+    );
+}
+
+.event-details {
+  position: absolute;
+
+  left: 0;
+  bottom: 0;
+
+  width: 100%;
+  max-width: 840px;
+
+  padding: 7vw;
+  padding-bottom: 7vh;
+}
+
+.event-episode {
+  color: var(--gold);
+
+  text-transform: uppercase;
+  letter-spacing: .35em;
+
   font-size: 10px;
 }
 
-.ep-info h3 {
+.event-details h2 {
   font-family: "Playfair Display", serif;
-  margin-top: 6px;
-  font-size: 20px;
-}
 
-/* EVENT OVERLAY */
+  font-size: clamp(48px, 7vw, 86px);
 
-#eventScreen {
-  position: fixed;
-  inset: 0;
-  z-index: 1000;
-  display: none;
-  background: black;
-}
-
-.event-background {
-  position: absolute;
-  inset: 0;
-  background-size: cover;
-  background-position: center;
-}
-
-.event-shade {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    to top,
-    rgba(0,0,0,.98) 5%,
-    rgba(0,0,0,.65) 45%,
-    rgba(0,0,0,.25) 100%
-  );
-}
-
-.event-content {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  max-width: 780px;
-  padding: 7vw;
-  padding-bottom: 8vh;
-}
-
-.event-number {
-  color: #c9a96e;
-  text-transform: uppercase;
-  letter-spacing: 4px;
-  font-size: 11px;
-}
-
-.event-content h2 {
-  font-family: "Playfair Display", serif;
-  font-size: clamp(45px, 7vw, 80px);
-  margin: 8px 0 20px;
+  margin-top: 8px;
+  margin-bottom: 17px;
 }
 
 .event-meta {
   display: flex;
   gap: 18px;
   flex-wrap: wrap;
+
+  font-size: 15px;
   font-weight: 500;
-  margin-bottom: 12px;
+
+  margin-bottom: 13px;
 }
 
-#eventVenue {
-  color: #c9a96e;
-  font-size: 18px;
-  margin-bottom: 8px;
+.event-venue {
+  color: var(--gold);
+
+  font-size: 19px;
+
+  margin-bottom: 7px;
 }
 
-#eventAddress {
-  opacity: .7;
-  margin-bottom: 10px;
+.event-address {
+  opacity: .65;
+  margin-bottom: 11px;
 }
 
-#eventDress {
+.event-dress {
   opacity: .8;
   margin-bottom: 18px;
 }
 
-#eventDescription {
-  line-height: 1.7;
-  opacity: .9;
+.event-description {
+  max-width: 620px;
+
+  line-height: 1.65;
+
+  opacity: .88;
 }
 
-.more-episodes {
-  margin-top: 28px;
-  border: 1px solid rgba(255,255,255,.7);
-  background: rgba(0,0,0,.5);
+.event-actions {
+  margin-top: 27px;
+
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.event-button {
+  border: 1px solid rgba(255,255,255,.55);
+
+  background: rgba(0,0,0,.55);
   color: white;
-  padding: 13px 22px;
+
+  padding: 12px 19px;
+
   border-radius: 5px;
+
   cursor: pointer;
 }
 
-/* INFO */
+/* =========================================
+   MORE INFO
+========================================= */
 
 .info-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 20px;
+
+  grid-template-columns:
+    repeat(3, 1fr);
+
+  gap: 18px;
 }
 
-.info-card {
-  border: 1px solid rgba(255,255,255,.12);
+.info-box {
+  border: 1px solid rgba(255,255,255,.1);
+
   padding: 28px;
+
   border-radius: 8px;
 }
 
-.info-card h3 {
-  color: #c9a96e;
+.info-box h3 {
+  color: var(--gold);
+
   font-family: "Playfair Display", serif;
-  margin-bottom: 10px;
+
   font-size: 22px;
+
+  margin-bottom: 10px;
 }
 
-.info-card p {
-  opacity: .75;
+.info-box p {
+  opacity: .7;
+
   line-height: 1.6;
 }
 
-/* STORY */
+/* =========================================
+   CAST
+========================================= */
 
-.story-wrap {
-  max-width: 800px;
+.cast-grid {
+  display: grid;
+
+  grid-template-columns: 1fr 1fr;
+
+  gap: 30px;
+
+  max-width: 900px;
+  margin: auto;
 }
 
-.story-wrap p {
-  font-size: 18px;
-  line-height: 1.9;
-  opacity: .78;
+.cast-person {
+  text-align: center;
 }
 
-/* RSVP */
+.cast-person img {
+  width: 230px;
+  height: 300px;
+
+  object-fit: cover;
+
+  margin: auto;
+
+  border-radius: 8px;
+}
+
+.cast-person h3 {
+  font-family: "Playfair Display", serif;
+
+  font-size: 28px;
+
+  margin-top: 17px;
+}
+
+.cast-role {
+  color: var(--gold);
+
+  text-transform: uppercase;
+  letter-spacing: .25em;
+
+  font-size: 10px;
+
+  margin-top: 5px;
+}
+
+/* =========================================
+   STORY
+========================================= */
+
+.story-grid {
+  display: grid;
+
+  grid-template-columns: 1fr 1fr;
+
+  gap: 20px;
+
+  align-items: center;
+}
+
+.story-image {
+  width: 100%;
+  height: 550px;
+
+  object-fit: cover;
+
+  border-radius: 8px;
+}
+
+.story-copy {
+  padding: 30px;
+}
+
+.story-copy h3 {
+  font-family: "Playfair Display", serif;
+
+  font-size: clamp(34px, 4vw, 48px);
+
+  margin-bottom: 17px;
+}
+
+.story-copy p {
+  opacity: .75;
+
+  line-height: 1.8;
+
+  font-size: 17px;
+}
+
+/* =========================================
+   FAMILY IMAGE
+========================================= */
+
+.family-feature {
+  position: relative;
+
+  min-height: 600px;
+
+  background:
+    linear-gradient(
+      to top,
+      rgba(0,0,0,.85),
+      rgba(0,0,0,.08)
+    ),
+    url("MLS-539(1).jpg");
+
+  background-size: cover;
+  background-position: center;
+}
+
+.family-copy {
+  position: absolute;
+
+  left: 6vw;
+  bottom: 60px;
+
+  max-width: 600px;
+}
+
+.family-copy h2 {
+  font-family: "Playfair Display", serif;
+
+  font-size: clamp(40px, 6vw, 62px);
+}
+
+.family-copy p {
+  margin-top: 14px;
+
+  line-height: 1.6;
+
+  opacity: .85;
+}
+
+/* =========================================
+   WEDDING INFO
+========================================= */
+
+.wedding-info-grid {
+  display: grid;
+
+  grid-template-columns:
+    repeat(3, 1fr);
+
+  gap: 18px;
+}
+
+/* =========================================
+   RSVP
+========================================= */
 
 #rsvp {
+  position: relative;
+
+  min-height: 650px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
   text-align: center;
-  padding: 110px 20px;
+
+  padding: 70px 20px;
+
+  background:
+    linear-gradient(
+      rgba(0,0,0,.73),
+      rgba(0,0,0,.86)
+    ),
+    url("MLS-262(2).jpg");
+
+  background-size: cover;
+  background-position: center;
 }
 
-#rsvp p {
-  opacity: .7;
-  margin-bottom: 28px;
+.rsvp-inner {
+  max-width: 700px;
+}
+
+.rsvp-inner h2 {
+  font-family: "Playfair Display", serif;
+
+  font-size: clamp(46px, 7vw, 76px);
+
+  margin-top: 10px;
+}
+
+.rsvp-inner p {
+  margin-top: 15px;
+
+  line-height: 1.6;
+
+  opacity: .78;
 }
 
 .rsvp-button {
   display: inline-block;
-  background: #c9a96e;
-  color: #080808;
-  padding: 15px 35px;
+
+  margin-top: 27px;
+
+  background: var(--gold);
+  color: black;
+
+  padding: 14px 30px;
+
   border-radius: 5px;
+
   font-weight: 600;
 }
 
+/* =========================================
+   FOOTER
+========================================= */
+
 footer {
-  border-top: 1px solid rgba(255,255,255,.1);
-  padding: 30px;
+  padding: 35px 20px;
+
   text-align: center;
+
+  border-top:
+    1px solid rgba(255,255,255,.08);
+
   opacity: .45;
-  font-size: 13px;
+
+  font-size: 12px;
 }
 
-@media(max-width:700px) {
-  .nav-links {
-    display: none;
-  }
+/* =========================================
+   MOBILE
+========================================= */
+
+@media(max-width: 760px) {
 
   nav {
     padding: 18px 20px;
   }
 
+  .nav-links {
+    display: none;
+  }
+
+  #home {
+    background-position: 50% center;
+  }
+
   .home-content {
     padding: 25px;
-    padding-bottom: 10vh;
+    padding-bottom: 9vh;
+  }
+
+  .home-description {
+    font-size: 15px;
   }
 
   .section {
-    padding: 70px 20px;
+    padding: 70px 18px;
   }
 
   .episode-grid {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 12px;
+    grid-template-columns:
+      repeat(2, 1fr);
+
+    gap: 11px;
   }
 
-  .episode img {
-    height: 220px;
+  .episode-image {
+    height: 215px;
   }
 
-  .info-grid {
-    grid-template-columns: 1fr;
+  .episode-copy {
+    padding: 12px;
   }
 
-  .event-content {
+  .episode-copy h3 {
+    font-size: 17px;
+  }
+
+  .event-details {
     padding: 25px;
     padding-bottom: 45px;
   }
+
+  .info-grid,
+  .wedding-info-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .cast-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+  }
+
+  .cast-person img {
+    width: 100%;
+    height: 230px;
+  }
+
+  .story-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .story-image {
+    height: 440px;
+  }
+
+  .story-copy {
+    padding: 15px 5px;
+  }
+
+  .family-feature {
+    min-height: 480px;
+  }
+
+  #introVideo {
+    object-fit: contain;
+  }
+
 }
+
 </style>
 </head>
 
-<body class="intro-playing">
+<body class="locked">
 
-<!-- VIDEO INTRO -->
 
-<div id="videoIntro">
+<!-- ======================================
+     INTRO VIDEO
+====================================== -->
+
+<div id="intro">
 
   <video
     id="introVideo"
@@ -471,39 +868,66 @@ footer {
     playsinline
     preload="auto"
   >
-    <source src="./intro.mp4" type="video/mp4">
+    <source src="intro.mp4" type="video/mp4">
   </video>
 
-  <div id="introFallback">
-    <div>
-      <p>A Limited Series</p>
-      <h1>Khushi & Manjot</h1>
-    </div>
-  </div>
+  <button id="skipIntro">
+    Skip Intro
+  </button>
+
+  <button id="soundButton">
+    Tap for Sound
+  </button>
 
 </div>
 
-<!-- NAVIGATION -->
+
+<!-- ======================================
+     NAVIGATION
+====================================== -->
 
 <nav>
-  <a class="logo" href="#home">K & M</a>
+
+  <a href="#home" class="logo">
+    K & M
+  </a>
 
   <div class="nav-links">
-    <a href="#episodes">Episodes</a>
-    <a href="#more-info">More Info</a>
-    <a href="#story">Our Story</a>
-    <a href="#wedding-info">Wedding Info</a>
-    <a href="#rsvp">RSVP</a>
+
+    <a href="#episodes">
+      Episodes
+    </a>
+
+    <a href="#cast">
+      Cast
+    </a>
+
+    <a href="#story">
+      Story
+    </a>
+
+    <a href="#wedding-info">
+      Info
+    </a>
+
+    <a href="#rsvp">
+      RSVP
+    </a>
+
   </div>
+
 </nav>
 
-<!-- HOME -->
+
+<!-- ======================================
+     HOME
+====================================== -->
 
 <section id="home">
 
   <div class="home-content">
 
-    <div class="series-label">
+    <div class="eyebrow">
       A Limited Wedding Series
     </div>
 
@@ -511,22 +935,29 @@ footer {
       Khushi & Manjot
     </h1>
 
-    <div class="coming">
-      Coming May 2027
+    <div class="release-date">
+      May 2–7, 2027
     </div>
 
-    <p class="description">
+    <p class="home-description">
       Seven celebrations. Two families. One story.
-      Join us for a week of love, family, tradition and celebration.
+      Join us for a week of love, family, tradition
+      and celebration.
     </p>
 
-    <div class="home-buttons">
+    <div class="button-row">
 
-      <button class="primary-btn" onclick="showEpisodes()">
+      <button
+        class="play-btn"
+        onclick="showEpisodes()"
+      >
         ▶ Play
       </button>
 
-      <button class="secondary-btn" onclick="showMoreInfo()">
+      <button
+        class="info-btn"
+        onclick="showInfo()"
+      >
         ⓘ More Info
       </button>
 
@@ -536,312 +967,528 @@ footer {
 
 </section>
 
-<!-- EPISODES -->
 
-<section id="episodes" class="section">
+<!-- ======================================
+     EPISODES
+====================================== -->
 
-  <div class="section-small">
+<section
+  id="episodes"
+  class="section"
+>
+
+  <div class="section-label">
     Season One
   </div>
 
-  <h2>Episodes</h2>
+  <h2 class="section-title">
+    Episodes
+  </h2>
 
-  <div class="episode-grid" id="episodeGrid"></div>
+  <div
+    class="episode-grid"
+    id="episodeGrid"
+  ></div>
 
 </section>
 
-<!-- MORE INFO -->
 
-<section id="more-info" class="section dark-section">
+<!-- ======================================
+     MORE INFO
+====================================== -->
 
-  <div class="section-small">
+<section
+  id="more-info"
+  class="section alt-section"
+>
+
+  <div class="section-label">
     About This Series
   </div>
 
-  <h2>More Info</h2>
+  <h2 class="section-title">
+    More Info
+  </h2>
 
   <div class="info-grid">
 
-    <div class="info-card">
-      <h3>7 Episodes</h3>
+    <div class="info-box">
+
+      <h3>
+        Seven Episodes
+      </h3>
+
       <p>
-        Seven events make up our wedding week, each celebrating
-        a different part of our families, culture and traditions.
+        Our wedding week unfolds across seven celebrations,
+        each representing a different part of our traditions,
+        families and story.
       </p>
+
     </div>
 
-    <div class="info-card">
-      <h3>May 2027</h3>
+
+    <div class="info-box">
+
+      <h3>
+        May 2–7, 2027
+      </h3>
+
       <p>
-        Join us in Calgary as we celebrate the beginning
-        of our next chapter together.
+        Six days of celebrations in and around Calgary,
+        ending with our wedding reception on May 7.
       </p>
+
     </div>
 
-    <div class="info-card">
-      <h3>Your Invitation</h3>
+
+    <div class="info-box">
+
+      <h3>
+        Your Invitation
+      </h3>
+
       <p>
-        Select an episode to see its time, location,
-        attire and important event details.
+        Select an episode above to view the time,
+        location, attire and details for each celebration.
       </p>
+
     </div>
 
   </div>
 
 </section>
 
-<!-- STORY -->
 
-<section id="story" class="section">
+<!-- ======================================
+     CAST
+====================================== -->
 
-  <div class="story-wrap">
+<section
+  id="cast"
+  class="section"
+>
 
-    <div class="section-small">
-      The Story So Far
+  <div
+    class="section-label"
+    style="text-align:center;"
+  >
+    Meet the Cast
+  </div>
+
+  <h2
+    class="section-title"
+    style="text-align:center;"
+  >
+    The Bride & Groom
+  </h2>
+
+  <div class="cast-grid">
+
+    <div class="cast-person">
+
+      <img
+        src="MLS-80(2).jpg"
+        alt="Khushi"
+      >
+
+      <h3>
+        Khushi
+      </h3>
+
+      <div class="cast-role">
+        The Bride
+      </div>
+
+    </div>
+
+
+    <div class="cast-person">
+
+      <img
+        src="MLS-3(2).jpg"
+        alt="Manjot"
+      >
+
+      <h3>
+        Manjot
+      </h3>
+
+      <div class="cast-role">
+        The Groom
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- ======================================
+     STORY
+====================================== -->
+
+<section
+  id="story"
+  class="section alt-section"
+>
+
+  <div class="story-grid">
+
+    <img
+      src="MLS-160(2).jpg"
+      class="story-image"
+      alt="Khushi and Manjot"
+    >
+
+    <div class="story-copy">
+
+      <div class="section-label">
+        The Story So Far
+      </div>
+
+      <h3>
+        One Story.
+        <br>
+        Our Next Chapter.
+      </h3>
+
+      <p>
+        What started as our story has grown into two families
+        coming together. In May 2027, we get to begin our next
+        chapter surrounded by the people who have been part
+        of it.
+      </p>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- ======================================
+     FAMILY
+====================================== -->
+
+<section class="family-feature">
+
+  <div class="family-copy">
+
+    <div class="section-label">
+      Featuring
     </div>
 
     <h2>
-      Khushi & Manjot
+      Our Favourite People
     </h2>
 
     <p>
-      Our story brought two people and two families together.
-      In May 2027, we get to celebrate the next chapter
-      with the people who have been part of it.
+      The people who shaped us, supported us and now get
+      to celebrate this next chapter alongside us.
     </p>
 
   </div>
 
 </section>
 
-<!-- WEDDING INFO -->
 
-<section id="wedding-info" class="section dark-section">
+<!-- ======================================
+     WEDDING INFO
+====================================== -->
 
-  <div class="section-small">
+<section
+  id="wedding-info"
+  class="section alt-section"
+>
+
+  <div class="section-label">
     Before You Watch
   </div>
 
-  <h2>
+  <h2 class="section-title">
     Wedding Info
   </h2>
 
-  <div class="info-grid">
+  <div class="wedding-info-grid">
 
-    <div class="info-card">
-      <h3>Locations</h3>
+    <div class="info-box">
+
+      <h3>
+        Chowhan Farmhouse
+      </h3>
+
       <p>
-        Events will take place at the Chowhan Farmhouse,
-        Dashmesh Culture and Empire Banquet Hall.
+        Home to our Paath, Mehndi, Haldi,
+        Jaggo and Choora + Chowhan BBQ celebrations.
       </p>
+
     </div>
 
-    <div class="info-card">
-      <h3>Anand Karaj</h3>
+
+    <div class="info-box">
+
+      <h3>
+        Anand Karaj
+      </h3>
+
       <p>
-        Please wear appropriate traditional attire.
-        Head coverings are required for the Gurdwara ceremony.
+        May 6 at Dashmesh Culture.
+        Traditional attire is requested and
+        head coverings are required.
       </p>
+
     </div>
 
-    <div class="info-card">
-      <h3>Event Details</h3>
+
+    <div class="info-box">
+
+      <h3>
+        Reception
+      </h3>
+
       <p>
-        Select each episode for its individual time,
-        venue, attire and other important information.
+        May 7 at Empire Banquet Hall.
+        Join us for the finale of our wedding week.
       </p>
+
     </div>
 
   </div>
 
 </section>
 
-<!-- RSVP -->
+
+<!-- ======================================
+     RSVP
+====================================== -->
 
 <section id="rsvp">
 
-  <div class="section-small">
-    The Guest List
+  <div class="rsvp-inner">
+
+    <div class="section-label">
+      The Guest List
+    </div>
+
+    <h2>
+      Will You Join Us?
+    </h2>
+
+    <p>
+      RSVP details will be available here soon.
+      We cannot wait to celebrate with you.
+    </p>
+
+    <a
+      href="#"
+      class="rsvp-button"
+      onclick="return false;"
+    >
+      RSVP Coming Soon
+    </a>
+
   </div>
-
-  <h2 style="font-family:'Playfair Display',serif; font-size:45px; margin:10px 0 15px;">
-    Will You Join Us?
-  </h2>
-
-  <p>
-    RSVP information coming soon.
-  </p>
-
-  <a href="#" class="rsvp-button">
-    RSVP Coming Soon
-  </a>
 
 </section>
 
+
 <footer>
-  Khushi & Manjot · May 2027 · Calgary
+  Khushi & Manjot · May 2–7, 2027 · Calgary
 </footer>
 
-<!-- FULL SCREEN EVENT -->
 
-<div id="eventScreen">
+<!-- ======================================
+     FULL SCREEN EVENT
+====================================== -->
 
-  <div
-    class="event-background"
-    id="eventBackground">
-  </div>
+<div id="eventOverlay">
 
-  <div class="event-shade"></div>
+  <img
+    id="eventImage"
+    class="event-photo"
+    src=""
+    alt=""
+  >
 
-  <div class="event-content">
+  <div class="event-gradient"></div>
+
+  <div class="event-details">
 
     <div
-      class="event-number"
-      id="eventNumber">
-    </div>
+      id="eventNumber"
+      class="event-episode"
+    ></div>
 
     <h2 id="eventTitle"></h2>
 
     <div class="event-meta">
+
       <span id="eventDate"></span>
+
       <span id="eventTime"></span>
+
     </div>
 
-    <div id="eventVenue"></div>
-    <div id="eventAddress"></div>
-    <div id="eventDress"></div>
+    <div
+      id="eventVenue"
+      class="event-venue"
+    ></div>
 
-    <p id="eventDescription"></p>
+    <div
+      id="eventAddress"
+      class="event-address"
+    ></div>
 
-    <button
-      class="more-episodes"
-      onclick="closeEpisode()">
-      ← More Episodes
-    </button>
+    <div
+      id="eventDress"
+      class="event-dress"
+    ></div>
+
+    <p
+      id="eventDescription"
+      class="event-description"
+    ></p>
+
+    <div class="event-actions">
+
+      <button
+        class="event-button"
+        onclick="closeEpisode()"
+      >
+        ← More Episodes
+      </button>
+
+    </div>
 
   </div>
 
 </div>
 
+
 <script>
 
-/* EVENT DATA */
+/* ======================================
+   EVENT DATA
+====================================== */
 
 const events = [
 
-{
-  title: "Paath",
-  date: "May 2027",
-  time: "10:00 AM",
-  venue: "Chowhan Farmhouse",
-  address: "Calgary, Alberta",
-  dress: "Traditional attire",
-  description:
-    "A morning of prayer and blessings to officially launch our wedding celebrations.",
-  image:
-    "https://images.pexels.com/photos/1306248/pexels-photo-1306248.jpeg"
-},
+  {
+    title: "Paath",
+    date: "May 2, 2027",
+    time: "10:00 AM",
+    venue: "Chowhan Farmhouse",
+    address: "Calgary, Alberta",
+    dress: "Traditional attire",
+    description:
+      "A morning of prayer and blessings to officially begin our wedding week and launch the celebrations ahead.",
+    image: "MLS-84(2).jpg"
+  },
 
-{
-  title: "Mehndi",
-  date: "May 2027",
-  time: "5:00 PM",
-  venue: "Chowhan Farmhouse",
-  address: "Calgary, Alberta",
-  dress: "Colourful traditional attire",
-  description:
-    "An evening of mehndi, colour, music and celebration with our family and friends.",
-  image:
-    "https://images.pexels.com/photos/169193/pexels-photo-169193.jpeg"
-},
+  {
+    title: "Mehndi",
+    date: "May 3, 2027",
+    time: "5:00 PM",
+    venue: "Chowhan Farmhouse",
+    address: "Calgary, Alberta",
+    dress: "Colourful traditional attire",
+    description:
+      "An evening of mehndi, colour, music and celebration with our family and friends.",
+    image: "MLS-274(1).jpg"
+  },
 
-{
-  title: "Haldi",
-  date: "May 2027",
-  time: "10:00 AM",
-  venue: "Chowhan Farmhouse",
-  address: "Calgary, Alberta",
-  dress: "Details to come",
-  description:
-    "A joyful morning celebrating our Haldi ceremony with family before the evening festivities begin.",
-  image:
-    "https://images.pexels.com/photos/169198/pexels-photo-169198.jpeg"
-},
+  {
+    title: "Haldi",
+    date: "May 4, 2027",
+    time: "10:00 AM",
+    venue: "Chowhan Farmhouse",
+    address: "Calgary, Alberta",
+    dress: "Details to come",
+    description:
+      "A joyful morning filled with colour, family and one of our favourite pre-wedding traditions.",
+    image: "MLS-113(2).jpg"
+  },
 
-{
-  title: "Jaggo",
-  date: "May 2027",
-  time: "6:00 PM",
-  venue: "Chowhan Farmhouse",
-  address: "Calgary, Alberta",
-  dress: "Punjabi festive attire",
-  description:
-    "An evening of dhol, dancing and Punjabi wedding celebrations at the Chowhan Farmhouse.",
-  image:
-    "https://images.pexels.com/photos/8887166/pexels-photo-8887166.jpeg"
-},
+  {
+    title: "Jaggo",
+    date: "May 4, 2027",
+    time: "6:00 PM",
+    venue: "Chowhan Farmhouse",
+    address: "Calgary, Alberta",
+    dress: "Punjabi festive attire",
+    description:
+      "The energy turns up for an evening of dhol, dancing and Punjabi wedding celebrations.",
+    image: "MLS-147(1).jpg"
+  },
 
-{
-  title: "Choora + Chowhan BBQ",
-  date: "May 2027",
-  time: "3:00 PM",
-  venue: "Chowhan Farmhouse",
-  address: "Calgary, Alberta",
-  dress: "Details to come",
-  description:
-    "Our Choora celebrations followed by the Chowhan BBQ with family and friends.",
-  image:
-    "https://images.pexels.com/photos/13984639/pexels-photo-13984639.jpeg"
-},
+  {
+    title: "Choora + Chowhan BBQ",
+    date: "May 5, 2027",
+    time: "3:00 PM",
+    venue: "Chowhan Farmhouse",
+    address: "Calgary, Alberta",
+    dress: "Details to come",
+    description:
+      "A meaningful Choora celebration followed by the Chowhan BBQ and an afternoon with family and friends.",
+    image: "MLS-355(1).jpg"
+  },
 
-{
-  title: "Anand Karaj",
-  date: "May 7, 2027",
-  time: "9:00 AM",
-  venue: "Dashmesh Culture",
-  address: "Calgary, Alberta",
-  dress:
-    "Formal traditional attire · Head covering required",
-  description:
-    "Join us for our Anand Karaj as we begin our marriage surrounded by our families and loved ones.",
-  image:
-    "https://images.pexels.com/photos/13146927/pexels-photo-13146927.jpeg"
-},
+  {
+    title: "Anand Karaj",
+    date: "May 6, 2027",
+    time: "9:00 AM",
+    venue: "Dashmesh Culture",
+    address: "Calgary, Alberta",
+    dress:
+      "Formal traditional attire · Head covering required",
+    description:
+      "The heart of our wedding week. Join us for our Anand Karaj as we begin our marriage surrounded by our families and loved ones.",
+    image: "MLS-262(2).jpg"
+  },
 
-{
-  title: "Reception",
-  date: "May 2027",
-  time: "6:00 PM",
-  venue: "Empire Banquet Hall",
-  address: "Calgary, Alberta",
-  dress: "Formal attire",
-  description:
-    "The grand finale of our wedding week. Dinner, dancing and one final celebration together.",
-  image:
-    "https://images.pexels.com/photos/16935897/pexels-photo-16935897.jpeg"
-}
+  {
+    title: "Reception",
+    date: "May 7, 2027",
+    time: "6:00 PM",
+    venue: "Empire Banquet Hall",
+    address: "Calgary, Alberta",
+    dress: "Formal attire",
+    description:
+      "The grand finale. Dinner, dancing and one final celebration together as we close out our wedding week.",
+    image: "MLS-479(2).jpg"
+  }
 
 ];
 
-/* BUILD EPISODES */
 
-const grid = document.getElementById("episodeGrid");
+/* ======================================
+   BUILD EPISODE CARDS
+====================================== */
+
+const grid =
+  document.getElementById("episodeGrid");
+
 
 events.forEach((event,index) => {
 
-  const card = document.createElement("div");
+  const card =
+    document.createElement("div");
 
-  card.className = "episode";
+  card.className =
+    "episode-card";
 
   card.innerHTML = `
+
     <img
+      class="episode-image"
       src="${event.image}"
       alt="${event.title}"
     >
 
-    <div class="ep-info">
+    <div class="episode-copy">
 
-      <div class="ep-number">
+      <div class="episode-number">
         Episode ${String(index + 1).padStart(2,"0")}
       </div>
 
@@ -849,171 +1496,315 @@ events.forEach((event,index) => {
         ${event.title}
       </h3>
 
+      <p>
+        ${event.date}
+      </p>
+
     </div>
+
   `;
 
-  card.addEventListener("click", () => {
-    openEpisode(index);
-  });
+  card.addEventListener(
+    "click",
+    () => openEpisode(index)
+  );
 
   grid.appendChild(card);
+
 });
 
-/* OPEN EPISODE */
+
+/* ======================================
+   OPEN EVENT
+====================================== */
 
 function openEpisode(index) {
 
-  const event = events[index];
+  const event =
+    events[index];
 
-  document.getElementById("eventNumber").textContent =
+  const overlay =
+    document.getElementById("eventOverlay");
+
+  document.getElementById(
+    "eventNumber"
+  ).textContent =
     `Episode ${String(index + 1).padStart(2,"0")}`;
 
-  document.getElementById("eventTitle").textContent =
+  document.getElementById(
+    "eventTitle"
+  ).textContent =
     event.title;
 
-  document.getElementById("eventDate").textContent =
+  document.getElementById(
+    "eventDate"
+  ).textContent =
     event.date;
 
-  document.getElementById("eventTime").textContent =
+  document.getElementById(
+    "eventTime"
+  ).textContent =
     event.time;
 
-  document.getElementById("eventVenue").textContent =
+  document.getElementById(
+    "eventVenue"
+  ).textContent =
     event.venue;
 
-  document.getElementById("eventAddress").textContent =
+  document.getElementById(
+    "eventAddress"
+  ).textContent =
     event.address;
 
-  document.getElementById("eventDress").textContent =
+  document.getElementById(
+    "eventDress"
+  ).textContent =
     "Dress Code: " + event.dress;
 
-  document.getElementById("eventDescription").textContent =
+  document.getElementById(
+    "eventDescription"
+  ).textContent =
     event.description;
 
-  document.getElementById("eventBackground").style.backgroundImage =
-    `url("${event.image}")`;
+  const image =
+    document.getElementById("eventImage");
 
-  document.getElementById("eventScreen").style.display =
+  image.src =
+    event.image;
+
+  image.alt =
+    event.title;
+
+  overlay.style.display =
     "block";
 
-  document.body.style.overflow =
-    "hidden";
+  document.body.classList.add(
+    "locked"
+  );
 }
 
-/* CLOSE EPISODE */
+
+/* ======================================
+   CLOSE EVENT
+====================================== */
 
 function closeEpisode() {
 
-  document.getElementById("eventScreen").style.display =
+  document.getElementById(
+    "eventOverlay"
+  ).style.display =
     "none";
 
-  document.body.style.overflow =
-    "";
+  document.body.classList.remove(
+    "locked"
+  );
 
-  document.getElementById("episodes").scrollIntoView({
+  document.getElementById(
+    "episodes"
+  ).scrollIntoView({
     behavior: "smooth"
   });
+
 }
 
-/* HOME BUTTONS */
+
+/* ESC KEY CLOSES EVENT */
+
+document.addEventListener(
+  "keydown",
+  function(event) {
+
+    if (
+      event.key === "Escape"
+    ) {
+
+      closeEpisode();
+
+    }
+
+  }
+);
+
+
+/* ======================================
+   HOME BUTTONS
+====================================== */
 
 function showEpisodes() {
-  document.getElementById("episodes").scrollIntoView({
+
+  document.getElementById(
+    "episodes"
+  ).scrollIntoView({
     behavior: "smooth"
   });
+
 }
 
-function showMoreInfo() {
-  document.getElementById("more-info").scrollIntoView({
+
+function showInfo() {
+
+  document.getElementById(
+    "more-info"
+  ).scrollIntoView({
     behavior: "smooth"
   });
+
 }
 
-/* INTRO VIDEO */
+
+/* ======================================
+   INTRO VIDEO
+====================================== */
+
+const intro =
+  document.getElementById("intro");
 
 const introVideo =
   document.getElementById("introVideo");
 
-const videoIntro =
-  document.getElementById("videoIntro");
+const soundButton =
+  document.getElementById("soundButton");
 
-const introFallback =
-  document.getElementById("introFallback");
+const skipIntro =
+  document.getElementById("skipIntro");
 
-let introFinished = false;
+let introEnded =
+  false;
+
+
+/* TURN SOUND ON AFTER TAP */
+
+soundButton.addEventListener(
+  "click",
+  function() {
+
+    introVideo.muted = false;
+
+    introVideo.volume = 1;
+
+    introVideo.play();
+
+    soundButton.textContent =
+      "Sound On";
+
+    setTimeout(
+      () => {
+        soundButton.style.display =
+          "none";
+      },
+      800
+    );
+
+  }
+);
+
+
+/* SKIP */
+
+skipIntro.addEventListener(
+  "click",
+  finishIntro
+);
+
+
+/* VIDEO FINISHED */
+
+introVideo.addEventListener(
+  "ended",
+  finishIntro
+);
+
+
+/* VIDEO ERROR */
+
+introVideo.addEventListener(
+  "error",
+  finishIntro
+);
+
+
+/* FADE INTO HOME */
 
 function finishIntro() {
 
-  if (introFinished) return;
+  if (introEnded) return;
 
-  introFinished = true;
+  introEnded =
+    true;
 
-  videoIntro.classList.add("fade-out");
+  intro.classList.add(
+    "hide"
+  );
 
-  setTimeout(() => {
+  setTimeout(
+    function() {
 
-    videoIntro.style.display = "none";
+      intro.style.display =
+        "none";
 
-    document.body.classList.remove("intro-playing");
+      document.body.classList.remove(
+        "locked"
+      );
 
-    window.scrollTo(0,0);
+      window.scrollTo(
+        0,
+        0
+      );
 
-  },1000);
+    },
+    1200
+  );
+
 }
 
-/* NORMAL VIDEO END */
 
-introVideo.addEventListener("ended", finishIntro);
+/* AUTOPLAY MUTED */
 
-/* IF FILE FAILS TO LOAD */
+window.addEventListener(
+  "load",
+  function() {
 
-introVideo.addEventListener("error", () => {
+    introVideo.muted =
+      true;
 
-  introVideo.style.display = "none";
+    const attempt =
+      introVideo.play();
 
-  introFallback.style.display = "flex";
+    if (
+      attempt !== undefined
+    ) {
 
-  setTimeout(finishIntro, 3000);
+      attempt.catch(
+        function() {
 
-});
+          finishIntro();
 
-/* TRY TO PLAY */
+        }
+      );
 
-window.addEventListener("load", () => {
-
-  const attempt = introVideo.play();
-
-  if (attempt !== undefined) {
-
-    attempt.catch(() => {
-
-      introVideo.style.display = "none";
-
-      introFallback.style.display = "flex";
-
-      setTimeout(finishIntro, 3000);
-
-    });
+    }
 
   }
+);
 
-});
 
-/* SAFETY FALLBACK:
-   NEVER LEAVE BLACK SCREEN FOREVER */
+/* SAFETY: NEVER TRAP GUEST */
 
-setTimeout(() => {
+setTimeout(
+  function() {
 
-  if (!introFinished && introVideo.readyState < 2) {
+    if (
+      !introEnded &&
+      introVideo.readyState === 0
+    ) {
 
-    introVideo.style.display = "none";
+      finishIntro();
 
-    introFallback.style.display = "flex";
+    }
 
-    setTimeout(finishIntro, 3000);
-
-  }
-
-}, 4000);
+  },
+  5000
+);
 
 </script>
 
