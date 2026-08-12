@@ -18,8 +18,6 @@
   --black: #080808;
   --soft-black: #101010;
   --white: #faf8f5;
-  --red: #8f1d2c;
-  --pink: #d38a9b;
 }
 
 * {
@@ -114,78 +112,6 @@ img {
 }
 
 /* ==============================
-   PARTY TITLE
-============================== */
-
-#partyTitle {
-  position: fixed;
-  inset: 0;
-  z-index: 9999;
-  background: #000;
-  display: none;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  opacity: 0;
-  transition: opacity 1s ease;
-}
-
-#partyTitle.show {
-  display: flex;
-  opacity: 1;
-}
-
-#partyTitle.fade-out {
-  opacity: 0;
-}
-
-.party-title-inner {
-  width: 100%;
-  max-width: 900px;
-  padding: 35px 25px;
-}
-
-.party-kicker {
-  color: var(--gold);
-  font-size: 10px;
-  font-weight: 500;
-  letter-spacing: .42em;
-  text-transform: uppercase;
-  margin-bottom: 20px;
-}
-
-#partyTitle h2 {
-  font-family: "Playfair Display", serif;
-  font-size: clamp(43px, 8vw, 88px);
-  line-height: 1.05;
-  font-weight: 600;
-  color: #fff;
-  text-shadow:
-    0 0 30px rgba(201,169,110,.18),
-    0 0 55px rgba(143,29,44,.12);
-}
-
-.party-line {
-  width: 90px;
-  height: 2px;
-  margin: 27px auto 21px;
-  background: linear-gradient(
-    90deg,
-    var(--gold),
-    var(--red),
-    var(--pink),
-    var(--gold)
-  );
-}
-
-.party-date {
-  color: rgba(255,255,255,.62);
-  font-size: 10px;
-  letter-spacing: .32em;
-  text-transform: uppercase;
-}
-
-/* ==============================
    NAVIGATION
 ============================== */
 
@@ -199,6 +125,7 @@ nav {
   align-items: center;
   justify-content: space-between;
   padding: 20px 6vw;
+
   background: linear-gradient(
     to bottom,
     rgba(0,0,0,.9),
@@ -412,6 +339,7 @@ nav {
 .event-gradient {
   position: absolute;
   inset: 0;
+
   background: linear-gradient(
     to top,
     rgba(0,0,0,.98) 0%,
@@ -772,15 +700,6 @@ footer {
     min-height: 480px;
   }
 
-  #partyTitle h2 {
-    font-size: 46px;
-  }
-
-  .party-kicker {
-    font-size: 9px;
-    letter-spacing: .3em;
-  }
-
 }
 
 </style>
@@ -812,32 +731,6 @@ footer {
 
 </div>
 
-
-<!-- PARTY TITLE AFTER VIDEO -->
-
-<div id="partyTitle">
-
-  <div class="party-title-inner">
-
-    <div class="party-kicker">
-      THE WEDDING WEEK BEGINS
-    </div>
-
-    <h2>
-      BITTU DI KURI DA VIAH
-    </h2>
-
-    <div class="party-line"></div>
-
-    <div class="party-date">
-      MAY 2–7, 2027 · CALGARY
-    </div>
-
-  </div>
-
-</div>
-
-
 <!-- NAV -->
 
 <nav>
@@ -847,17 +740,14 @@ footer {
   </a>
 
   <div class="nav-links">
-
     <a href="#episodes">Episodes</a>
     <a href="#cast">Cast</a>
     <a href="#story">Story</a>
     <a href="#wedding-info">Info</a>
     <a href="#rsvp">RSVP</a>
-
   </div>
 
 </nav>
-
 
 <!-- HOME -->
 
@@ -905,7 +795,6 @@ footer {
 
 </section>
 
-
 <!-- EPISODES -->
 
 <section id="episodes" class="section">
@@ -924,7 +813,6 @@ footer {
   ></div>
 
 </section>
-
 
 <!-- MORE INFO -->
 
@@ -987,7 +875,6 @@ footer {
 
 </section>
 
-
 <!-- CAST -->
 
 <section id="cast" class="section">
@@ -1046,7 +933,6 @@ footer {
 
 </section>
 
-
 <!-- STORY -->
 
 <section
@@ -1086,7 +972,6 @@ footer {
 
 </section>
 
-
 <!-- FAMILY -->
 
 <section class="family-feature">
@@ -1109,7 +994,6 @@ footer {
   </div>
 
 </section>
-
 
 <!-- WEDDING INFO -->
 
@@ -1172,7 +1056,6 @@ footer {
 
 </section>
 
-
 <!-- RSVP -->
 
 <section id="rsvp">
@@ -1204,11 +1087,9 @@ footer {
 
 </section>
 
-
 <footer>
   Khushi & Manjot · May 2–7, 2027 · Calgary
 </footer>
-
 
 <!-- EVENT OVERLAY -->
 
@@ -1274,7 +1155,6 @@ footer {
   </div>
 
 </div>
-
 
 <script>
 
@@ -1371,7 +1251,6 @@ const events = [
 
 ];
 
-
 /* BUILD EPISODES */
 
 const grid =
@@ -1418,7 +1297,6 @@ events.forEach((event,index) => {
   grid.appendChild(card);
 
 });
-
 
 /* OPEN EPISODE */
 
@@ -1486,7 +1364,6 @@ function openEpisode(index) {
   );
 }
 
-
 /* CLOSE EPISODE */
 
 function closeEpisode() {
@@ -1508,7 +1385,6 @@ function closeEpisode() {
 
 }
 
-
 /* ESC CLOSE */
 
 document.addEventListener(
@@ -1521,7 +1397,6 @@ document.addEventListener(
 
   }
 );
-
 
 /* HOME BUTTONS */
 
@@ -1545,7 +1420,6 @@ function showInfo() {
 
 }
 
-
 /* ==============================
    INTRO VIDEO
 ============================== */
@@ -1562,11 +1436,7 @@ const soundButton =
 const skipIntro =
   document.getElementById("skipIntro");
 
-const partyTitle =
-  document.getElementById("partyTitle");
-
 let introEnded = false;
-
 
 /* SOUND */
 
@@ -1598,7 +1468,6 @@ soundButton.addEventListener(
   }
 );
 
-
 /* SKIP */
 
 skipIntro.addEventListener(
@@ -1606,14 +1475,12 @@ skipIntro.addEventListener(
   finishIntro
 );
 
-
 /* VIDEO FINISHED */
 
 introVideo.addEventListener(
   "ended",
   finishIntro
 );
-
 
 /* VIDEO FAILED */
 
@@ -1630,18 +1497,13 @@ introVideo.addEventListener(
   }
 );
 
-
-/* ==============================
-   VIDEO → TITLE → HOME
-============================== */
+/* VIDEO → HOME */
 
 function finishIntro() {
 
   if (introEnded) return;
 
   introEnded = true;
-
-  /* Fade the video to black */
 
   intro.classList.add("hide");
 
@@ -1650,59 +1512,17 @@ function finishIntro() {
 
       intro.style.display = "none";
 
-      /* Show title card */
-
-      partyTitle.style.display = "flex";
-
-      requestAnimationFrame(
-        function() {
-
-          requestAnimationFrame(
-            function() {
-              partyTitle.classList.add("show");
-            }
-          );
-
-        }
+      document.body.classList.remove(
+        "locked"
       );
 
-      /* Keep title visible */
-
-      setTimeout(
-        function() {
-
-          partyTitle.classList.add(
-            "fade-out"
-          );
-
-          /* Reveal home after fade */
-
-          setTimeout(
-            function() {
-
-              partyTitle.style.display =
-                "none";
-
-              document.body.classList.remove(
-                "locked"
-              );
-
-              window.scrollTo(0,0);
-
-            },
-            1000
-          );
-
-        },
-        3200
-      );
+      window.scrollTo(0,0);
 
     },
     1200
   );
 
 }
-
 
 /* AUTOPLAY */
 
@@ -1733,7 +1553,6 @@ window.addEventListener(
 
   }
 );
-
 
 /* SAFETY FALLBACK */
 
