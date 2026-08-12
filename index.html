@@ -10,7 +10,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
 
 <style>
 
@@ -56,14 +56,13 @@ img {
 }
 
 
-/* ==========================================
+/* =========================================================
    INTRO VIDEO
-========================================== */
+========================================================= */
 
 #intro {
   position: fixed;
   inset: 0;
-
   z-index: 10000;
 
   background: #000;
@@ -73,7 +72,6 @@ img {
   justify-content: center;
 
   opacity: 1;
-
   transition: opacity 1.7s ease;
 }
 
@@ -85,37 +83,29 @@ img {
 #introVideo {
   width: 100%;
   height: 100%;
-
   object-fit: contain;
-
   background: #000;
 }
 
 #soundButton,
 #skipIntro {
   position: absolute;
-
   bottom: 22px;
-
   z-index: 10002;
-
   cursor: pointer;
 }
 
 #soundButton {
   right: 22px;
 
-  border: 1px solid rgba(255,255,255,.45);
-
-  background: rgba(0,0,0,.65);
-
+  border: 1px solid rgba(255,255,255,.4);
+  background: rgba(0,0,0,.67);
   color: white;
 
   padding: 11px 17px;
-
   border-radius: 50px;
 
-  font-size: 13px;
+  font-size: 12px;
 
   backdrop-filter: blur(8px);
 }
@@ -124,22 +114,19 @@ img {
   left: 22px;
 
   border: none;
-
-  background: rgba(0,0,0,.45);
-
+  background: rgba(0,0,0,.5);
   color: rgba(255,255,255,.85);
 
-  padding: 10px 14px;
-
+  padding: 10px 15px;
   border-radius: 50px;
 
-  font-size: 13px;
+  font-size: 12px;
 }
 
 
-/* ==========================================
+/* =========================================================
    BACKGROUND MUSIC
-========================================== */
+========================================================= */
 
 #musicToggle {
   position: fixed;
@@ -153,8 +140,7 @@ img {
 
   border: 1px solid rgba(255,255,255,.28);
 
-  background: rgba(0,0,0,.68);
-
+  background: rgba(0,0,0,.7);
   color: white;
 
   padding: 10px 16px;
@@ -166,20 +152,12 @@ img {
   cursor: pointer;
 
   backdrop-filter: blur(9px);
-
-  transition:
-    opacity .3s ease,
-    background .3s ease;
-}
-
-#musicToggle:hover {
-  background: rgba(0,0,0,.9);
 }
 
 
-/* ==========================================
+/* =========================================================
    NAVIGATION
-========================================== */
+========================================================= */
 
 nav {
   position: fixed;
@@ -192,37 +170,51 @@ nav {
   z-index: 500;
 
   display: flex;
-
   align-items: center;
-  justify-content: space-between;
 
-  padding: 20px 6vw;
+  padding: 21px 4vw;
 
   background:
     linear-gradient(
       to bottom,
-      rgba(0,0,0,.9),
-      rgba(0,0,0,.35),
-      transparent
+      rgba(0,0,0,.92) 0%,
+      rgba(0,0,0,.55) 42%,
+      transparent 100%
     );
 }
 
 .logo {
   color: var(--gold);
 
-  font-family: "Playfair Display", serif;
-
   font-size: 21px;
+  font-weight: 700;
 
-  font-weight: 600;
+  letter-spacing: .045em;
+
+  white-space: nowrap;
+
+  margin-right: 48px;
 }
 
 .nav-links {
   display: flex;
 
-  gap: 26px;
+  gap: 34px;
 
-  font-size: 13px;
+  align-items: center;
+}
+
+.nav-links a {
+  color: rgba(255,255,255,.9);
+
+  font-size: 12px;
+  font-weight: 600;
+
+  letter-spacing: .07em;
+
+  text-transform: uppercase;
+
+  transition: color .2s ease;
 }
 
 .nav-links a:hover {
@@ -230,68 +222,344 @@ nav {
 }
 
 
-/* ==========================================
-   HOME
-========================================== */
+/* =========================================================
+   HOME / NETFLIX HERO
+========================================================= */
 
 #home {
-  min-height: 100vh;
-
   position: relative;
 
-  background:
-    linear-gradient(
-      to top,
-      rgba(0,0,0,.98) 0%,
-      rgba(0,0,0,.62) 35%,
-      rgba(0,0,0,.15) 68%,
-      rgba(0,0,0,.35) 100%
-    ),
-    url("MLS-171.jpg");
+  min-height: 100vh;
 
-  background-size: cover;
+  overflow: hidden;
 
-  background-position: center 45%;
-
-  display: flex;
-
-  align-items: flex-end;
+  background: #000;
 
   opacity: 0;
 
-  transition:
-    opacity 2.8s ease;
+  transition: opacity 1.5s ease;
 }
 
 #home.home-visible {
   opacity: 1;
 }
 
-.home-content {
+
+/* Photo burst layers */
+
+.hero-photo {
+  position: absolute;
+  inset: 0;
+
   width: 100%;
+  height: 100%;
 
-  max-width: 880px;
-
-  padding: 8vw;
-
-  padding-bottom: 11vh;
+  object-fit: cover;
 
   opacity: 0;
 
-  transform: translateY(24px);
+  transform: scale(1.035);
 
   transition:
-    opacity 2.3s ease .45s,
-    transform 2.3s ease .45s;
+    opacity .34s ease,
+    transform 1.2s ease;
+
+  z-index: 1;
 }
 
-#home.home-visible .home-content {
+.hero-photo.active {
   opacity: 1;
 
+  transform: scale(1);
+}
+
+
+/* Main cinematic dark fade */
+
+.hero-vignette {
+  position: absolute;
+  inset: 0;
+
+  z-index: 2;
+
+  pointer-events: none;
+
+  background:
+
+    linear-gradient(
+      90deg,
+      rgba(0,0,0,.96) 0%,
+      rgba(0,0,0,.84) 18%,
+      rgba(0,0,0,.56) 37%,
+      rgba(0,0,0,.16) 65%,
+      rgba(0,0,0,.05) 100%
+    ),
+
+    linear-gradient(
+      to top,
+      rgba(0,0,0,1) 0%,
+      rgba(0,0,0,.75) 14%,
+      rgba(0,0,0,.13) 48%,
+      rgba(0,0,0,.28) 100%
+    );
+}
+
+
+/* Dark border around hero */
+
+.hero-edge {
+  position: absolute;
+  inset: 0;
+
+  z-index: 3;
+
+  pointer-events: none;
+
+  box-shadow:
+    inset 0 0 120px 35px rgba(0,0,0,.45);
+}
+
+
+/* Hero wording */
+
+.home-content {
+  position: relative;
+
+  z-index: 10;
+
+  width: 100%;
+  max-width: 760px;
+
+  padding-left: 5vw;
+  padding-top: 25vh;
+
+  opacity: 0;
+
+  transform: translateY(20px);
+
+  transition:
+    opacity 1.3s ease,
+    transform 1.3s ease;
+}
+
+#home.copy-visible .home-content {
+  opacity: 1;
   transform: translateY(0);
 }
 
-.eyebrow,
+.eyebrow {
+  color: var(--gold);
+
+  font-size: 10px;
+  font-weight: 600;
+
+  letter-spacing: .42em;
+
+  text-transform: uppercase;
+
+  margin-bottom: 19px;
+}
+
+.home-content h1 {
+  font-family: "Playfair Display", serif;
+
+  font-size: clamp(65px, 8vw, 118px);
+
+  line-height: .86;
+
+  font-weight: 600;
+
+  letter-spacing: -.035em;
+
+  max-width: 690px;
+}
+
+.home-meta {
+  display: flex;
+
+  align-items: center;
+  flex-wrap: wrap;
+
+  gap: 13px;
+
+  margin-top: 24px;
+
+  font-size: 13px;
+
+  font-weight: 600;
+
+  text-transform: uppercase;
+
+  color: rgba(255,255,255,.78);
+}
+
+.home-meta .gold {
+  color: var(--gold);
+}
+
+.home-description {
+  margin-top: 20px;
+
+  max-width: 650px;
+
+  color: rgba(255,255,255,.93);
+
+  line-height: 1.55;
+
+  font-size: 17px;
+}
+
+.button-row {
+  display: flex;
+
+  gap: 11px;
+
+  flex-wrap: wrap;
+
+  margin-top: 28px;
+}
+
+.play-btn,
+.info-btn {
+  display: inline-flex;
+
+  align-items: center;
+
+  gap: 9px;
+
+  border: none;
+
+  border-radius: 4px;
+
+  padding: 13px 24px;
+
+  font-size: 15px;
+  font-weight: 700;
+
+  cursor: pointer;
+
+  transition:
+    transform .2s ease,
+    opacity .2s ease;
+}
+
+.play-btn {
+  background: #fff;
+  color: #000;
+}
+
+.info-btn {
+  background: rgba(109,109,110,.68);
+  color: white;
+
+  backdrop-filter: blur(5px);
+}
+
+.play-btn:hover,
+.info-btn:hover {
+  transform: translateY(-1px);
+  opacity: .88;
+}
+
+
+/* =========================================================
+   WEDDING WEEK THUMBNAILS ON COVER
+========================================================= */
+
+.hero-week {
+  position: absolute;
+
+  left: 4vw;
+  right: 0;
+  bottom: 22px;
+
+  z-index: 12;
+
+  opacity: 0;
+
+  transform: translateY(18px);
+
+  transition:
+    opacity 1.2s ease .25s,
+    transform 1.2s ease .25s;
+}
+
+#home.copy-visible .hero-week {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.hero-week h3 {
+  font-size: 18px;
+  font-weight: 700;
+
+  letter-spacing: .015em;
+
+  margin-bottom: 12px;
+}
+
+.hero-thumbnails {
+  display: flex;
+
+  gap: 9px;
+
+  overflow-x: auto;
+
+  padding-right: 25px;
+  padding-bottom: 4px;
+
+  scrollbar-width: none;
+}
+
+.hero-thumbnails::-webkit-scrollbar {
+  display: none;
+}
+
+.hero-thumb {
+  flex: 0 0 205px;
+
+  height: 112px;
+
+  border-radius: 5px;
+
+  overflow: hidden;
+
+  background: #222;
+
+  cursor: pointer;
+
+  border: 1px solid rgba(255,255,255,.12);
+
+  transition:
+    transform .22s ease,
+    border-color .22s ease;
+}
+
+.hero-thumb:hover {
+  transform: scale(1.035);
+  border-color: rgba(255,255,255,.45);
+}
+
+.hero-thumb img {
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+}
+
+
+/* =========================================================
+   STANDARD SECTIONS
+========================================================= */
+
+.section {
+  padding: 90px 6vw;
+}
+
+.alt-section {
+  background: #101010;
+}
+
 .section-label {
   color: var(--gold);
 
@@ -302,108 +570,19 @@ nav {
   font-size: 10px;
 }
 
-.eyebrow {
-  margin-bottom: 15px;
-}
-
-.home-content h1 {
-  font-family: "Playfair Display", serif;
-
-  font-size: clamp(52px, 8vw, 100px);
-
-  line-height: .95;
-
-  font-weight: 600;
-}
-
-.release-date {
-  margin-top: 22px;
-
-  color: var(--gold);
-
-  font-size: 20px;
-
-  font-weight: 500;
-}
-
-.home-description {
-  margin-top: 16px;
-
-  max-width: 620px;
-
-  line-height: 1.65;
-
-  font-size: 17px;
-
-  opacity: .88;
-}
-
-.button-row {
-  display: flex;
-
-  gap: 12px;
-
-  flex-wrap: wrap;
-
-  margin-top: 30px;
-}
-
-.play-btn,
-.info-btn {
-  padding: 14px 28px;
-
-  border: none;
-
-  border-radius: 5px;
-
-  font-weight: 600;
-
-  font-size: 16px;
-
-  cursor: pointer;
-}
-
-.play-btn {
-  background: white;
-
-  color: black;
-}
-
-.info-btn {
-  background: rgba(255,255,255,.18);
-
-  color: white;
-
-  backdrop-filter: blur(8px);
-}
-
-
-/* ==========================================
-   SECTIONS
-========================================== */
-
-.section {
-  padding: 90px 6vw;
-}
-
-.alt-section {
-  background: #101010;
-}
-
 .section-title {
   font-family: "Playfair Display", serif;
 
   font-size: clamp(36px, 5vw, 52px);
 
   margin-top: 8px;
-
   margin-bottom: 36px;
 }
 
 
-/* ==========================================
+/* =========================================================
    EPISODES
-========================================== */
+========================================================= */
 
 .episode-grid {
   display: grid;
@@ -437,7 +616,6 @@ nav {
 
 .episode-image {
   width: 100%;
-
   height: 285px;
 
   object-fit: cover;
@@ -474,13 +652,12 @@ nav {
 }
 
 
-/* ==========================================
+/* =========================================================
    EVENT SCREEN
-========================================== */
+========================================================= */
 
 #eventOverlay {
   position: fixed;
-
   inset: 0;
 
   z-index: 5000;
@@ -492,11 +669,9 @@ nav {
 
 .event-photo {
   position: absolute;
-
   inset: 0;
 
   width: 100%;
-
   height: 100%;
 
   object-fit: cover;
@@ -504,7 +679,6 @@ nav {
 
 .event-gradient {
   position: absolute;
-
   inset: 0;
 
   background:
@@ -521,15 +695,12 @@ nav {
   position: absolute;
 
   left: 0;
-
   bottom: 0;
 
   width: 100%;
-
   max-width: 840px;
 
   padding: 7vw;
-
   padding-bottom: 7vh;
 }
 
@@ -549,7 +720,6 @@ nav {
   font-size: clamp(48px, 7vw, 86px);
 
   margin-top: 8px;
-
   margin-bottom: 17px;
 }
 
@@ -561,7 +731,6 @@ nav {
   flex-wrap: wrap;
 
   font-size: 15px;
-
   font-weight: 500;
 
   margin-bottom: 13px;
@@ -614,9 +783,9 @@ nav {
 }
 
 
-/* ==========================================
+/* =========================================================
    INFO
-========================================== */
+========================================================= */
 
 .info-grid,
 .wedding-info-grid {
@@ -653,9 +822,9 @@ nav {
 }
 
 
-/* ==========================================
+/* =========================================================
    CAST
-========================================== */
+========================================================= */
 
 .cast-grid {
   display: grid;
@@ -675,7 +844,6 @@ nav {
 
 .cast-person img {
   width: 230px;
-
   height: 300px;
 
   object-fit: cover;
@@ -706,9 +874,9 @@ nav {
 }
 
 
-/* ==========================================
+/* =========================================================
    STORY
-========================================== */
+========================================================= */
 
 .story-grid {
   display: grid;
@@ -722,7 +890,6 @@ nav {
 
 .story-image {
   width: 100%;
-
   height: 550px;
 
   object-fit: cover;
@@ -751,9 +918,9 @@ nav {
 }
 
 
-/* ==========================================
+/* =========================================================
    FAMILY
-========================================== */
+========================================================= */
 
 .family-feature {
   position: relative;
@@ -777,7 +944,6 @@ nav {
   position: absolute;
 
   left: 6vw;
-
   bottom: 60px;
 
   max-width: 600px;
@@ -798,9 +964,9 @@ nav {
 }
 
 
-/* ==========================================
+/* =========================================================
    RSVP
-========================================== */
+========================================================= */
 
 #rsvp {
   position: relative;
@@ -808,9 +974,7 @@ nav {
   min-height: 650px;
 
   display: flex;
-
   align-items: center;
-
   justify-content: center;
 
   text-align: center;
@@ -855,7 +1019,6 @@ nav {
   margin-top: 27px;
 
   background: var(--gold);
-
   color: black;
 
   padding: 14px 30px;
@@ -864,11 +1027,6 @@ nav {
 
   font-weight: 600;
 }
-
-
-/* ==========================================
-   FOOTER
-========================================== */
 
 footer {
   padding: 35px 20px;
@@ -884,14 +1042,21 @@ footer {
 }
 
 
-/* ==========================================
+/* =========================================================
    MOBILE
-========================================== */
+========================================================= */
 
 @media(max-width: 760px) {
 
   nav {
-    padding: 18px 20px;
+    padding: 17px 19px;
+
+    justify-content: flex-start;
+  }
+
+  .logo {
+    font-size: 17px;
+    margin-right: 0;
   }
 
   .nav-links {
@@ -899,17 +1064,91 @@ footer {
   }
 
   #home {
-    background-position: center;
+    min-height: 100svh;
+  }
+
+  .hero-photo {
+    object-position: center;
+  }
+
+  .hero-vignette {
+    background:
+
+      linear-gradient(
+        to top,
+        rgba(0,0,0,1) 0%,
+        rgba(0,0,0,.8) 27%,
+        rgba(0,0,0,.22) 62%,
+        rgba(0,0,0,.2) 100%
+      ),
+
+      linear-gradient(
+        90deg,
+        rgba(0,0,0,.55),
+        rgba(0,0,0,.08)
+      );
   }
 
   .home-content {
-    padding: 25px;
+    position: absolute;
 
-    padding-bottom: 9vh;
+    left: 0;
+
+    bottom: 180px;
+
+    padding: 0 21px;
+
+    max-width: 100%;
+  }
+
+  .home-content h1 {
+    font-size: clamp(53px, 16vw, 78px);
+  }
+
+  .home-meta {
+    font-size: 10px;
+
+    gap: 8px;
+
+    margin-top: 16px;
   }
 
   .home-description {
+    font-size: 14px;
+
+    line-height: 1.5;
+
+    max-width: 94%;
+
+    margin-top: 14px;
+  }
+
+  .button-row {
+    margin-top: 19px;
+  }
+
+  .play-btn,
+  .info-btn {
+    font-size: 13px;
+
+    padding: 11px 16px;
+  }
+
+  .hero-week {
+    left: 20px;
+    bottom: 16px;
+  }
+
+  .hero-week h3 {
     font-size: 15px;
+
+    margin-bottom: 9px;
+  }
+
+  .hero-thumb {
+    flex-basis: 135px;
+
+    height: 76px;
   }
 
   .section {
@@ -983,32 +1222,25 @@ footer {
 <body class="locked">
 
 
-<!-- ======================================
-     BACKGROUND SONG
-====================================== -->
+<!-- BACKGROUND SONG -->
 
 <audio
   id="backgroundMusic"
   loop
   preload="auto"
 >
-
   <source
     src="wedding-song.mp3"
     type="audio/mpeg"
   >
-
 </audio>
 
-
 <button id="musicToggle">
-  ♫ Music
+  ♫ MUSIC
 </button>
 
 
-<!-- ======================================
-     INTRO VIDEO
-====================================== -->
+<!-- INTRO VIDEO -->
 
 <div id="intro">
 
@@ -1019,30 +1251,24 @@ footer {
     playsinline
     preload="auto"
   >
-
     <source
       src="intro.mp4"
       type="video/mp4"
     >
-
   </video>
 
-
   <button id="skipIntro">
-    Skip Intro
+    SKIP INTRO
   </button>
 
-
   <button id="soundButton">
-    Tap for Sound
+    TAP FOR SOUND
   </button>
 
 </div>
 
 
-<!-- ======================================
-     NAVIGATION
-====================================== -->
+<!-- NAVIGATION -->
 
 <nav>
 
@@ -1050,26 +1276,29 @@ footer {
     href="#home"
     class="logo"
   >
-    K & M
+    KHUSHI + MANJOT
   </a>
-
 
   <div class="nav-links">
 
+    <a href="#home">
+      HOME
+    </a>
+
     <a href="#episodes">
-      Episodes
+      EPISODES
     </a>
 
     <a href="#cast">
-      Cast
+      CAST
     </a>
 
     <a href="#story">
-      Story
+      OUR STORY
     </a>
 
     <a href="#wedding-info">
-      Info
+      WEDDING INFO
     </a>
 
     <a href="#rsvp">
@@ -1081,61 +1310,206 @@ footer {
 </nav>
 
 
-<!-- ======================================
-     HOME
-====================================== -->
+<!-- HOME / PHOTO BURST -->
 
 <section id="home">
+
+  <!-- BURST IMAGES -->
+
+  <img
+    class="hero-photo"
+    src="red-hoodie.jpg"
+    alt=""
+  >
+
+  <img
+    class="hero-photo"
+    src="mirror.jpg"
+    alt=""
+  >
+
+  <img
+    class="hero-photo"
+    src="ghirardelli.jpg"
+    alt=""
+  >
+
+  <img
+    class="hero-photo"
+    src="birthday.jpg"
+    alt=""
+  >
+
+  <img
+    class="hero-photo"
+    src="black-hoodies.jpg"
+    alt=""
+  >
+
+  <img
+    class="hero-photo"
+    src="farmhouse.jpg"
+    alt=""
+  >
+
+  <img
+    class="hero-photo"
+    src="formal.jpg"
+    alt=""
+  >
+
+  <!-- FINAL IMAGE -->
+
+  <img
+    class="hero-photo"
+    src="MLS-171.jpg"
+    alt="Khushi and Manjot"
+  >
+
+
+  <div class="hero-vignette"></div>
+
+  <div class="hero-edge"></div>
+
 
   <div class="home-content">
 
     <div class="eyebrow">
-      A Limited Wedding Series
+      K + M ORIGINAL WEDDING SERIES
     </div>
-
 
     <h1>
-      Khushi & Manjot
+      Khushi
+      <br>
+      + Manjot
     </h1>
 
+    <div class="home-meta">
 
-    <div class="release-date">
-      May 2–7, 2027
+      <span class="gold">
+        MAY 2027
+      </span>
+
+      <span>
+        2027
+      </span>
+
+      <span>
+        7 EPISODES
+      </span>
+
+      <span>
+        WEDDING SERIES
+      </span>
+
     </div>
 
-
     <p class="home-description">
-
-      Seven celebrations.
-
-      Two families.
-
-      One story.
-
-      Join us for a week of love,
-      family, tradition and celebration.
-
+      Seven celebrations. Two families. One story.
+      Join us for a week of love, family, tradition
+      and celebration.
     </p>
 
-
     <div class="button-row">
-
 
       <button
         class="play-btn"
         onclick="showEpisodes()"
       >
-        ▶ Play
+        ▶ PLAY
       </button>
-
 
       <button
         class="info-btn"
         onclick="showInfo()"
       >
-        ⓘ More Info
+        ⓘ MORE INFO
       </button>
 
+    </div>
+
+  </div>
+
+
+  <!-- WEDDING WEEK ROW -->
+
+  <div class="hero-week">
+
+    <h3>
+      WEDDING WEEK
+    </h3>
+
+    <div class="hero-thumbnails">
+
+      <div
+        class="hero-thumb"
+        onclick="openEpisode(0)"
+      >
+        <img
+          src="MLS-84.jpg"
+          alt="Paath"
+        >
+      </div>
+
+      <div
+        class="hero-thumb"
+        onclick="openEpisode(1)"
+      >
+        <img
+          src="MLS-274.jpg"
+          alt="Mehndi"
+        >
+      </div>
+
+      <div
+        class="hero-thumb"
+        onclick="openEpisode(2)"
+      >
+        <img
+          src="MLS-113.jpg"
+          alt="Haldi"
+        >
+      </div>
+
+      <div
+        class="hero-thumb"
+        onclick="openEpisode(3)"
+      >
+        <img
+          src="MLS-147.jpg"
+          alt="Jaggo"
+        >
+      </div>
+
+      <div
+        class="hero-thumb"
+        onclick="openEpisode(4)"
+      >
+        <img
+          src="MLS-355.jpg"
+          alt="Choora and BBQ"
+        >
+      </div>
+
+      <div
+        class="hero-thumb"
+        onclick="openEpisode(5)"
+      >
+        <img
+          src="MLS-262.jpg"
+          alt="Anand Karaj"
+        >
+      </div>
+
+      <div
+        class="hero-thumb"
+        onclick="openEpisode(6)"
+      >
+        <img
+          src="MLS-479.jpg"
+          alt="Reception"
+        >
+      </div>
 
     </div>
 
@@ -1144,9 +1518,7 @@ footer {
 </section>
 
 
-<!-- ======================================
-     EPISODES
-====================================== -->
+<!-- EPISODES -->
 
 <section
   id="episodes"
@@ -1154,14 +1526,12 @@ footer {
 >
 
   <div class="section-label">
-    Season One
+    SEASON ONE
   </div>
-
 
   <h2 class="section-title">
     Episodes
   </h2>
-
 
   <div
     class="episode-grid"
@@ -1171,9 +1541,7 @@ footer {
 </section>
 
 
-<!-- ======================================
-     MORE INFO
-====================================== -->
+<!-- MORE INFO -->
 
 <section
   id="more-info"
@@ -1181,17 +1549,14 @@ footer {
 >
 
   <div class="section-label">
-    About This Series
+    ABOUT THIS SERIES
   </div>
-
 
   <h2 class="section-title">
     More Info
   </h2>
 
-
   <div class="info-grid">
-
 
     <div class="info-box">
 
@@ -1207,7 +1572,6 @@ footer {
 
     </div>
 
-
     <div class="info-box">
 
       <h3>
@@ -1220,7 +1584,6 @@ footer {
       </p>
 
     </div>
-
 
     <div class="info-box">
 
@@ -1235,15 +1598,12 @@ footer {
 
     </div>
 
-
   </div>
 
 </section>
 
 
-<!-- ======================================
-     CAST
-====================================== -->
+<!-- CAST -->
 
 <section
   id="cast"
@@ -1254,9 +1614,8 @@ footer {
     class="section-label"
     style="text-align:center;"
   >
-    Meet the Cast
+    MEET THE CAST
   </div>
-
 
   <h2
     class="section-title"
@@ -1265,9 +1624,7 @@ footer {
     The Bride & Groom
   </h2>
 
-
   <div class="cast-grid">
-
 
     <div class="cast-person">
 
@@ -1281,7 +1638,7 @@ footer {
       </h3>
 
       <div class="cast-role">
-        The Bride
+        THE BRIDE
       </div>
 
     </div>
@@ -1299,20 +1656,17 @@ footer {
       </h3>
 
       <div class="cast-role">
-        The Groom
+        THE GROOM
       </div>
 
     </div>
-
 
   </div>
 
 </section>
 
 
-<!-- ======================================
-     STORY
-====================================== -->
+<!-- STORY -->
 
 <section
   id="story"
@@ -1321,21 +1675,17 @@ footer {
 
   <div class="story-grid">
 
-
     <img
-      src="MLS-160.jpg"
+      src="ghirardelli.jpg"
       class="story-image"
       alt="Khushi and Manjot"
     >
 
-
     <div class="story-copy">
 
-
       <div class="section-label">
-        The Story So Far
+        THE STORY SO FAR
       </div>
-
 
       <h3>
         One Story.
@@ -1343,13 +1693,11 @@ footer {
         Our Next Chapter.
       </h3>
 
-
       <p>
         What started as our story has grown into two families
         coming together. In May 2027, we get to begin our next
         chapter surrounded by the people who have been part of it.
       </p>
-
 
     </div>
 
@@ -1358,16 +1706,14 @@ footer {
 </section>
 
 
-<!-- ======================================
-     FAMILY
-====================================== -->
+<!-- FAMILY -->
 
 <section class="family-feature">
 
   <div class="family-copy">
 
     <div class="section-label">
-      Featuring
+      FEATURING
     </div>
 
     <h2>
@@ -1384,9 +1730,7 @@ footer {
 </section>
 
 
-<!-- ======================================
-     WEDDING INFO
-====================================== -->
+<!-- WEDDING INFO -->
 
 <section
   id="wedding-info"
@@ -1394,17 +1738,14 @@ footer {
 >
 
   <div class="section-label">
-    Before You Watch
+    BEFORE YOU WATCH
   </div>
-
 
   <h2 class="section-title">
     Wedding Info
   </h2>
 
-
   <div class="wedding-info-grid">
-
 
     <div class="info-box">
 
@@ -1448,35 +1789,29 @@ footer {
 
     </div>
 
-
   </div>
 
 </section>
 
 
-<!-- ======================================
-     RSVP
-====================================== -->
+<!-- RSVP -->
 
 <section id="rsvp">
 
   <div class="rsvp-inner">
 
     <div class="section-label">
-      The Guest List
+      THE GUEST LIST
     </div>
-
 
     <h2>
       Will You Join Us?
     </h2>
 
-
     <p>
       RSVP details will be available here soon.
       We cannot wait to celebrate with you.
     </p>
-
 
     <a
       href="#"
@@ -1492,18 +1827,13 @@ footer {
 
 
 <footer>
-
   Khushi & Manjot · May 2–7, 2027 · Calgary
-
 </footer>
 
 
-<!-- ======================================
-     EVENT OVERLAY
-====================================== -->
+<!-- EVENT OVERLAY -->
 
 <div id="eventOverlay">
-
 
   <img
     id="eventImage"
@@ -1512,21 +1842,16 @@ footer {
     alt=""
   >
 
-
   <div class="event-gradient"></div>
 
-
   <div class="event-details">
-
 
     <div
       id="eventNumber"
       class="event-episode"
     ></div>
 
-
     <h2 id="eventTitle"></h2>
-
 
     <div class="event-meta">
 
@@ -1536,30 +1861,25 @@ footer {
 
     </div>
 
-
     <div
       id="eventVenue"
       class="event-venue"
     ></div>
-
 
     <div
       id="eventAddress"
       class="event-address"
     ></div>
 
-
     <div
       id="eventDress"
       class="event-dress"
     ></div>
 
-
     <p
       id="eventDescription"
       class="event-description"
     ></p>
-
 
     <div class="event-actions">
 
@@ -1567,11 +1887,10 @@ footer {
         class="event-button"
         onclick="closeEpisode()"
       >
-        ← More Episodes
+        ← MORE EPISODES
       </button>
 
     </div>
-
 
   </div>
 
@@ -1580,206 +1899,108 @@ footer {
 
 <script>
 
-
-/* ==========================================
+/* =========================================================
    WEDDING EVENTS
-========================================== */
+========================================================= */
 
 const events = [
 
   {
-
     title: "Paath",
-
     date: "May 2, 2027",
-
     time: "10:00 AM",
-
     venue: "Chowhan Farmhouse",
-
     address: "Calgary, Alberta",
-
     dress: "Traditional attire",
-
     description:
       "A morning of prayer and blessings to officially begin our wedding week and launch the celebrations ahead.",
-
-    image:
-      "MLS-84.jpg"
-
+    image: "MLS-84.jpg"
   },
 
-
   {
-
     title: "Mehndi",
-
     date: "May 3, 2027",
-
     time: "5:00 PM",
-
     venue: "Chowhan Farmhouse",
-
     address: "Calgary, Alberta",
-
-    dress:
-      "Colourful traditional attire",
-
+    dress: "Colourful traditional attire",
     description:
       "An evening of mehndi, colour, music and celebration with our family and friends.",
-
-    image:
-      "MLS-274.jpg"
-
+    image: "MLS-274.jpg"
   },
 
-
   {
-
     title: "Haldi",
-
     date: "May 4, 2027",
-
     time: "10:00 AM",
-
     venue: "Chowhan Farmhouse",
-
     address: "Calgary, Alberta",
-
-    dress:
-      "Details to come",
-
+    dress: "Details to come",
     description:
       "A joyful morning filled with colour, family and one of our favourite pre-wedding traditions.",
-
-    image:
-      "MLS-113.jpg"
-
+    image: "MLS-113.jpg"
   },
 
-
   {
-
     title: "Jaggo",
-
     date: "May 4, 2027",
-
     time: "6:00 PM",
-
     venue: "Chowhan Farmhouse",
-
     address: "Calgary, Alberta",
-
-    dress:
-      "Punjabi festive attire",
-
+    dress: "Punjabi festive attire",
     description:
       "The energy turns up for an evening of dhol, dancing and Punjabi wedding celebrations.",
-
-    image:
-      "MLS-147.jpg"
-
+    image: "MLS-147.jpg"
   },
 
-
   {
-
-    title:
-      "Choora + Chowhan BBQ",
-
-    date:
-      "May 5, 2027",
-
-    time:
-      "3:00 PM",
-
-    venue:
-      "Chowhan Farmhouse",
-
-    address:
-      "Calgary, Alberta",
-
-    dress:
-      "Details to come",
-
+    title: "Choora + Chowhan BBQ",
+    date: "May 5, 2027",
+    time: "3:00 PM",
+    venue: "Chowhan Farmhouse",
+    address: "Calgary, Alberta",
+    dress: "Details to come",
     description:
       "A meaningful Choora celebration followed by the Chowhan BBQ and an afternoon with family and friends.",
-
-    image:
-      "MLS-355.jpg"
-
+    image: "MLS-355.jpg"
   },
 
-
   {
-
-    title:
-      "Anand Karaj",
-
-    date:
-      "May 6, 2027",
-
-    time:
-      "9:00 AM",
-
-    venue:
-      "Dashmesh Culture",
-
-    address:
-      "Calgary, Alberta",
-
+    title: "Anand Karaj",
+    date: "May 6, 2027",
+    time: "9:00 AM",
+    venue: "Dashmesh Culture",
+    address: "Calgary, Alberta",
     dress:
       "Formal traditional attire · Head covering required",
-
     description:
       "The heart of our wedding week. Join us for our Anand Karaj as we begin our marriage surrounded by our families and loved ones.",
-
-    image:
-      "MLS-262.jpg"
-
+    image: "MLS-262.jpg"
   },
 
-
   {
-
-    title:
-      "Reception",
-
-    date:
-      "May 7, 2027",
-
-    time:
-      "6:00 PM",
-
-    venue:
-      "Empire Banquet Hall",
-
-    address:
-      "Calgary, Alberta",
-
-    dress:
-      "Formal attire",
-
+    title: "Reception",
+    date: "May 7, 2027",
+    time: "6:00 PM",
+    venue: "Empire Banquet Hall",
+    address: "Calgary, Alberta",
+    dress: "Formal attire",
     description:
       "The grand finale. Dinner, dancing and one final celebration together as we close out our wedding week.",
-
-    image:
-      "MLS-479.jpg"
-
+    image: "MLS-479.jpg"
   }
 
 ];
 
 
-/* ==========================================
-   BUILD EPISODES
-========================================== */
+/* =========================================================
+   BUILD EPISODE CARDS
+========================================================= */
 
 const grid =
   document.getElementById(
     "episodeGrid"
   );
-
 
 events.forEach(
   (event,index) => {
@@ -1789,10 +2010,8 @@ events.forEach(
         "div"
       );
 
-
     card.className =
       "episode-card";
-
 
     card.innerHTML = `
 
@@ -1806,7 +2025,7 @@ events.forEach(
 
         <div class="episode-number">
 
-          Episode
+          EPISODE
           ${String(index + 1).padStart(2,"0")}
 
         </div>
@@ -1820,15 +2039,12 @@ events.forEach(
         </p>
 
       </div>
-
     `;
-
 
     card.addEventListener(
       "click",
       () => openEpisode(index)
     );
-
 
     grid.appendChild(card);
 
@@ -1836,57 +2052,51 @@ events.forEach(
 );
 
 
-/* ==========================================
+/* =========================================================
    OPEN EPISODE
-========================================== */
+========================================================= */
 
 function openEpisode(index) {
 
+  startBackgroundMusic();
+
   const event =
     events[index];
-
 
   const overlay =
     document.getElementById(
       "eventOverlay"
     );
 
-
   document.getElementById(
     "eventNumber"
   ).textContent =
-    `Episode ${String(index + 1).padStart(2,"0")}`;
-
+    `EPISODE ${String(index + 1).padStart(2,"0")}`;
 
   document.getElementById(
     "eventTitle"
   ).textContent =
     event.title;
 
-
   document.getElementById(
     "eventDate"
   ).textContent =
     event.date;
-
 
   document.getElementById(
     "eventTime"
   ).textContent =
     event.time;
 
-
   document.getElementById(
     "eventVenue"
   ).textContent =
     event.venue;
 
-
   document.getElementById(
     "eventAddress"
   ).textContent =
     event.address;
-
 
   document.getElementById(
     "eventDress"
@@ -1894,30 +2104,24 @@ function openEpisode(index) {
     "Dress Code: " +
     event.dress;
 
-
   document.getElementById(
     "eventDescription"
   ).textContent =
     event.description;
-
 
   const image =
     document.getElementById(
       "eventImage"
     );
 
-
   image.src =
     event.image;
-
 
   image.alt =
     event.title;
 
-
   overlay.style.display =
     "block";
-
 
   document.body.classList.add(
     "locked"
@@ -1926,9 +2130,9 @@ function openEpisode(index) {
 }
 
 
-/* ==========================================
+/* =========================================================
    CLOSE EPISODE
-========================================== */
+========================================================= */
 
 function closeEpisode() {
 
@@ -1937,30 +2141,21 @@ function closeEpisode() {
   ).style.display =
     "none";
 
-
   document.body.classList.remove(
     "locked"
   );
 
-
   document.getElementById(
     "episodes"
   ).scrollIntoView({
-
-    behavior:
-      "smooth"
-
+    behavior: "smooth"
   });
 
 }
 
 
-/* ESCAPE CLOSE */
-
 document.addEventListener(
-
   "keydown",
-
   function(event) {
 
     if (
@@ -1972,47 +2167,148 @@ document.addEventListener(
     }
 
   }
-
 );
 
 
-/* ==========================================
+/* =========================================================
+   PHOTO BURST
+========================================================= */
+
+const heroPhotos =
+  Array.from(
+    document.querySelectorAll(
+      ".hero-photo"
+    )
+  );
+
+let heroBurstStarted =
+  false;
+
+
+function startPhotoBurst() {
+
+  if (
+    heroBurstStarted
+  ) {
+
+    return;
+
+  }
+
+  heroBurstStarted =
+    true;
+
+
+  /* Start with first image */
+
+  heroPhotos[0].classList.add(
+    "active"
+  );
+
+
+  let index =
+    0;
+
+
+  /*
+    Seven quick memories,
+    then hold permanently
+    on the final professional photo.
+  */
+
+  const burstTimer =
+    setInterval(
+      function() {
+
+        heroPhotos[index].classList.remove(
+          "active"
+        );
+
+        index += 1;
+
+
+        if (
+          index >= heroPhotos.length
+        ) {
+
+          clearInterval(
+            burstTimer
+          );
+
+          heroPhotos[
+            heroPhotos.length - 1
+          ].classList.add(
+            "active"
+          );
+
+          /*
+            Reveal cover copy once
+            final hero photo lands.
+          */
+
+          setTimeout(
+            function() {
+
+              document.getElementById(
+                "home"
+              ).classList.add(
+                "copy-visible"
+              );
+
+            },
+            400
+          );
+
+          return;
+
+        }
+
+
+        heroPhotos[index].classList.add(
+          "active"
+        );
+
+      },
+
+      560
+
+    );
+
+}
+
+
+/* =========================================================
    BACKGROUND MUSIC
-========================================== */
+========================================================= */
 
 const backgroundMusic =
   document.getElementById(
     "backgroundMusic"
   );
 
-
 const musicToggle =
   document.getElementById(
     "musicToggle"
   );
 
-
 let musicStarted =
   false;
-
 
 let musicMuted =
   false;
 
-
 let musicFadeInterval =
   null;
-
 
 let userInteracted =
   false;
 
 
-/* START SONG WITH SLOW FADE */
-
 async function startBackgroundMusic() {
 
-  if (musicStarted) {
+  if (
+    musicStarted
+  ) {
 
     if (
       backgroundMusic.paused
@@ -2042,17 +2338,13 @@ async function startBackgroundMusic() {
     backgroundMusic.volume =
       0;
 
-
     backgroundMusic.muted =
       false;
 
-
     await backgroundMusic.play();
-
 
     musicStarted =
       true;
-
 
     musicToggle.style.display =
       "block";
@@ -2061,23 +2353,18 @@ async function startBackgroundMusic() {
     let volume =
       0;
 
-
     const targetVolume =
       0.48;
-
 
     const fadeDuration =
       6000;
 
-
     const intervalTime =
       100;
-
 
     const totalSteps =
       fadeDuration /
       intervalTime;
-
 
     const increase =
       targetVolume /
@@ -2091,21 +2378,19 @@ async function startBackgroundMusic() {
           volume +=
             increase;
 
-
           if (
-            volume >= targetVolume
+            volume >=
+            targetVolume
           ) {
 
             volume =
               targetVolume;
-
 
             clearInterval(
               musicFadeInterval
             );
 
           }
-
 
           backgroundMusic.volume =
             Math.min(
@@ -2119,7 +2404,6 @@ async function startBackgroundMusic() {
 
       );
 
-
   } catch(error) {
 
     console.log(
@@ -2131,18 +2415,12 @@ async function startBackgroundMusic() {
 }
 
 
-/* MUSIC TOGGLE */
-
 musicToggle.addEventListener(
-
   "click",
-
   function() {
-
 
     userInteracted =
       true;
-
 
     if (
       musicMuted
@@ -2151,10 +2429,8 @@ musicToggle.addEventListener(
       backgroundMusic.muted =
         false;
 
-
       musicToggle.textContent =
-        "♫ Music";
-
+        "♫ MUSIC";
 
       musicMuted =
         false;
@@ -2164,10 +2440,8 @@ musicToggle.addEventListener(
       backgroundMusic.muted =
         true;
 
-
       musicToggle.textContent =
-        "♫ Muted";
-
+        "♫ MUTED";
 
       musicMuted =
         true;
@@ -2175,30 +2449,24 @@ musicToggle.addEventListener(
     }
 
   }
-
 );
 
 
-/* ==========================================
+/* =========================================================
    HOME BUTTONS
-========================================== */
+========================================================= */
 
 function showEpisodes() {
 
   userInteracted =
     true;
 
-
   startBackgroundMusic();
-
 
   document.getElementById(
     "episodes"
   ).scrollIntoView({
-
-    behavior:
-      "smooth"
-
+    behavior: "smooth"
   });
 
 }
@@ -2209,85 +2477,66 @@ function showInfo() {
   userInteracted =
     true;
 
-
   startBackgroundMusic();
-
 
   document.getElementById(
     "more-info"
   ).scrollIntoView({
-
-    behavior:
-      "smooth"
-
+    behavior: "smooth"
   });
 
 }
 
 
-/* ==========================================
+/* =========================================================
    INTRO VIDEO
-========================================== */
+========================================================= */
 
 const intro =
   document.getElementById(
     "intro"
   );
 
-
 const introVideo =
   document.getElementById(
     "introVideo"
   );
-
 
 const soundButton =
   document.getElementById(
     "soundButton"
   );
 
-
 const skipIntro =
   document.getElementById(
     "skipIntro"
   );
 
-
 let introEnded =
   false;
 
 
-/* ==========================================
-   TURN INTRO SOUND ON
-========================================== */
+/* INTRO SOUND */
 
 soundButton.addEventListener(
-
   "click",
-
   async function() {
-
 
     userInteracted =
       true;
-
 
     try {
 
       introVideo.muted =
         false;
 
-
       introVideo.volume =
         1;
 
-
       await introVideo.play();
 
-
       soundButton.textContent =
-        "Sound On";
-
+        "SOUND ON";
 
       setTimeout(
         function() {
@@ -2296,82 +2545,58 @@ soundButton.addEventListener(
             "none";
 
         },
-
         800
       );
-
 
     } catch(error) {
 
       soundButton.textContent =
-        "Sound unavailable";
+        "SOUND UNAVAILABLE";
 
     }
 
   }
-
 );
 
 
-/* ==========================================
-   SKIP INTRO
-========================================== */
+/* SKIP INTRO */
 
 skipIntro.addEventListener(
-
   "click",
-
   function() {
 
     userInteracted =
       true;
 
-
     finishIntro();
 
   }
-
 );
 
 
-/* ==========================================
-   VIDEO ENDED
-========================================== */
-
 introVideo.addEventListener(
-
   "ended",
-
   finishIntro
-
 );
 
 
-/* ==========================================
-   VIDEO FAILED
-========================================== */
-
 introVideo.addEventListener(
-
   "error",
-
   function() {
 
     console.log(
       "Intro video could not be loaded."
     );
 
-
     finishIntro();
 
   }
-
 );
 
 
-/* ==========================================
-   VIDEO → HOME
-========================================== */
+/* =========================================================
+   INTRO → PHOTO BURST → HERO
+========================================================= */
 
 function finishIntro() {
 
@@ -2394,18 +2619,14 @@ function finishIntro() {
 
 
   setTimeout(
-
     function() {
-
 
       intro.style.display =
         "none";
 
-
       document.body.classList.remove(
         "locked"
       );
-
 
       window.scrollTo(
         0,
@@ -2419,26 +2640,29 @@ function finishIntro() {
         );
 
 
-      setTimeout(
-
-        function() {
-
-          home.classList.add(
-            "home-visible"
-          );
-
-        },
-
-        180
-
+      home.classList.add(
+        "home-visible"
       );
 
 
       /*
-      If the guest already tapped
-      for intro sound or Skip,
-      browser permission exists,
-      so gently begin the song.
+        Slight pause on black before
+        relationship memories begin.
+      */
+
+      setTimeout(
+        function() {
+
+          startPhotoBurst();
+
+        },
+        450
+      );
+
+
+      /*
+        If guest already interacted
+        with intro, begin wedding song.
       */
 
       if (
@@ -2451,30 +2675,41 @@ function finishIntro() {
             startBackgroundMusic();
 
           },
-          700
+          850
         );
 
       }
 
-
     },
 
     1700
-
   );
 
 }
 
 
-/* ==========================================
-   AUTOPLAY INTRO MUTED
-========================================== */
+/* INTRO AUTOPLAY */
 
 window.addEventListener(
-
   "load",
-
   function() {
+
+    /*
+      Preload burst photos so
+      they do not flash blank.
+    */
+
+    heroPhotos.forEach(
+      function(photo) {
+
+        const preload =
+          new Image();
+
+        preload.src =
+          photo.src;
+
+      }
+    );
 
 
     introVideo.muted =
@@ -2489,44 +2724,32 @@ window.addEventListener(
       attempt !== undefined
     ) {
 
-
       attempt.catch(
-
         function() {
-
 
           console.log(
             "Browser blocked intro autoplay."
           );
 
-
           finishIntro();
 
         }
-
       );
 
     }
 
   }
-
 );
 
 
-/* ==========================================
-   SAFETY FALLBACK
-========================================== */
+/* SAFETY FALLBACK */
 
 setTimeout(
-
   function() {
 
     if (
-
       !introEnded &&
-
       introVideo.readyState === 0
-
     ) {
 
       finishIntro();
@@ -2534,13 +2757,10 @@ setTimeout(
     }
 
   },
-
   5000
-
 );
 
 </script>
 
 </body>
-
 </html>
