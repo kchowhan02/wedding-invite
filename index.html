@@ -2,10 +2,11 @@
 <html lang="en">
 
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Khushi + Manjot | The Wedding Series</title>
+<title>KHUSHI + MANJOT | THE WEDDING SERIES</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -14,15 +15,31 @@
 
 <style>
 
+/* ======================================
+   ROOT
+====================================== */
+
 :root {
+
   --gold: #c9a96e;
-  --gold-light: #e1c48a;
+
+  --gold-light: #e5cca0;
+
   --black: #070707;
-  --black-soft: #111111;
-  --card: #181818;
-  --white: #f5f5f5;
-  --grey: #b3b3b3;
+
+  --netflix-black: #141414;
+
+  --card-black: #181818;
+
+  --white: #ffffff;
+
+  --soft-white: #e5e5e5;
+
 }
+
+/* ======================================
+   RESET
+====================================== */
 
 * {
   box-sizing: border-box;
@@ -35,10 +52,15 @@ html {
 }
 
 body {
-  background: var(--black);
+
+  background: var(--netflix-black);
+
   color: var(--white);
+
   font-family: "DM Sans", sans-serif;
+
   overflow-x: hidden;
+
 }
 
 body.locked {
@@ -50,6 +72,10 @@ a {
   font: inherit;
 }
 
+button {
+  border: none;
+}
+
 a {
   color: inherit;
   text-decoration: none;
@@ -59,43 +85,55 @@ img {
   display: block;
 }
 
-
 /* ======================================
    INTRO VIDEO
 ====================================== */
 
 #intro {
+
   position: fixed;
+
   inset: 0;
+
   z-index: 10000;
 
   background: #000;
 
   display: flex;
+
   align-items: center;
+
   justify-content: center;
 
   opacity: 1;
 
-  transition: opacity 1.4s ease;
+  transition: opacity 1.5s ease;
+
 }
 
 #intro.hide {
+
   opacity: 0;
+
   pointer-events: none;
+
 }
 
 #introVideo {
+
   width: 100%;
+
   height: 100%;
 
   object-fit: contain;
 
   background: #000;
+
 }
 
 #soundButton,
 #skipIntro {
+
   position: absolute;
 
   bottom: 22px;
@@ -104,59 +142,148 @@ img {
 
   cursor: pointer;
 
-  border-radius: 50px;
-
-  font-size: 12px;
 }
 
 #soundButton {
+
   right: 22px;
 
   border: 1px solid rgba(255,255,255,.35);
 
-  background: rgba(0,0,0,.65);
+  background: rgba(0,0,0,.6);
 
   color: white;
 
-  padding: 11px 17px;
+  padding: 10px 16px;
+
+  border-radius: 50px;
+
+  font-size: 12px;
 
   backdrop-filter: blur(10px);
+
 }
 
 #skipIntro {
-  left: 22px;
 
-  border: 1px solid rgba(255,255,255,.15);
+  left: 22px;
 
   background: rgba(0,0,0,.5);
 
-  color: rgba(255,255,255,.78);
+  color: rgba(255,255,255,.75);
 
-  padding: 11px 17px;
+  padding: 10px 16px;
+
+  border-radius: 50px;
+
+  font-size: 12px;
+
 }
 
+/* ======================================
+   NAVIGATION
+====================================== */
+
+nav {
+
+  position: fixed;
+
+  top: 0;
+
+  left: 0;
+
+  width: 100%;
+
+  height: 68px;
+
+  z-index: 1000;
+
+  display: flex;
+
+  align-items: center;
+
+  padding: 0 4vw;
+
+  background:
+
+    linear-gradient(
+      to bottom,
+      rgba(0,0,0,.95),
+      rgba(0,0,0,.55),
+      transparent
+    );
+
+}
+
+.nav-brand {
+
+  font-weight: 700;
+
+  font-size: 19px;
+
+  letter-spacing: .09em;
+
+  color: var(--gold);
+
+  white-space: nowrap;
+
+  margin-right: 42px;
+
+}
+
+.nav-links {
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 24px;
+
+  font-size: 12px;
+
+  font-weight: 500;
+
+  letter-spacing: .07em;
+
+}
+
+.nav-links a {
+
+  color: rgba(255,255,255,.82);
+
+  transition: color .2s ease;
+
+}
+
+.nav-links a:hover {
+
+  color: var(--gold);
+
+}
 
 /* ======================================
-   MUSIC
+   MUSIC BUTTON
 ====================================== */
 
 #musicToggle {
+
   position: fixed;
 
   right: 18px;
+
   bottom: 18px;
 
   z-index: 8000;
 
   display: none;
 
-  border: 1px solid rgba(201,169,110,.5);
-
-  background: rgba(10,10,10,.78);
-
-  color: var(--gold-light);
-
   padding: 10px 15px;
+
+  border: 1px solid rgba(255,255,255,.25);
+
+  background: rgba(0,0,0,.72);
+
+  color: white;
 
   border-radius: 50px;
 
@@ -167,150 +294,109 @@ img {
   cursor: pointer;
 
   backdrop-filter: blur(10px);
-}
 
+}
 
 /* ======================================
-   TOP NAV
-====================================== */
-
-nav {
-  position: fixed;
-
-  top: 0;
-  left: 0;
-
-  width: 100%;
-
-  z-index: 700;
-
-  display: flex;
-  align-items: center;
-
-  gap: 38px;
-
-  padding: 18px 4vw;
-
-  background:
-    linear-gradient(
-      to bottom,
-      rgba(0,0,0,.95),
-      rgba(0,0,0,.65),
-      rgba(0,0,0,0)
-    );
-}
-
-.brand {
-  color: var(--gold);
-
-  font-weight: 700;
-
-  font-size: 21px;
-
-  letter-spacing: .04em;
-
-  white-space: nowrap;
-}
-
-.nav-links {
-  display: flex;
-
-  align-items: center;
-
-  gap: 25px;
-
-  font-size: 12px;
-
-  font-weight: 500;
-
-  letter-spacing: .08em;
-}
-
-.nav-links a {
-  color: rgba(255,255,255,.82);
-
-  transition: color .2s ease;
-}
-
-.nav-links a:hover {
-  color: var(--gold);
-}
-
-
-/* ======================================
-   HOME HERO
+   HERO / HOME
 ====================================== */
 
 #home {
+
   position: relative;
 
-  min-height: 92vh;
+  min-height: 90vh;
 
   display: flex;
 
-  align-items: center;
+  align-items: flex-end;
 
   background:
+
     linear-gradient(
       to right,
       rgba(0,0,0,.92) 0%,
-      rgba(0,0,0,.72) 28%,
-      rgba(0,0,0,.2) 62%,
-      rgba(0,0,0,.1) 100%
+      rgba(0,0,0,.76) 28%,
+      rgba(0,0,0,.28) 58%,
+      rgba(0,0,0,.1) 80%
     ),
+
     linear-gradient(
       to top,
-      #070707 0%,
-      transparent 30%
+      #141414 0%,
+      rgba(20,20,20,.78) 12%,
+      transparent 40%
     ),
+
     url("MLS-171.jpg");
 
   background-size: cover;
 
-  background-position: center 43%;
+  background-position: center 42%;
+
 }
 
 .hero-content {
+
   width: 100%;
 
-  max-width: 660px;
+  max-width: 720px;
 
-  margin-left: 5vw;
+  padding-left: 4vw;
 
-  padding-top: 80px;
+  padding-bottom: 13vh;
+
 }
 
-.series-mark {
+.original-label {
+
   display: flex;
 
   align-items: center;
 
   gap: 8px;
 
-  margin-bottom: 14px;
-
   color: var(--gold);
 
   font-size: 11px;
 
-  font-weight: 700;
+  font-weight: 600;
 
-  letter-spacing: .28em;
+  letter-spacing: .23em;
+
+  margin-bottom: 12px;
+
 }
 
-.series-dot {
-  width: 8px;
-  height: 8px;
+.original-box {
+
+  width: 18px;
+
+  height: 18px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
 
   background: var(--gold);
 
+  color: #090909;
+
+  font-size: 10px;
+
+  font-weight: 700;
+
   border-radius: 2px;
+
 }
 
 .hero-title {
+
   font-family: "Playfair Display", serif;
 
-  font-size: clamp(60px, 8vw, 105px);
+  font-size: clamp(58px, 8vw, 108px);
 
   line-height: .9;
 
@@ -318,58 +404,94 @@ nav {
 
   letter-spacing: -.035em;
 
-  margin-bottom: 20px;
+  text-shadow: 0 3px 22px rgba(0,0,0,.55);
+
+}
+
+.hero-subtitle {
+
+  margin-top: 18px;
+
+  color: var(--gold-light);
+
+  font-family: "Playfair Display", serif;
+
+  font-size: clamp(20px, 2vw, 28px);
+
 }
 
 .hero-meta {
+
+  margin-top: 20px;
+
   display: flex;
 
   align-items: center;
 
-  gap: 12px;
+  gap: 10px;
 
   flex-wrap: wrap;
 
-  margin-bottom: 16px;
-
-  color: #d8d8d8;
-
   font-size: 13px;
 
-  font-weight: 500;
+  font-weight: 600;
+
 }
 
 .match {
-  color: var(--gold-light);
 
-  font-weight: 700;
+  color: #59c86d;
+
+}
+
+.rating {
+
+  border: 1px solid rgba(255,255,255,.5);
+
+  padding: 1px 5px;
+
+  font-size: 10px;
+
 }
 
 .hero-description {
-  max-width: 580px;
 
-  color: rgba(255,255,255,.87);
+  margin-top: 16px;
+
+  max-width: 590px;
 
   font-size: 16px;
 
-  line-height: 1.65;
+  line-height: 1.55;
+
+  color: rgba(255,255,255,.88);
+
 }
 
 .hero-buttons {
+
   display: flex;
 
-  gap: 11px;
+  gap: 12px;
 
-  margin-top: 28px;
+  margin-top: 25px;
+
+  flex-wrap: wrap;
+
 }
 
-.play-button,
-.more-button {
-  border: none;
+.play-btn,
+.more-info-btn {
+
+  display: inline-flex;
+
+  align-items: center;
+
+  gap: 9px;
+
+  padding: 12px 26px;
 
   border-radius: 4px;
-
-  padding: 13px 24px;
 
   font-size: 15px;
 
@@ -377,392 +499,480 @@ nav {
 
   cursor: pointer;
 
-  display: flex;
+  transition:
+    opacity .2s ease,
+    transform .2s ease;
 
-  align-items: center;
-
-  gap: 8px;
 }
 
-.play-button {
+.play-btn {
+
   background: white;
 
   color: black;
+
 }
 
-.play-button:hover {
-  background: rgba(255,255,255,.82);
+.play-btn:hover {
+
+  background: rgba(255,255,255,.8);
+
+  transform: scale(1.02);
+
 }
 
-.more-button {
-  background: rgba(109,109,110,.65);
+.more-info-btn {
+
+  background: rgba(109,109,110,.72);
 
   color: white;
 
-  backdrop-filter: blur(6px);
 }
 
-.more-button:hover {
-  background: rgba(109,109,110,.45);
-}
+.more-info-btn:hover {
 
+  background: rgba(109,109,110,.5);
+
+}
 
 /* ======================================
-   NETFLIX STYLE ROW
+   EPISODE STRIP
 ====================================== */
 
-.episode-section {
+#episodes {
+
   position: relative;
 
-  z-index: 50;
+  z-index: 20;
 
-  margin-top: -80px;
+  margin-top: -55px;
 
-  padding: 0 4vw 65px;
+  padding: 0 4vw 70px;
 
   background:
+
     linear-gradient(
       to bottom,
       transparent,
-      var(--black) 95px
+      #141414 65px
     );
+
 }
 
 .row-heading {
+
   font-size: 20px;
 
   font-weight: 600;
 
-  margin-bottom: 15px;
+  margin-bottom: 14px;
+
 }
 
 .episode-row {
-  display: flex;
+
+  display: grid;
+
+  grid-template-columns:
+    repeat(7, minmax(180px, 1fr));
 
   gap: 8px;
 
-  overflow-x: auto;
-
-  padding: 4px 0 22px;
-
-  scrollbar-width: none;
-}
-
-.episode-row::-webkit-scrollbar {
-  display: none;
 }
 
 .episode-card {
-  flex: 0 0 260px;
 
-  background: var(--card);
+  position: relative;
 
-  border-radius: 5px;
+  background: var(--card-black);
+
+  border-radius: 4px;
 
   overflow: hidden;
 
   cursor: pointer;
 
   transition:
-    transform .28s ease,
-    box-shadow .28s ease;
+    transform .3s ease,
+    box-shadow .3s ease;
 
-  transform-origin: center;
 }
 
 .episode-card:hover {
+
   transform: scale(1.06);
 
-  z-index: 5;
+  z-index: 10;
 
   box-shadow:
-    0 15px 40px rgba(0,0,0,.65);
+    0 15px 35px rgba(0,0,0,.65);
+
 }
 
-.episode-image {
+.episode-card img {
+
   width: 100%;
 
   aspect-ratio: 16 / 9;
 
   object-fit: cover;
+
 }
 
-.episode-info {
+.episode-card-gradient {
+
+  position: absolute;
+
+  inset: 0;
+
+  background:
+
+    linear-gradient(
+      to top,
+      rgba(0,0,0,.86),
+      transparent 55%
+    );
+
+  pointer-events: none;
+
+}
+
+.episode-card-content {
+
+  position: absolute;
+
+  left: 0;
+
+  right: 0;
+
+  bottom: 0;
+
   padding: 13px;
+
 }
 
-.episode-number {
+.episode-card-label {
+
   color: var(--gold);
 
   font-size: 9px;
 
   font-weight: 600;
 
-  text-transform: uppercase;
+  letter-spacing: .16em;
 
-  letter-spacing: .18em;
 }
 
-.episode-title {
-  font-family: "Playfair Display", serif;
-
-  font-size: 18px;
+.episode-card h3 {
 
   margin-top: 4px;
-}
 
-.episode-date {
-  margin-top: 5px;
-
-  font-size: 11px;
-
-  color: var(--grey);
-}
-
-
-/* ======================================
-   STANDARD SECTIONS
-====================================== */
-
-.section {
-  padding: 85px 5vw;
-}
-
-.alt-section {
-  background: #101010;
-}
-
-.section-label {
-  color: var(--gold);
-
-  font-size: 10px;
+  font-size: 15px;
 
   font-weight: 600;
 
-  letter-spacing: .3em;
+}
+
+.episode-card-date {
+
+  margin-top: 3px;
+
+  font-size: 10px;
+
+  opacity: .7;
+
+}
+
+/* ======================================
+   CONTENT ROWS
+====================================== */
+
+.content-section {
+
+  padding: 70px 4vw;
+
+  background: #141414;
+
+}
+
+.content-section.alt {
+
+  background: #0d0d0d;
+
+}
+
+.section-eyebrow {
+
+  color: var(--gold);
 
   text-transform: uppercase;
+
+  letter-spacing: .25em;
+
+  font-size: 10px;
+
+  margin-bottom: 8px;
+
 }
 
 .section-title {
+
   font-family: "Playfair Display", serif;
 
-  font-size: clamp(38px, 5vw, 55px);
+  font-size: clamp(34px, 5vw, 52px);
 
-  margin-top: 8px;
+  margin-bottom: 32px;
 
-  margin-bottom: 35px;
 }
-
 
 /* ======================================
    MORE INFO
 ====================================== */
 
 .info-grid {
+
   display: grid;
 
-  grid-template-columns:
-    repeat(3,1fr);
+  grid-template-columns: repeat(3, 1fr);
 
-  gap: 18px;
+  gap: 16px;
+
 }
 
 .info-card {
-  background: #171717;
 
-  border: 1px solid rgba(255,255,255,.07);
+  background: #181818;
 
-  padding: 28px;
+  border-radius: 5px;
 
-  border-radius: 6px;
+  padding: 27px;
+
+  border: 1px solid rgba(255,255,255,.06);
+
 }
 
 .info-card h3 {
-  font-family: "Playfair Display", serif;
 
-  color: var(--gold-light);
+  color: var(--gold);
+
+  font-family: "Playfair Display", serif;
 
   font-size: 22px;
 
   margin-bottom: 10px;
+
 }
 
 .info-card p {
-  color: rgba(255,255,255,.7);
+
+  color: rgba(255,255,255,.68);
 
   line-height: 1.65;
-}
 
+}
 
 /* ======================================
    CAST
 ====================================== */
 
 .cast-grid {
+
   display: grid;
 
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns:
+    repeat(2, minmax(230px, 300px));
 
-  max-width: 800px;
+  gap: 20px;
 
-  gap: 25px;
-
-  margin: auto;
 }
 
-.cast-person {
-  text-align: center;
+.cast-card {
+
+  background: #181818;
+
+  border-radius: 5px;
+
+  overflow: hidden;
+
 }
 
-.cast-person img {
-  width: 230px;
+.cast-card img {
 
-  height: 300px;
+  width: 100%;
+
+  height: 360px;
 
   object-fit: cover;
 
-  margin: auto;
-
-  border-radius: 6px;
 }
 
-.cast-person h3 {
-  font-family: "Playfair Display", serif;
+.cast-info {
 
-  font-size: 27px;
+  padding: 17px;
 
-  margin-top: 15px;
 }
 
 .cast-role {
+
   color: var(--gold);
 
   font-size: 9px;
 
-  font-weight: 600;
-
-  letter-spacing: .24em;
+  letter-spacing: .19em;
 
   text-transform: uppercase;
 
-  margin-top: 4px;
 }
 
+.cast-info h3 {
+
+  margin-top: 6px;
+
+  font-family: "Playfair Display", serif;
+
+  font-size: 24px;
+
+}
 
 /* ======================================
-   STORY
+   OUR STORY
 ====================================== */
 
-.story-grid {
+.story-layout {
+
   display: grid;
 
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1.15fr .85fr;
 
   gap: 35px;
 
   align-items: center;
+
 }
 
 .story-image {
+
   width: 100%;
 
-  height: 550px;
+  height: 570px;
 
   object-fit: cover;
 
-  border-radius: 6px;
+  border-radius: 5px;
+
 }
 
 .story-copy {
-  max-width: 600px;
+
+  max-width: 560px;
+
 }
 
 .story-copy h3 {
+
   font-family: "Playfair Display", serif;
 
-  font-size: clamp(38px,5vw,58px);
+  font-size: clamp(36px, 5vw, 55px);
 
-  line-height: 1.05;
+  line-height: 1.1;
 
-  margin: 12px 0 18px;
 }
 
 .story-copy p {
-  color: rgba(255,255,255,.72);
+
+  margin-top: 19px;
+
+  color: rgba(255,255,255,.68);
+
+  font-size: 16px;
 
   line-height: 1.8;
 
-  font-size: 16px;
 }
 
-
 /* ======================================
-   FAMILY FEATURE
+   FAMILY
 ====================================== */
 
 .family-feature {
+
+  min-height: 75vh;
+
   position: relative;
 
-  min-height: 620px;
+  display: flex;
+
+  align-items: flex-end;
 
   background:
+
+    linear-gradient(
+      to right,
+      rgba(0,0,0,.75),
+      transparent 70%
+    ),
+
     linear-gradient(
       to top,
-      rgba(0,0,0,.94),
-      rgba(0,0,0,.08)
+      #141414,
+      transparent 45%
     ),
+
     url("MLS-539.jpg");
 
   background-size: cover;
 
   background-position: center;
+
 }
 
 .family-copy {
-  position: absolute;
 
-  left: 5vw;
-  bottom: 60px;
+  padding: 0 4vw 9vh;
 
-  max-width: 620px;
+  max-width: 650px;
+
 }
 
 .family-copy h2 {
+
   font-family: "Playfair Display", serif;
 
-  font-size: clamp(42px,6vw,65px);
+  font-size: clamp(42px, 6vw, 70px);
+
 }
 
 .family-copy p {
-  margin-top: 13px;
 
-  color: rgba(255,255,255,.78);
+  margin-top: 14px;
 
-  line-height: 1.7;
+  line-height: 1.65;
+
+  opacity: .8;
+
 }
-
 
 /* ======================================
    WEDDING INFO
 ====================================== */
 
 .wedding-info-grid {
+
   display: grid;
 
-  grid-template-columns:
-    repeat(3,1fr);
+  grid-template-columns: repeat(3,1fr);
 
-  gap: 18px;
+  gap: 16px;
+
 }
-
 
 /* ======================================
    RSVP
 ====================================== */
 
 #rsvp {
-  min-height: 650px;
+
+  min-height: 75vh;
 
   display: flex;
 
@@ -775,335 +985,447 @@ nav {
   padding: 70px 20px;
 
   background:
+
     linear-gradient(
-      rgba(0,0,0,.7),
+      rgba(0,0,0,.73),
       rgba(0,0,0,.9)
     ),
+
     url("MLS-262.jpg");
 
   background-size: cover;
 
   background-position: center;
+
 }
 
 .rsvp-inner {
-  max-width: 700px;
+
+  max-width: 670px;
+
 }
 
 .rsvp-inner h2 {
+
+  margin-top: 9px;
+
   font-family: "Playfair Display", serif;
 
-  font-size: clamp(50px,7vw,78px);
+  font-size: clamp(48px, 7vw, 78px);
 
-  margin-top: 8px;
 }
 
 .rsvp-inner p {
+
   margin-top: 15px;
 
-  color: rgba(255,255,255,.72);
+  opacity: .75;
 
-  line-height: 1.7;
+  line-height: 1.65;
+
 }
 
 .rsvp-button {
+
   display: inline-block;
 
-  margin-top: 26px;
+  margin-top: 27px;
+
+  padding: 13px 29px;
+
+  border-radius: 4px;
 
   background: var(--gold);
 
-  color: #080808;
+  color: black;
 
   font-weight: 700;
 
-  padding: 14px 30px;
-
-  border-radius: 4px;
 }
-
 
 /* ======================================
    EVENT OVERLAY
 ====================================== */
 
 #eventOverlay {
+
   position: fixed;
 
   inset: 0;
 
   z-index: 9000;
 
+  background: #000;
+
   display: none;
 
-  background: #000;
+  opacity: 0;
+
+  transition: opacity .6s ease;
+
 }
 
-.event-photo {
+#eventOverlay.visible {
+
+  opacity: 1;
+
+}
+
+.event-image {
+
   position: absolute;
 
   inset: 0;
 
   width: 100%;
+
   height: 100%;
 
   object-fit: cover;
+
 }
 
 .event-shade {
+
   position: absolute;
 
   inset: 0;
 
   background:
+
     linear-gradient(
       to right,
-      rgba(0,0,0,.9),
-      rgba(0,0,0,.45),
-      rgba(0,0,0,.15)
+      rgba(0,0,0,.92),
+      rgba(0,0,0,.6) 45%,
+      rgba(0,0,0,.18)
     ),
+
     linear-gradient(
       to top,
-      rgba(0,0,0,.96),
-      transparent 55%
+      rgba(0,0,0,.95),
+      transparent 65%
     );
+
 }
 
 .event-content {
+
   position: absolute;
 
-  left: 0;
-  bottom: 0;
+  left: 5vw;
 
-  width: 100%;
+  bottom: 8vh;
 
-  max-width: 780px;
+  max-width: 700px;
 
-  padding: 6vw;
-
-  padding-bottom: 7vh;
 }
 
 .event-number {
+
   color: var(--gold);
 
   font-size: 10px;
 
-  font-weight: 600;
-
-  letter-spacing: .25em;
+  letter-spacing: .23em;
 
   text-transform: uppercase;
+
 }
 
 .event-content h2 {
+
+  margin-top: 7px;
+
   font-family: "Playfair Display", serif;
 
-  font-size: clamp(50px,7vw,85px);
+  font-size: clamp(50px, 7vw, 85px);
 
-  margin: 7px 0 17px;
 }
 
 .event-meta {
+
   display: flex;
 
-  gap: 15px;
+  gap: 14px;
 
   flex-wrap: wrap;
 
-  margin-bottom: 11px;
+  margin-top: 16px;
 
   font-weight: 600;
+
 }
 
 .event-venue {
-  color: var(--gold-light);
+
+  margin-top: 13px;
+
+  color: var(--gold);
 
   font-size: 18px;
 
-  margin-bottom: 7px;
 }
 
 .event-address {
-  color: rgba(255,255,255,.6);
 
-  margin-bottom: 10px;
+  margin-top: 5px;
+
+  opacity: .62;
+
 }
 
 .event-dress {
-  color: rgba(255,255,255,.8);
 
-  margin-bottom: 17px;
+  margin-top: 9px;
+
+  opacity: .78;
+
 }
 
 .event-description {
-  max-width: 600px;
 
-  line-height: 1.7;
+  max-width: 590px;
 
-  color: rgba(255,255,255,.82);
+  margin-top: 16px;
+
+  line-height: 1.65;
+
+  opacity: .85;
+
 }
 
-.more-episodes {
+.event-close {
+
   margin-top: 25px;
 
-  border: 1px solid rgba(255,255,255,.4);
-
-  background: rgba(0,0,0,.55);
-
-  color: white;
-
-  padding: 12px 18px;
+  padding: 12px 19px;
 
   border-radius: 4px;
 
-  cursor: pointer;
-}
+  background: rgba(109,109,110,.72);
 
+  color: white;
+
+  font-weight: 600;
+
+  cursor: pointer;
+
+}
 
 /* ======================================
    FOOTER
 ====================================== */
 
 footer {
-  padding: 35px 20px;
+
+  background: #141414;
+
+  padding: 40px 20px;
 
   text-align: center;
 
-  color: rgba(255,255,255,.35);
+  color: rgba(255,255,255,.38);
 
   font-size: 11px;
 
-  letter-spacing: .05em;
 }
-
 
 /* ======================================
    MOBILE
 ====================================== */
 
-@media(max-width: 760px) {
+@media(max-width: 900px) {
 
-  nav {
-    padding: 16px 18px;
+  .episode-row {
 
-    gap: 0;
+    display: flex;
+
+    overflow-x: auto;
+
+    gap: 10px;
+
+    padding-bottom: 12px;
+
+    scrollbar-width: none;
+
   }
 
-  .brand {
-    font-size: 16px;
-  }
+  .episode-row::-webkit-scrollbar {
 
-  .nav-links {
     display: none;
-  }
 
-  #home {
-    min-height: 85vh;
-
-    background:
-      linear-gradient(
-        to top,
-        #070707 0%,
-        rgba(0,0,0,.68) 38%,
-        rgba(0,0,0,.15) 72%
-      ),
-      url("MLS-171.jpg");
-
-    background-size: cover;
-
-    background-position: center;
-  }
-
-  .hero-content {
-    margin-left: 0;
-
-    padding: 0 22px 80px;
-
-    align-self: flex-end;
-  }
-
-  .hero-title {
-    font-size: 54px;
-  }
-
-  .hero-description {
-    font-size: 14px;
-  }
-
-  .episode-section {
-    margin-top: -45px;
-
-    padding-left: 18px;
-
-    padding-right: 0;
   }
 
   .episode-card {
-    flex-basis: 220px;
+
+    flex: 0 0 240px;
+
   }
 
-  .section {
-    padding: 70px 18px;
+}
+
+
+@media(max-width: 700px) {
+
+  nav {
+
+    height: 58px;
+
+    padding: 0 18px;
+
+  }
+
+  .nav-brand {
+
+    font-size: 15px;
+
+    margin-right: 0;
+
+  }
+
+  .nav-links {
+
+    display: none;
+
+  }
+
+  #home {
+
+    min-height: 82vh;
+
+    background-position: 58% center;
+
+  }
+
+  .hero-content {
+
+    padding: 0 20px 11vh;
+
+    max-width: 100%;
+
+  }
+
+  .hero-title {
+
+    font-size: 55px;
+
+  }
+
+  .hero-subtitle {
+
+    font-size: 20px;
+
+  }
+
+  .hero-description {
+
+    font-size: 14px;
+
+    max-width: 93%;
+
+  }
+
+  #episodes {
+
+    margin-top: -35px;
+
+    padding: 0 18px 55px;
+
+  }
+
+  .row-heading {
+
+    font-size: 17px;
+
+  }
+
+  .episode-card {
+
+    flex-basis: 210px;
+
+  }
+
+  .content-section {
+
+    padding: 60px 18px;
+
   }
 
   .info-grid,
   .wedding-info-grid {
+
     grid-template-columns: 1fr;
+
   }
 
   .cast-grid {
-    grid-template-columns: 1fr 1fr;
+
+    grid-template-columns:
+      repeat(2,1fr);
 
     gap: 12px;
+
   }
 
-  .cast-person img {
-    width: 100%;
+  .cast-card img {
 
-    height: 220px;
+    height: 250px;
+
   }
 
-  .story-grid {
+  .cast-info {
+
+    padding: 13px;
+
+  }
+
+  .cast-info h3 {
+
+    font-size: 20px;
+
+  }
+
+  .story-layout {
+
     grid-template-columns: 1fr;
+
   }
 
   .story-image {
-    height: 430px;
+
+    height: 450px;
+
   }
 
   .family-feature {
-    min-height: 500px;
-  }
 
-  .family-copy {
-    left: 20px;
+    min-height: 560px;
 
-    right: 20px;
-
-    bottom: 35px;
   }
 
   .event-content {
-    padding: 24px;
 
-    padding-bottom: 42px;
+    left: 22px;
+
+    right: 22px;
+
+    bottom: 45px;
+
   }
 
-  #musicToggle {
-    right: 12px;
+  .event-content h2 {
 
-    bottom: 12px;
+    font-size: 48px;
+
   }
 
 }
 
 </style>
+
 </head>
 
-
 <body class="locked">
-
 
 <!-- ======================================
      INTRO
@@ -1118,10 +1440,12 @@ footer {
     playsinline
     preload="auto"
   >
+
     <source
       src="intro.mp4"
       type="video/mp4"
     >
+
   </video>
 
   <button id="skipIntro">
@@ -1136,7 +1460,7 @@ footer {
 
 
 <!-- ======================================
-     BACKGROUND MUSIC
+     MUSIC
 ====================================== -->
 
 <audio
@@ -1144,11 +1468,14 @@ footer {
   loop
   preload="auto"
 >
+
   <source
     src="wedding-song.mp3"
     type="audio/mpeg"
   >
+
 </audio>
+
 
 <button id="musicToggle">
   ♫ MUSIC
@@ -1163,10 +1490,11 @@ footer {
 
   <a
     href="#home"
-    class="brand"
+    class="nav-brand"
   >
     KHUSHI + MANJOT
   </a>
+
 
   <div class="nav-links">
 
@@ -1207,19 +1535,29 @@ footer {
 
   <div class="hero-content">
 
-    <div class="series-mark">
 
-      <span class="series-dot"></span>
+    <div class="original-label">
 
-      K + M ORIGINAL SERIES
+      <div class="original-box">
+        K
+      </div>
+
+      A WEDDING ORIGINAL
 
     </div>
 
+
     <h1 class="hero-title">
-      Khushi
+      KHUSHI
       <br>
-      + Manjot
+      + MANJOT
     </h1>
+
+
+    <div class="hero-subtitle">
+      The Wedding Series
+    </div>
+
 
     <div class="hero-meta">
 
@@ -1228,36 +1566,41 @@ footer {
       </span>
 
       <span>
+        7 EPISODES
+      </span>
+
+      <span class="rating">
         2027
       </span>
 
       <span>
-        7 EPISODES
-      </span>
-
-      <span>
-        WEDDING SERIES
+        WEDDING · FAMILY · LOVE
       </span>
 
     </div>
 
+
     <p class="hero-description">
+
       Seven celebrations. Two families. One story.
-      Join us for a week of love, family, tradition
-      and celebration from May 2–7, 2027.
+      Join us May 2–7, 2027 as we celebrate the beginning
+      of our next chapter.
+
     </p>
+
 
     <div class="hero-buttons">
 
       <button
-        class="play-button"
+        class="play-btn"
         onclick="playWeddingSeries()"
       >
         ▶ PLAY
       </button>
 
+
       <button
-        class="more-button"
+        class="more-info-btn"
         onclick="showMoreInfo()"
       >
         ⓘ MORE INFO
@@ -1274,18 +1617,15 @@ footer {
      EPISODE ROW
 ====================================== -->
 
-<section
-  id="episodes"
-  class="episode-section"
->
+<section id="episodes">
 
   <h2 class="row-heading">
     WEDDING WEEK
   </h2>
 
   <div
-    id="episodeRow"
     class="episode-row"
+    id="episodeGrid"
   ></div>
 
 </section>
@@ -1297,10 +1637,10 @@ footer {
 
 <section
   id="more-info"
-  class="section alt-section"
+  class="content-section alt"
 >
 
-  <div class="section-label">
+  <div class="section-eyebrow">
     ABOUT THIS SERIES
   </div>
 
@@ -1308,7 +1648,9 @@ footer {
     MORE INFO
   </h2>
 
+
   <div class="info-grid">
+
 
     <div class="info-card">
 
@@ -1317,9 +1659,11 @@ footer {
       </h3>
 
       <p>
+
         Our wedding week unfolds across seven celebrations,
         each representing a different part of our traditions,
         families and story.
+
       </p>
 
     </div>
@@ -1332,8 +1676,10 @@ footer {
       </h3>
 
       <p>
+
         Six days of celebrations in and around Calgary,
         ending with our wedding reception on May 7.
+
       </p>
 
     </div>
@@ -1346,11 +1692,14 @@ footer {
       </h3>
 
       <p>
-        Select any episode to view its date, time,
-        location, attire and celebration details.
+
+        Select any episode to see its date, time,
+        location, attire and other event details.
+
       </p>
 
     </div>
+
 
   </div>
 
@@ -1363,59 +1712,64 @@ footer {
 
 <section
   id="cast"
-  class="section"
+  class="content-section"
 >
 
-  <div
-    class="section-label"
-    style="text-align:center;"
-  >
+  <div class="section-eyebrow">
     MEET THE CAST
   </div>
 
-  <h2
-    class="section-title"
-    style="text-align:center;"
-  >
-    THE BRIDE + GROOM
+  <h2 class="section-title">
+    KHUSHI + MANJOT
   </h2>
+
 
   <div class="cast-grid">
 
-    <div class="cast-person">
+
+    <div class="cast-card">
 
       <img
         src="MLS-80.jpg"
         alt="Khushi"
       >
 
-      <h3>
-        Khushi
-      </h3>
+      <div class="cast-info">
 
-      <div class="cast-role">
-        THE BRIDE
+        <div class="cast-role">
+          THE BRIDE
+        </div>
+
+        <h3>
+          Khushi
+        </h3>
+
       </div>
 
     </div>
 
 
-    <div class="cast-person">
+    <div class="cast-card">
 
       <img
         src="MLS-3.jpg"
         alt="Manjot"
       >
 
-      <h3>
-        Manjot
-      </h3>
+      <div class="cast-info">
 
-      <div class="cast-role">
-        THE GROOM
+        <div class="cast-role">
+          THE GROOM
+        </div>
+
+        <h3>
+          Manjot
+        </h3>
+
       </div>
 
     </div>
+
 
   </div>
 
@@ -1428,10 +1782,11 @@ footer {
 
 <section
   id="story"
-  class="section alt-section"
+  class="content-section alt"
 >
 
-  <div class="story-grid">
+  <div class="story-layout">
+
 
     <img
       src="MLS-160.jpg"
@@ -1439,26 +1794,34 @@ footer {
       alt="Khushi and Manjot"
     >
 
+
     <div class="story-copy">
 
-      <div class="section-label">
+      <div class="section-eyebrow">
         THE STORY SO FAR
       </div>
 
+
       <h3>
+
         One Story.
         <br>
         Our Next Chapter.
+
       </h3>
 
+
       <p>
+
         What started as our story has grown into two
         families coming together. In May 2027,
         we get to begin our next chapter surrounded
         by the people who have been part of it.
+
       </p>
 
     </div>
+
 
   </div>
 
@@ -1466,25 +1829,29 @@ footer {
 
 
 <!-- ======================================
-     FAMILY FEATURE
+     FAMILY
 ====================================== -->
 
 <section class="family-feature">
 
   <div class="family-copy">
 
-    <div class="section-label">
+    <div class="section-eyebrow">
       FEATURING
     </div>
+
 
     <h2>
       Our Favourite People
     </h2>
 
+
     <p>
-      The people who shaped us, supported us
+
+      The people who shaped us, supported us,
       and now get to celebrate this next chapter
       alongside us.
+
     </p>
 
   </div>
@@ -1498,18 +1865,21 @@ footer {
 
 <section
   id="wedding-info"
-  class="section alt-section"
+  class="content-section alt"
 >
 
-  <div class="section-label">
+  <div class="section-eyebrow">
     BEFORE YOU WATCH
   </div>
+
 
   <h2 class="section-title">
     WEDDING INFO
   </h2>
 
+
   <div class="wedding-info-grid">
+
 
     <div class="info-card">
 
@@ -1518,8 +1888,10 @@ footer {
       </h3>
 
       <p>
+
         Home to our Paath, Mehndi, Haldi,
         Jaggo and Choora + Chowhan BBQ celebrations.
+
       </p>
 
     </div>
@@ -1532,9 +1904,11 @@ footer {
       </h3>
 
       <p>
+
         May 6 at Dashmesh Culture.
         Traditional attire is requested and
         head coverings are required.
+
       </p>
 
     </div>
@@ -1547,11 +1921,14 @@ footer {
       </h3>
 
       <p>
+
         May 7 at Empire Banquet Hall.
         Join us for the finale of our wedding week.
+
       </p>
 
     </div>
+
 
   </div>
 
@@ -1566,26 +1943,35 @@ footer {
 
   <div class="rsvp-inner">
 
-    <div class="section-label">
+
+    <div class="section-eyebrow">
       THE GUEST LIST
     </div>
+
 
     <h2>
       Will You Join Us?
     </h2>
 
+
     <p>
+
       RSVP details will be available here soon.
       We cannot wait to celebrate with you.
+
     </p>
+
 
     <a
       href="#"
       class="rsvp-button"
       onclick="return false;"
     >
+
       RSVP COMING SOON
+
     </a>
+
 
   </div>
 
@@ -1593,33 +1979,41 @@ footer {
 
 
 <footer>
+
   KHUSHI + MANJOT · MAY 2–7, 2027 · CALGARY
+
 </footer>
 
 
 <!-- ======================================
-     FULL SCREEN EVENT
+     EVENT OVERLAY
 ====================================== -->
 
 <div id="eventOverlay">
 
+
   <img
     id="eventImage"
-    class="event-photo"
+    class="event-image"
     src=""
     alt=""
   >
 
+
   <div class="event-shade"></div>
 
+
   <div class="event-content">
+
 
     <div
       id="eventNumber"
       class="event-number"
     ></div>
 
+
     <h2 id="eventTitle"></h2>
+
 
     <div class="event-meta">
 
@@ -1629,34 +2023,43 @@ footer {
 
     </div>
 
+
     <div
       id="eventVenue"
       class="event-venue"
     ></div>
+
 
     <div
       id="eventAddress"
       class="event-address"
     ></div>
 
+
     <div
       id="eventDress"
       class="event-dress"
     ></div>
+
 
     <p
       id="eventDescription"
       class="event-description"
     ></p>
 
+
     <button
-      class="more-episodes"
+      class="event-close"
       onclick="closeEpisode()"
     >
+
       ← MORE EPISODES
+
     </button>
 
+
   </div>
+
 
 </div>
 
@@ -1670,11 +2073,17 @@ footer {
 const events = [
 
   {
+
     title: "Paath",
+
     date: "May 2, 2027",
+
     time: "10:00 AM",
+
     venue: "Chowhan Farmhouse",
+
     address: "Calgary, Alberta",
+
     dress: "Traditional attire",
 
     description:
@@ -1682,14 +2091,22 @@ const events = [
 
     image:
       "MLS-84.jpg"
+
   },
 
+
   {
+
     title: "Mehndi",
+
     date: "May 3, 2027",
+
     time: "5:00 PM",
+
     venue: "Chowhan Farmhouse",
+
     address: "Calgary, Alberta",
+
     dress: "Colourful traditional attire",
 
     description:
@@ -1697,14 +2114,22 @@ const events = [
 
     image:
       "MLS-274.jpg"
+
   },
 
+
   {
+
     title: "Haldi",
+
     date: "May 4, 2027",
+
     time: "10:00 AM",
+
     venue: "Chowhan Farmhouse",
+
     address: "Calgary, Alberta",
+
     dress: "Details to come",
 
     description:
@@ -1712,14 +2137,22 @@ const events = [
 
     image:
       "MLS-113.jpg"
+
   },
 
+
   {
+
     title: "Jaggo",
+
     date: "May 4, 2027",
+
     time: "6:00 PM",
+
     venue: "Chowhan Farmhouse",
+
     address: "Calgary, Alberta",
+
     dress: "Punjabi festive attire",
 
     description:
@@ -1727,14 +2160,22 @@ const events = [
 
     image:
       "MLS-147.jpg"
+
   },
 
+
   {
+
     title: "Choora + Chowhan BBQ",
+
     date: "May 5, 2027",
+
     time: "3:00 PM",
+
     venue: "Chowhan Farmhouse",
+
     address: "Calgary, Alberta",
+
     dress: "Details to come",
 
     description:
@@ -1742,13 +2183,20 @@ const events = [
 
     image:
       "MLS-355.jpg"
+
   },
 
+
   {
+
     title: "Anand Karaj",
+
     date: "May 6, 2027",
+
     time: "9:00 AM",
+
     venue: "Dashmesh Culture",
+
     address: "Calgary, Alberta",
 
     dress:
@@ -1759,14 +2207,22 @@ const events = [
 
     image:
       "MLS-262.jpg"
+
   },
 
+
   {
+
     title: "Reception",
+
     date: "May 7, 2027",
+
     time: "6:00 PM",
+
     venue: "Empire Banquet Hall",
+
     address: "Calgary, Alberta",
+
     dress: "Formal attire",
 
     description:
@@ -1774,28 +2230,31 @@ const events = [
 
     image:
       "MLS-479.jpg"
+
   }
 
 ];
 
 
 /* ======================================
-   CREATE EPISODES
+   CREATE NETFLIX EPISODE CARDS
 ====================================== */
 
-const episodeRow =
+const episodeGrid =
   document.getElementById(
-    "episodeRow"
+    "episodeGrid"
   );
 
 
 events.forEach(
   function(event,index) {
 
+
     const card =
       document.createElement(
         "div"
       );
+
 
     card.className =
       "episode-card";
@@ -1804,22 +2263,26 @@ events.forEach(
     card.innerHTML = `
 
       <img
-        class="episode-image"
         src="${event.image}"
         alt="${event.title}"
       >
 
-      <div class="episode-info">
+      <div class="episode-card-gradient"></div>
 
-        <div class="episode-number">
-          EPISODE ${String(index + 1).padStart(2,"0")}
+      <div class="episode-card-content">
+
+        <div class="episode-card-label">
+
+          EPISODE
+          ${String(index + 1).padStart(2,"0")}
+
         </div>
 
-        <div class="episode-title">
+        <h3>
           ${event.title}
-        </div>
+        </h3>
 
-        <div class="episode-date">
+        <div class="episode-card-date">
           ${event.date}
         </div>
 
@@ -1838,27 +2301,36 @@ events.forEach(
     );
 
 
-    episodeRow.appendChild(
+    episodeGrid.appendChild(
       card
     );
+
 
   }
 );
 
 
 /* ======================================
-   OPEN EVENT
+   EVENT OVERLAY
 ====================================== */
 
 function openEpisode(index) {
+
 
   const event =
     events[index];
 
 
+  const overlay =
+    document.getElementById(
+      "eventOverlay"
+    );
+
+
   document.getElementById(
     "eventNumber"
   ).textContent =
+
     `EPISODE ${String(index + 1).padStart(2,"0")}`;
 
 
@@ -1895,6 +2367,7 @@ function openEpisode(index) {
   document.getElementById(
     "eventDress"
   ).textContent =
+
     "DRESS CODE: " +
     event.dress;
 
@@ -1905,23 +2378,21 @@ function openEpisode(index) {
     event.description;
 
 
-  const eventImage =
+  const image =
     document.getElementById(
       "eventImage"
     );
 
 
-  eventImage.src =
+  image.src =
     event.image;
 
 
-  eventImage.alt =
+  image.alt =
     event.title;
 
 
-  document.getElementById(
-    "eventOverlay"
-  ).style.display =
+  overlay.style.display =
     "block";
 
 
@@ -1929,45 +2400,57 @@ function openEpisode(index) {
     "locked"
   );
 
+
+  requestAnimationFrame(
+    function() {
+
+      overlay.classList.add(
+        "visible"
+      );
+
+    }
+  );
+
+
 }
 
-
-/* ======================================
-   CLOSE EVENT
-====================================== */
 
 function closeEpisode() {
 
-  document.getElementById(
-    "eventOverlay"
-  ).style.display =
-    "none";
+
+  const overlay =
+    document.getElementById(
+      "eventOverlay"
+    );
 
 
-  document.body.classList.remove(
-    "locked"
+  overlay.classList.remove(
+    "visible"
   );
 
+
+  setTimeout(
+    function() {
+
+      overlay.style.display =
+        "none";
+
+
+      document.body.classList.remove(
+        "locked"
+      );
+
+
+    },
+    600
+  );
+
+
 }
 
 
 /* ======================================
-   MORE INFO BUTTON
-====================================== */
-
-function showMoreInfo() {
-
-  document.getElementById(
-    "more-info"
-  ).scrollIntoView({
-    behavior: "smooth"
-  });
-
-}
-
-
-/* ======================================
-   MUSIC
+   BACKGROUND MUSIC
 ====================================== */
 
 const backgroundMusic =
@@ -1990,13 +2473,14 @@ let musicMuted =
   false;
 
 
-function startWeddingMusic() {
+function startBackgroundMusic() {
 
-  if (musicStarted) {
 
-    return;
+  if (musicStarted) return;
 
-  }
+
+  musicStarted =
+    true;
 
 
   backgroundMusic.volume =
@@ -2004,11 +2488,9 @@ function startWeddingMusic() {
 
 
   backgroundMusic.play()
+
     .then(
       function() {
-
-        musicStarted =
-          true;
 
 
         musicToggle.style.display =
@@ -2027,40 +2509,40 @@ function startWeddingMusic() {
           6000;
 
 
-        const intervalTime =
+        const interval =
           100;
 
 
-        const numberOfSteps =
-          fadeDuration /
-          intervalTime;
+        const totalSteps =
+          fadeDuration / interval;
 
 
         const increase =
-          targetVolume /
-          numberOfSteps;
+          targetVolume / totalSteps;
 
 
-        const fadeInterval =
+        const fade =
           setInterval(
             function() {
+
 
               volume +=
                 increase;
 
 
               if (
-                volume >=
-                targetVolume
+                volume >= targetVolume
               ) {
+
 
                 volume =
                   targetVolume;
 
 
                 clearInterval(
-                  fadeInterval
+                  fade
                 );
+
 
               }
 
@@ -2071,49 +2553,92 @@ function startWeddingMusic() {
                   targetVolume
                 );
 
+
             },
-            intervalTime
+            interval
           );
+
 
       }
     )
 
+
     .catch(
       function() {
 
-        console.log(
-          "Background music could not start."
-        );
+
+        musicStarted =
+          false;
+
 
       }
     );
 
+
 }
 
 
-/* ONLY PLAY BUTTON STARTS MUSIC */
+/* ======================================
+   PLAY BUTTON
+====================================== */
 
 function playWeddingSeries() {
 
-  startWeddingMusic();
+
+  /*
+  IMPORTANT:
+  Music starts ONLY here.
+  Clicking anywhere else does not start it.
+  */
+
+
+  startBackgroundMusic();
 
 
   document.getElementById(
     "episodes"
   ).scrollIntoView({
-    behavior: "smooth"
+
+    behavior: "smooth",
+
+    block: "start"
+
   });
+
 
 }
 
 
-/* MUSIC TOGGLE */
+/* ======================================
+   MORE INFO BUTTON
+====================================== */
+
+function showMoreInfo() {
+
+
+  document.getElementById(
+    "more-info"
+  ).scrollIntoView({
+
+    behavior: "smooth"
+
+  });
+
+
+}
+
+
+/* ======================================
+   MUSIC TOGGLE
+====================================== */
 
 musicToggle.addEventListener(
   "click",
   function() {
 
+
     if (musicMuted) {
+
 
       backgroundMusic.muted =
         false;
@@ -2126,9 +2651,12 @@ musicToggle.addEventListener(
       musicMuted =
         false;
 
+
     }
 
+
     else {
+
 
       backgroundMusic.muted =
         true;
@@ -2141,7 +2669,9 @@ musicToggle.addEventListener(
       musicMuted =
         true;
 
+
     }
+
 
   }
 );
@@ -2175,7 +2705,7 @@ const skipIntro =
   );
 
 
-let introEnded =
+let introFinished =
   false;
 
 
@@ -2185,7 +2715,9 @@ soundButton.addEventListener(
   "click",
   async function() {
 
+
     try {
+
 
       introVideo.muted =
         false;
@@ -2201,31 +2733,33 @@ soundButton.addEventListener(
       soundButton.style.display =
         "none";
 
+
     }
 
+
     catch(error) {
+
 
       soundButton.textContent =
         "SOUND UNAVAILABLE";
 
+
     }
+
 
   }
 );
 
 
-/* INTRO FINISHED */
+/* INTRO FINISH */
 
 function finishIntro() {
 
-  if (introEnded) {
 
-    return;
-
-  }
+  if (introFinished) return;
 
 
-  introEnded =
+  introFinished =
     true;
 
 
@@ -2236,6 +2770,7 @@ function finishIntro() {
 
   setTimeout(
     function() {
+
 
       intro.style.display =
         "none";
@@ -2251,9 +2786,11 @@ function finishIntro() {
         0
       );
 
+
     },
-    1400
+    1500
   );
+
 
 }
 
@@ -2276,11 +2813,12 @@ skipIntro.addEventListener(
 );
 
 
-/* INTRO AUTOPLAY */
+/* AUTOPLAY INTRO */
 
 window.addEventListener(
   "load",
   function() {
+
 
     introVideo.muted =
       true;
@@ -2294,15 +2832,20 @@ window.addEventListener(
       attempt !== undefined
     ) {
 
+
       attempt.catch(
         function() {
 
+
           finishIntro();
+
 
         }
       );
 
+
     }
+
 
   }
 );
@@ -2313,33 +2856,43 @@ window.addEventListener(
 setTimeout(
   function() {
 
+
     if (
-      !introEnded &&
+      !introFinished &&
       introVideo.readyState === 0
     ) {
 
+
       finishIntro();
 
+
     }
+
 
   },
   5000
 );
 
 
-/* ESC CLOSES EPISODE */
+/* ======================================
+   ESC CLOSE
+====================================== */
 
 document.addEventListener(
   "keydown",
   function(event) {
 
+
     if (
       event.key === "Escape"
     ) {
 
+
       closeEpisode();
 
+
     }
+
 
   }
 );
