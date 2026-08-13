@@ -2,339 +2,553 @@
 <html lang="en">
 
 <head>
+
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Khushi & Manjot | The Wedding Series</title>
+<meta
+  name="viewport"
+  content="width=device-width, initial-scale=1.0"
+>
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<title>
+  Khushi & Manjot | The Wedding Series
+</title>
 
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link
+  rel="preconnect"
+  href="https://fonts.googleapis.com"
+>
+
+<link
+  rel="preconnect"
+  href="https://fonts.gstatic.com"
+  crossorigin
+>
+
+<link
+  href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap"
+  rel="stylesheet"
+>
 
 <style>
 
+/* ======================================================
+   BASE
+====================================================== */
+
 :root {
+
   --gold: #c9a96e;
   --black: #080808;
   --soft-black: #101010;
   --white: #faf8f5;
+
 }
 
 * {
+
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+
 }
 
 html {
+
   scroll-behavior: smooth;
+
 }
 
 body {
+
   background: var(--black);
+
   color: var(--white);
-  font-family: "DM Sans", sans-serif;
+
+  font-family:
+    "DM Sans",
+    sans-serif;
+
 }
 
 body.locked {
+
   overflow: hidden;
+
 }
 
 button,
 a {
+
   font: inherit;
+
 }
 
 a {
+
   color: inherit;
+
   text-decoration: none;
+
 }
 
 img {
+
   display: block;
+
 }
 
 
-/* =========================================================
+/* ======================================================
    INTRO VIDEO
-========================================================= */
+====================================================== */
 
 #intro {
+
   position: fixed;
+
   inset: 0;
+
   z-index: 10000;
+
   background: #000;
 
   display: flex;
+
   align-items: center;
+
   justify-content: center;
 
   opacity: 1;
-  transition: opacity 1.6s ease;
+
+  transition:
+    opacity 1.5s ease;
+
 }
 
 #intro.hide {
+
   opacity: 0;
+
   pointer-events: none;
+
 }
 
 #introVideo {
+
   width: 100%;
+
   height: 100%;
+
   object-fit: contain;
+
   background: #000;
+
 }
 
 #soundButton,
 #skipIntro {
+
   position: absolute;
+
   bottom: 22px;
+
   z-index: 10002;
+
   cursor: pointer;
+
 }
 
 #soundButton {
+
   right: 22px;
-  border: 1px solid rgba(255,255,255,.4);
-  background: rgba(0,0,0,.68);
+
+  border:
+    1px solid rgba(255,255,255,.4);
+
+  background:
+    rgba(0,0,0,.68);
+
   color: white;
-  padding: 11px 17px;
+
+  padding:
+    11px 17px;
+
   border-radius: 50px;
+
   font-size: 12px;
-  backdrop-filter: blur(8px);
+
+  backdrop-filter:
+    blur(8px);
+
 }
 
 #skipIntro {
+
   left: 22px;
+
   border: none;
-  background: rgba(0,0,0,.5);
-  color: rgba(255,255,255,.85);
-  padding: 10px 15px;
+
+  background:
+    rgba(0,0,0,.5);
+
+  color:
+    rgba(255,255,255,.85);
+
+  padding:
+    10px 15px;
+
   border-radius: 50px;
+
   font-size: 12px;
+
 }
 
 
-/* =========================================================
-   TITLE SEQUENCE
-========================================================= */
+/* ======================================================
+   BITTU TITLE SCREEN
+====================================================== */
 
 #titleSequence {
+
   position: fixed;
+
   inset: 0;
+
   z-index: 9000;
+
   background: #000;
 
   display: none;
+
   align-items: center;
+
   justify-content: center;
 
   text-align: center;
 
   opacity: 0;
-  transition: opacity .7s ease;
+
+  transition:
+    opacity .8s ease;
 
   pointer-events: none;
+
 }
 
 #titleSequence.show {
+
   display: flex;
-  opacity: 1;
+
 }
 
-#titleSequence.fade {
+#titleSequence.visible {
+
+  opacity: 1;
+
+}
+
+#titleSequence.fade-away {
+
   opacity: 0;
+
 }
 
 .title-inner {
+
   position: relative;
-  z-index: 5;
+
+  z-index: 2;
+
   padding: 30px;
-}
 
-.welcome-text {
-  color: rgba(255,255,255,.65);
-  font-size: 11px;
-  font-weight: ;
-  letter-spacing: .5em;
-  text-transform: uppercase;
-  margin-bottom: 20px;
-
-  opacity: 0;
-  transform: translateY(8px);
-
-  transition:
-    opacity .6s ease,
-    transform .6s ease;
 }
 
 .wedding-title {
-  font-family: "Playfair Display", serif;
-  font-size: clamp(46px, 8vw, 96px);
+
+  font-family:
+    "Playfair Display",
+    serif;
+
+  font-size:
+    clamp(48px, 8vw, 98px);
+
   line-height: .98;
-  font-weight: ;
+
+  font-weight: 600;
 
   color: white;
 
   opacity: 0;
-  transform: scale(.97);
 
-  text-shadow:
-    0 0 30px rgba(201,169,110,.13);
+  transform:
+    scale(.96);
 
   transition:
-    opacity .7s ease,
-    transform .7s ease;
+    opacity .8s ease,
+    transform .8s ease;
+
+  text-shadow:
+    0 0 40px rgba(201,169,110,.17);
+
 }
 
-.titleSequence-active .welcome-text,
-.titleSequence-active .wedding-title {
+#titleSequence.visible
+.wedding-title {
+
   opacity: 1;
-  transform: none;
+
+  transform:
+    scale(1);
+
 }
 
 .title-gold-line {
-  width: 85px;
+
+  width: 90px;
+
   height: 2px;
-  margin: 24px auto 0;
-  background: var(--gold);
+
+  margin:
+    27px auto 0;
+
+  background:
+    var(--gold);
 
   opacity: 0;
-  transition: opacity .7s ease .2s;
+
+  transition:
+    opacity .8s ease .2s;
+
 }
 
-.titleSequence-active .title-gold-line {
+#titleSequence.visible
+.title-gold-line {
+
   opacity: 1;
+
 }
 
 
-/* =========================================================
+/* ======================================================
    BACKGROUND MUSIC
-========================================================= */
+====================================================== */
 
 #musicToggle {
+
   position: fixed;
+
   right: 18px;
+
   bottom: 18px;
+
   z-index: 7000;
 
   display: none;
 
-  border: 1px solid rgba(255,255,255,.28);
-  background: rgba(0,0,0,.7);
+  border:
+    1px solid rgba(255,255,255,.28);
+
+  background:
+    rgba(0,0,0,.7);
+
   color: white;
 
-  padding: 10px 16px;
+  padding:
+    10px 16px;
+
   border-radius: 50px;
 
   font-size: 12px;
+
   cursor: pointer;
 
-  backdrop-filter: blur(9px);
+  backdrop-filter:
+    blur(9px);
+
 }
 
 
-/* =========================================================
+/* ======================================================
    NAVIGATION
-========================================================= */
+====================================================== */
 
 nav {
+
   position: fixed;
+
   top: 0;
+
   left: 0;
+
   width: 100%;
+
   z-index: 500;
 
   display: flex;
+
   align-items: center;
 
-  padding: 21px 4vw;
+  padding:
+    21px 4vw;
 
   background:
     linear-gradient(
       to bottom,
-      rgba(0,0,0,.94),
+      rgba(0,0,0,.95),
       rgba(0,0,0,.55),
       transparent
     );
+
+  opacity: 0;
+
+  visibility: hidden;
+
+  transition:
+    opacity .9s ease;
+
+}
+
+nav.nav-visible {
+
+  opacity: 1;
+
+  visibility: visible;
+
 }
 
 .logo {
-  color: var(--gold);
+
+  color:
+    var(--gold);
+
   font-size: 21px;
+
   font-weight: 700;
+
   letter-spacing: .045em;
+
   white-space: nowrap;
+
   margin-right: 48px;
+
 }
 
 .nav-links {
+
   display: flex;
-  gap: 33px;
+
   align-items: center;
+
+  gap: 33px;
+
 }
 
 .nav-links a {
-  color: rgba(255,255,255,.9);
+
+  color:
+    rgba(255,255,255,.9);
+
   font-size: 12px;
-  font-weight: ;
+
+  font-weight: 600;
+
   letter-spacing: .07em;
+
   text-transform: uppercase;
+
+  transition:
+    color .2s ease;
+
 }
 
 .nav-links a:hover {
-  color: var(--gold);
+
+  color:
+    var(--gold);
+
 }
 
 
-/* =========================================================
+/* ======================================================
    HOME HERO
-========================================================= */
+====================================================== */
 
 #home {
+
   position: relative;
+
   min-height: 100vh;
+
   overflow: hidden;
+
   background: #000;
 
-  visibility: hidden;
   opacity: 0;
-  transition: opacity 1s ease;
+
+  visibility: hidden;
+
+  transition:
+    opacity 1s ease;
+
 }
 
 #home.home-visible {
+
   opacity: 1;
+
+  visibility: visible;
+
 }
 
+
+/* PHOTO BURST */
+
 .hero-photo {
+
   position: absolute;
+
   inset: 0;
 
   width: 100%;
+
   height: 100%;
 
   object-fit: cover;
 
   opacity: 0;
-  transform: scale(1.04);
+
+  transform:
+    scale(1.045);
 
   transition:
-    opacity .32s ease,
-    transform 1.1s ease;
+    opacity .45s ease,
+    transform 1.5s ease;
 
   z-index: 1;
+
 }
 
 .hero-photo.active {
+
   opacity: 1;
-  transform: scale(1);
+
+  transform:
+    scale(1);
+
 }
 
+
+/* DARK NETFLIX STYLE FADE */
+
 .hero-vignette {
+
   position: absolute;
+
   inset: 0;
+
   z-index: 2;
+
   pointer-events: none;
 
   background:
@@ -342,80 +556,116 @@ nav {
     linear-gradient(
       90deg,
       rgba(0,0,0,.97) 0%,
-      rgba(0,0,0,.84) 18%,
-      rgba(0,0,0,.56) 38%,
-      rgba(0,0,0,.18) 65%,
-      rgba(0,0,0,.05) 100%
+      rgba(0,0,0,.86) 17%,
+      rgba(0,0,0,.58) 38%,
+      rgba(0,0,0,.18) 66%,
+      rgba(0,0,0,.04) 100%
     ),
 
     linear-gradient(
       to top,
-      rgba(0,0,0,1) 0%,
-      rgba(0,0,0,.73) 16%,
-      rgba(0,0,0,.12) 50%,
-      rgba(0,0,0,.28) 100%
+      rgba(0,0,0,.99) 0%,
+      rgba(0,0,0,.72) 18%,
+      rgba(0,0,0,.1) 52%,
+      rgba(0,0,0,.3) 100%
     );
+
 }
 
 .hero-edge {
+
   position: absolute;
+
   inset: 0;
+
   z-index: 3;
+
   pointer-events: none;
 
   box-shadow:
-    inset 0 0 130px 40px rgba(0,0,0,.48);
+    inset 0 0 135px 42px
+    rgba(0,0,0,.48);
+
 }
 
 
-/* NETFLIX UI COPY */
+/* HOME COPY */
 
 .home-content {
+
   position: relative;
+
   z-index: 10;
 
   width: 100%;
+
   max-width: 780px;
 
   padding-left: 5vw;
+
   padding-top: 27vh;
 
   opacity: 0;
-  transform: translateY(18px);
+
+  transform:
+    translateY(20px);
 
   transition:
     opacity 1.2s ease,
     transform 1.2s ease;
+
 }
 
-#home.copy-visible .home-content {
+#home.copy-visible
+.home-content {
+
   opacity: 1;
-  transform: translateY(0);
+
+  transform:
+    translateY(0);
+
 }
 
 .eyebrow {
-  color: var(--gold);
+
+  color:
+    var(--gold);
 
   font-size: 10px;
+
   font-weight: 600;
 
   letter-spacing: .42em;
+
   text-transform: uppercase;
 
   margin-bottom: 18px;
+
 }
 
 .home-content h1 {
-  font-family: "Playfair Display", serif;
-  font-size: clamp(67px, 8vw, 118px);
+
+  font-family:
+    "Playfair Display",
+    serif;
+
+  font-size:
+    clamp(67px, 8vw, 118px);
+
   line-height: .87;
+
   font-weight: 600;
+
   letter-spacing: -.035em;
+
 }
 
 .home-meta {
+
   display: flex;
+
   align-items: center;
+
   flex-wrap: wrap;
 
   gap: 13px;
@@ -423,112 +673,170 @@ nav {
   margin-top: 23px;
 
   font-size: 12px;
+
   font-weight: 600;
+
   text-transform: uppercase;
 
-  color: rgba(255,255,255,.78);
+  color:
+    rgba(255,255,255,.78);
+
 }
 
 .home-meta .gold {
-  color: var(--gold);
+
+  color:
+    var(--gold);
+
 }
 
 .home-description {
+
   margin-top: 19px;
 
   max-width: 640px;
 
   font-size: 17px;
+
   line-height: 1.55;
 
-  color: rgba(255,255,255,.93);
+  color:
+    rgba(255,255,255,.93);
+
 }
 
 .button-row {
+
   display: flex;
+
   gap: 11px;
+
   flex-wrap: wrap;
 
   margin-top: 27px;
+
 }
 
 .play-btn,
 .info-btn {
+
   display: inline-flex;
+
   align-items: center;
+
   gap: 9px;
 
   border: none;
+
   border-radius: 4px;
 
-  padding: 13px 24px;
+  padding:
+    13px 24px;
 
   font-size: 15px;
+
   font-weight: 700;
 
   cursor: pointer;
+
 }
 
 .play-btn {
+
   background: white;
+
   color: #000;
+
 }
 
 .info-btn {
-  background: rgba(109,109,110,.7);
+
+  background:
+    rgba(109,109,110,.7);
+
   color: white;
-  backdrop-filter: blur(5px);
+
+  backdrop-filter:
+    blur(5px);
+
 }
 
 
-/* =========================================================
+/* ======================================================
    GENERAL SECTIONS
-========================================================= */
+====================================================== */
 
 .section {
-  padding: 90px 5vw;
+
+  padding:
+    90px 5vw;
+
 }
 
 .alt-section {
-  background: #101010;
+
+  background:
+    #101010;
+
 }
 
 .section-label {
-  color: var(--gold);
+
+  color:
+    var(--gold);
+
   text-transform: uppercase;
+
   letter-spacing: .35em;
+
   font-size: 10px;
+
 }
 
 .section-title {
-  font-family: "Playfair Display", serif;
-  font-size: clamp(36px, 5vw, 52px);
+
+  font-family:
+    "Playfair Display",
+    serif;
+
+  font-size:
+    clamp(36px, 5vw, 52px);
+
   margin-top: 8px;
+
   margin-bottom: 32px;
+
 }
 
 
-/* =========================================================
-   EPISODES - NETFLIX STYLE ROW
-========================================================= */
+/* ======================================================
+   NETFLIX STYLE EPISODES
+====================================================== */
 
 .episode-grid {
+
   display: grid;
 
   grid-template-columns:
-    repeat(3, minmax(0, 1fr));
+    repeat(
+      3,
+      minmax(0,1fr)
+    );
 
   gap: 14px;
+
 }
 
 .episode-card {
+
   position: relative;
 
-  min-height: 220px;
+  min-height: 225px;
 
   background: #151515;
 
   border-radius: 6px;
+
   overflow: hidden;
 
   cursor: pointer;
@@ -536,71 +844,105 @@ nav {
   transition:
     transform .25s ease,
     box-shadow .25s ease;
+
 }
 
 .episode-card:hover {
-  transform: scale(1.035);
+
+  transform:
+    scale(1.035);
 
   box-shadow:
-    0 14px 40px rgba(0,0,0,.5);
+    0 14px 40px
+    rgba(0,0,0,.5);
+
 }
 
 .episode-image {
+
   width: 100%;
-  height: 220px;
+
+  height: 225px;
+
   object-fit: cover;
+
 }
 
 .episode-dark {
+
   position: absolute;
+
   inset: 0;
 
   background:
     linear-gradient(
       to top,
-      rgba(0,0,0,.92),
-      rgba(0,0,0,.08) 62%
+      rgba(0,0,0,.94),
+      rgba(0,0,0,.08) 65%
     );
+
 }
 
 .episode-copy {
+
   position: absolute;
 
   left: 0;
+
   right: 0;
+
   bottom: 0;
 
   z-index: 4;
 
   padding: 18px;
+
 }
 
 .episode-number {
-  color: var(--gold);
+
+  color:
+    var(--gold);
+
   text-transform: uppercase;
+
   letter-spacing: .22em;
+
   font-size: 9px;
+
 }
 
 .episode-copy h3 {
-  font-family: "Playfair Display", serif;
+
+  font-family:
+    "Playfair Display",
+    serif;
+
   font-size: 23px;
+
   margin-top: 5px;
+
 }
 
 .episode-copy p {
+
   margin-top: 5px;
+
   opacity: .68;
+
   font-size: 12px;
+
 }
 
 
-/* =========================================================
-   EVENT SCREEN
-========================================================= */
+/* ======================================================
+   EVENT OVERLAY
+====================================================== */
 
 #eventOverlay {
+
   position: fixed;
+
   inset: 0;
 
   z-index: 5000;
@@ -608,20 +950,27 @@ nav {
   background: #000;
 
   display: none;
+
 }
 
 .event-photo {
+
   position: absolute;
+
   inset: 0;
 
   width: 100%;
+
   height: 100%;
 
   object-fit: cover;
+
 }
 
 .event-gradient {
+
   position: absolute;
+
   inset: 0;
 
   background:
@@ -631,474 +980,739 @@ nav {
       rgba(0,0,0,.76) 35%,
       rgba(0,0,0,.2) 72%
     );
+
 }
 
 .event-details {
+
   position: absolute;
 
   left: 0;
+
   bottom: 0;
 
   width: 100%;
+
   max-width: 840px;
 
   padding: 7vw;
+
   padding-bottom: 7vh;
+
 }
 
 .event-episode {
-  color: var(--gold);
+
+  color:
+    var(--gold);
+
   text-transform: uppercase;
+
   letter-spacing: .35em;
+
   font-size: 10px;
+
 }
 
 .event-details h2 {
-  font-family: "Playfair Display", serif;
-  font-size: clamp(48px, 7vw, 86px);
+
+  font-family:
+    "Playfair Display",
+    serif;
+
+  font-size:
+    clamp(48px,7vw,86px);
+
   margin-top: 8px;
+
   margin-bottom: 17px;
+
 }
 
 .event-meta {
+
   display: flex;
+
   gap: 18px;
+
   flex-wrap: wrap;
 
   font-size: 15px;
+
   font-weight: 500;
 
   margin-bottom: 13px;
+
 }
 
 .event-venue {
-  color: var(--gold);
+
+  color:
+    var(--gold);
+
   font-size: 19px;
+
   margin-bottom: 7px;
+
 }
 
 .event-address {
+
   opacity: .65;
+
   margin-bottom: 11px;
+
 }
 
 .event-dress {
+
   opacity: .8;
+
   margin-bottom: 18px;
+
 }
 
 .event-description {
+
   max-width: 620px;
+
   line-height: 1.65;
+
   opacity: .88;
+
 }
 
 .event-actions {
+
   margin-top: 27px;
+
 }
 
 .event-button {
-  border: 1px solid rgba(255,255,255,.55);
-  background: rgba(0,0,0,.55);
+
+  border:
+    1px solid rgba(255,255,255,.55);
+
+  background:
+    rgba(0,0,0,.55);
+
   color: white;
 
-  padding: 12px 19px;
+  padding:
+    12px 19px;
+
   border-radius: 5px;
 
   cursor: pointer;
+
 }
 
 
-/* =========================================================
+/* ======================================================
    INFO
-========================================================= */
+====================================================== */
 
 .info-grid,
 .wedding-info-grid {
+
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+
+  grid-template-columns:
+    repeat(3,1fr);
+
   gap: 18px;
+
 }
 
 .info-box {
-  border: 1px solid rgba(255,255,255,.1);
+
+  border:
+    1px solid rgba(255,255,255,.1);
+
   padding: 28px;
+
   border-radius: 8px;
+
 }
 
 .info-box h3 {
-  color: var(--gold);
-  font-family: "Playfair Display", serif;
+
+  color:
+    var(--gold);
+
+  font-family:
+    "Playfair Display",
+    serif;
+
   font-size: 22px;
+
   margin-bottom: 10px;
+
 }
 
 .info-box p {
+
   opacity: .7;
+
   line-height: 1.6;
+
 }
 
 
-/* =========================================================
+/* ======================================================
    CAST
-========================================================= */
+====================================================== */
 
 .cast-grid {
+
   display: grid;
-  grid-template-columns: 1fr 1fr;
+
+  grid-template-columns:
+    1fr 1fr;
+
   gap: 30px;
+
   max-width: 900px;
+
   margin: auto;
+
 }
 
 .cast-person {
+
   text-align: center;
+
 }
 
 .cast-person img {
+
   width: 230px;
+
   height: 300px;
+
   object-fit: cover;
+
   margin: auto;
+
   border-radius: 8px;
+
 }
 
 .cast-person h3 {
-  font-family: "Playfair Display", serif;
+
+  font-family:
+    "Playfair Display",
+    serif;
+
   font-size: 28px;
+
   margin-top: 17px;
+
 }
 
 .cast-role {
-  color: var(--gold);
+
+  color:
+    var(--gold);
+
   text-transform: uppercase;
+
   letter-spacing: .25em;
+
   font-size: 10px;
+
   margin-top: 5px;
+
 }
 
 
-/* =========================================================
-   STORY
-========================================================= */
+/* ======================================================
+   OUR STORY
+====================================================== */
 
 .story-grid {
+
   display: grid;
-  grid-template-columns: 1fr 1fr;
+
+  grid-template-columns:
+    1fr 1fr;
+
   gap: 20px;
+
   align-items: center;
+
 }
 
 .story-image {
+
   width: 100%;
+
   height: 550px;
+
   object-fit: cover;
+
   border-radius: 8px;
+
 }
 
 .story-copy {
+
   padding: 30px;
+
 }
 
 .story-copy h3 {
-  font-family: "Playfair Display", serif;
-  font-size: clamp(34px, 4vw, 48px);
+
+  font-family:
+    "Playfair Display",
+    serif;
+
+  font-size:
+    clamp(34px,4vw,48px);
+
   margin-bottom: 17px;
+
 }
 
 .story-copy p {
+
   opacity: .75;
+
   line-height: 1.8;
+
   font-size: 17px;
+
 }
 
 
-/* SECOND MEMORY STRIP */
+/* RELATIONSHIP MEMORY PHOTOS */
 
 .memory-strip {
+
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+
+  grid-template-columns:
+    repeat(3,1fr);
+
   gap: 10px;
 
   margin-top: 40px;
+
 }
 
 .memory-strip img {
+
   width: 100%;
+
   height: 260px;
+
   object-fit: cover;
+
   border-radius: 6px;
+
 }
 
 
-/* =========================================================
+/* ======================================================
    FAMILY
-========================================================= */
+====================================================== */
 
 .family-feature {
+
   position: relative;
+
   min-height: 600px;
 
   background:
     linear-gradient(
       to top,
-      rgba(0,0,0,.85),
+      rgba(0,0,0,.87),
       rgba(0,0,0,.08)
     ),
-    url("farmhouse.jpg");
+    url("MLS-539.jpg");
 
   background-size: cover;
+
   background-position: center;
+
 }
 
 .family-copy {
+
   position: absolute;
 
   left: 6vw;
+
   bottom: 60px;
 
   max-width: 600px;
+
 }
 
 .family-copy h2 {
-  font-family: "Playfair Display", serif;
-  font-size: clamp(40px, 6vw, 62px);
+
+  font-family:
+    "Playfair Display",
+    serif;
+
+  font-size:
+    clamp(40px,6vw,62px);
+
 }
 
 .family-copy p {
+
   margin-top: 14px;
+
   line-height: 1.6;
+
   opacity: .85;
+
 }
 
 
-/* =========================================================
+/* ======================================================
    RSVP
-========================================================= */
+====================================================== */
 
 #rsvp {
+
   position: relative;
 
   min-height: 650px;
 
   display: flex;
+
   align-items: center;
+
   justify-content: center;
 
   text-align: center;
 
-  padding: 70px 20px;
+  padding:
+    70px 20px;
 
   background:
     linear-gradient(
-      rgba(0,0,0,.73),
-      rgba(0,0,0,.86)
+      rgba(0,0,0,.72),
+      rgba(0,0,0,.87)
     ),
     url("formal.jpg");
 
   background-size: cover;
+
   background-position: center;
+
 }
 
 .rsvp-inner {
+
   max-width: 700px;
+
 }
 
 .rsvp-inner h2 {
-  font-family: "Playfair Display", serif;
-  font-size: clamp(46px, 7vw, 76px);
+
+  font-family:
+    "Playfair Display",
+    serif;
+
+  font-size:
+    clamp(46px,7vw,76px);
+
   margin-top: 10px;
+
 }
 
 .rsvp-inner p {
+
   margin-top: 15px;
+
   line-height: 1.6;
+
   opacity: .78;
+
 }
 
 .rsvp-button {
+
   display: inline-block;
 
   margin-top: 27px;
 
-  background: var(--gold);
+  background:
+    var(--gold);
+
   color: black;
 
-  padding: 14px 30px;
+  padding:
+    14px 30px;
+
   border-radius: 5px;
+
   font-weight: 600;
+
 }
 
 footer {
-  padding: 35px 20px;
+
+  padding:
+    35px 20px;
+
   text-align: center;
 
   border-top:
     1px solid rgba(255,255,255,.08);
 
   opacity: .45;
+
   font-size: 12px;
+
 }
 
 
-/* =========================================================
+/* ======================================================
    MOBILE
-========================================================= */
+====================================================== */
 
-@media(max-width: 760px) {
+@media(max-width:760px) {
 
   nav {
-    padding: 17px 19px;
+
+    padding:
+      17px 19px;
+
   }
 
   .logo {
+
     font-size: 17px;
+
     margin-right: 0;
+
   }
 
   .nav-links {
+
     display: none;
+
   }
 
   #home {
-    min-height: 100svh;
+
+    min-height:
+      100svh;
+
   }
 
   .hero-vignette {
+
     background:
 
       linear-gradient(
         to top,
         rgba(0,0,0,1),
         rgba(0,0,0,.82) 30%,
-        rgba(0,0,0,.22) 65%
+        rgba(0,0,0,.2) 67%
       ),
 
       linear-gradient(
         90deg,
-        rgba(0,0,0,.52),
+        rgba(0,0,0,.55),
         transparent
       );
+
   }
 
   .home-content {
+
     position: absolute;
-    bottom: 72px;
+
     left: 0;
 
-    padding: 0 21px;
+    bottom: 70px;
+
+    padding:
+      0 21px;
+
     max-width: 100%;
+
   }
 
   .home-content h1 {
-    font-size: clamp(54px, 16vw, 78px);
+
+    font-size:
+      clamp(54px,16vw,78px);
+
   }
 
   .home-meta {
+
     font-size: 10px;
+
     gap: 8px;
+
     margin-top: 16px;
+
   }
 
   .home-description {
+
     font-size: 14px;
+
     line-height: 1.5;
+
     max-width: 95%;
+
   }
 
   .button-row {
+
     margin-top: 19px;
+
   }
 
   .play-btn,
   .info-btn {
+
     font-size: 13px;
-    padding: 11px 16px;
+
+    padding:
+      11px 16px;
+
   }
 
   .section {
-    padding: 70px 18px;
+
+    padding:
+      70px 18px;
+
   }
 
   .episode-grid {
-    grid-template-columns: 1fr;
+
+    grid-template-columns:
+      1fr;
+
   }
 
   .episode-card {
-    min-height: 200px;
+
+    min-height: 205px;
+
   }
 
   .episode-image {
-    height: 200px;
+
+    height: 205px;
+
   }
 
   .info-grid,
   .wedding-info-grid {
-    grid-template-columns: 1fr;
+
+    grid-template-columns:
+      1fr;
+
   }
 
   .cast-grid {
-    grid-template-columns: 1fr 1fr;
+
+    grid-template-columns:
+      1fr 1fr;
+
     gap: 15px;
+
   }
 
   .cast-person img {
+
     width: 100%;
+
     height: 230px;
+
   }
 
   .story-grid {
-    grid-template-columns: 1fr;
+
+    grid-template-columns:
+      1fr;
+
   }
 
   .story-image {
+
     height: 440px;
+
   }
 
   .story-copy {
-    padding: 15px 5px;
+
+    padding:
+      15px 5px;
+
   }
 
   .memory-strip {
-    grid-template-columns: 1fr 1fr;
+
+    grid-template-columns:
+      1fr 1fr;
+
   }
 
   .memory-strip img {
+
     height: 200px;
+
   }
 
   .family-feature {
+
     min-height: 480px;
+
   }
 
 }
 
+
+/* ======================================================
+   END CSS
+====================================================== */
+
 </style>
+
 </head>
 
 
 <body class="locked">
 
 
-<!-- BACKGROUND MUSIC -->
+<!-- ====================================================
+     BACKGROUND MUSIC
+==================================================== -->
 
 <audio
   id="backgroundMusic"
   loop
   preload="auto"
 >
+
   <source
     src="wedding-song.mp3"
     type="audio/mpeg"
   >
+
 </audio>
+
 
 <button id="musicToggle">
   ♫ MUSIC
 </button>
 
 
-<!-- INTRO VIDEO -->
+<!-- ====================================================
+     INTRO VIDEO
+==================================================== -->
 
 <div id="intro">
 
@@ -1109,15 +1723,19 @@ footer {
     playsinline
     preload="auto"
   >
+
     <source
       src="intro.mp4"
       type="video/mp4"
     >
+
   </video>
+
 
   <button id="skipIntro">
     SKIP INTRO
   </button>
+
 
   <button id="soundButton">
     TAP FOR SOUND
@@ -1126,21 +1744,24 @@ footer {
 </div>
 
 
-<!-- TITLE SEQUENCE -->
+<!-- ====================================================
+     BITTU TITLE
+==================================================== -->
 
 <div id="titleSequence">
 
   <div class="title-inner">
 
-    <div class="welcome-text">
-      
+    <div class="wedding-title">
+
+      BITTU DI KURI
+
+      <br>
+
+      DA VIYAH
+
     </div>
 
-    <div class="wedding-title">
-      BITTU DI KURI
-      <br>
-      DA VIYAH
-    </div>
 
     <div class="title-gold-line"></div>
 
@@ -1149,7 +1770,9 @@ footer {
 </div>
 
 
-<!-- NAV -->
+<!-- ====================================================
+     NAV
+==================================================== -->
 
 <nav>
 
@@ -1157,8 +1780,11 @@ footer {
     href="#home"
     class="logo"
   >
+
     KHUSHI + MANJOT
+
   </a>
+
 
   <div class="nav-links">
 
@@ -1191,11 +1817,15 @@ footer {
 </nav>
 
 
-<!-- HOME HERO -->
+<!-- ====================================================
+     HOME
+==================================================== -->
 
 <section id="home">
 
-  <!-- RELATIONSHIP BURST -->
+
+  <!-- PHOTO BURST -->
+
 
   <img
     class="hero-photo"
@@ -1203,11 +1833,13 @@ footer {
     alt=""
   >
 
+
   <img
     class="hero-photo"
     src="mirror.jpg"
     alt=""
   >
+
 
   <img
     class="hero-photo"
@@ -1215,11 +1847,13 @@ footer {
     alt=""
   >
 
+
   <img
     class="hero-photo"
     src="birthday.jpg"
     alt=""
   >
+
 
   <img
     class="hero-photo"
@@ -1227,17 +1861,30 @@ footer {
     alt=""
   >
 
+
   <img
     class="hero-photo"
     src="farmhouse.jpg"
     alt=""
   >
 
+
   <img
     class="hero-photo"
     src="formal.jpg"
     alt=""
   >
+
+
+  <img
+    class="hero-photo"
+    src="MLS-284.jpg"
+    alt=""
+  >
+
+
+  <!-- FINAL HOLD IMAGE -->
+
 
   <img
     class="hero-photo"
@@ -1247,46 +1894,73 @@ footer {
 
 
   <div class="hero-vignette"></div>
+
   <div class="hero-edge"></div>
+
+
+  <!-- NETFLIX HOME COPY -->
 
 
   <div class="home-content">
 
     <div class="eyebrow">
+
       K + M ORIGINAL WEDDING SERIES
+
     </div>
 
+
     <h1>
+
       Khushi
+
       <br>
+
       + Manjot
+
     </h1>
+
 
     <div class="home-meta">
 
       <span class="gold">
+
         MAY 2–7
+
       </span>
 
+
       <span>
+
         2027
+
       </span>
 
+
       <span>
+
         7 EPISODES
+
       </span>
 
+
       <span>
+
         CALGARY
+
       </span>
 
     </div>
 
+
     <p class="home-description">
+
       Seven celebrations. Two families. One story.
       Join us for a week of love, family, tradition
       and celebration.
+
     </p>
+
 
     <div class="button-row">
 
@@ -1294,14 +1968,19 @@ footer {
         class="play-btn"
         onclick="showEpisodes()"
       >
+
         ▶ PLAY
+
       </button>
+
 
       <button
         class="info-btn"
         onclick="showInfo()"
       >
+
         ⓘ MORE INFO
+
       </button>
 
     </div>
@@ -1311,7 +1990,9 @@ footer {
 </section>
 
 
-<!-- EPISODES -->
+<!-- ====================================================
+     EPISODES
+==================================================== -->
 
 <section
   id="episodes"
@@ -1319,12 +2000,18 @@ footer {
 >
 
   <div class="section-label">
+
     SEASON ONE
+
   </div>
 
+
   <h2 class="section-title">
+
     Episodes
+
   </h2>
+
 
   <div
     class="episode-grid"
@@ -1334,7 +2021,9 @@ footer {
 </section>
 
 
-<!-- MORE INFO -->
+<!-- ====================================================
+     MORE INFO
+==================================================== -->
 
 <section
   id="more-info"
@@ -1342,14 +2031,21 @@ footer {
 >
 
   <div class="section-label">
+
     ABOUT THIS SERIES
+
   </div>
 
+
   <h2 class="section-title">
+
     More Info
+
   </h2>
 
+
   <div class="info-grid">
+
 
     <div class="info-box">
 
@@ -1358,12 +2054,15 @@ footer {
       </h3>
 
       <p>
+
         Our wedding week unfolds across seven celebrations,
         each representing a different part of our traditions,
         families and story.
+
       </p>
 
     </div>
+
 
     <div class="info-box">
 
@@ -1372,11 +2071,14 @@ footer {
       </h3>
 
       <p>
+
         Six days of celebrations in and around Calgary,
         ending with our wedding reception on May 7.
+
       </p>
 
     </div>
+
 
     <div class="info-box">
 
@@ -1385,18 +2087,23 @@ footer {
       </h3>
 
       <p>
+
         Select an episode to view the time,
         location, attire and details for each celebration.
+
       </p>
 
     </div>
+
 
   </div>
 
 </section>
 
 
-<!-- CAST -->
+<!-- ====================================================
+     CAST
+==================================================== -->
 
 <section
   id="cast"
@@ -1407,17 +2114,24 @@ footer {
     class="section-label"
     style="text-align:center;"
   >
+
     MEET THE CAST
+
   </div>
+
 
   <h2
     class="section-title"
     style="text-align:center;"
   >
+
     The Bride & Groom
+
   </h2>
 
+
   <div class="cast-grid">
+
 
     <div class="cast-person">
 
@@ -1431,7 +2145,9 @@ footer {
       </h3>
 
       <div class="cast-role">
+
         THE BRIDE
+
       </div>
 
     </div>
@@ -1449,17 +2165,22 @@ footer {
       </h3>
 
       <div class="cast-role">
+
         THE GROOM
+
       </div>
 
     </div>
+
 
   </div>
 
 </section>
 
 
-<!-- STORY -->
+<!-- ====================================================
+     OUR STORY
+==================================================== -->
 
 <section
   id="story"
@@ -1468,28 +2189,42 @@ footer {
 
   <div class="story-grid">
 
+
+    <!-- PROPOSAL PHOTO -->
+
     <img
-      src="ghirardelli.jpg"
+      src="MLS-160.jpg"
       class="story-image"
-      alt="Khushi and Manjot"
+      alt="Khushi and Manjot proposal"
     >
+
 
     <div class="story-copy">
 
       <div class="section-label">
+
         THE STORY SO FAR
+
       </div>
 
+
       <h3>
+
         One Story.
+
         <br>
+
         Our Next Chapter.
+
       </h3>
 
+
       <p>
+
         What started as our story has grown into two families
         coming together. In May 2027, we get to begin our next
         chapter surrounded by the people who have been part of it.
+
       </p>
 
     </div>
@@ -1497,60 +2232,80 @@ footer {
   </div>
 
 
+  <!-- RELATIONSHIP MEMORIES -->
+
+
   <div class="memory-strip">
+
 
     <img
       src="red-hoodie.jpg"
       alt=""
     >
 
+
+    <img
+      src="ghirardelli.jpg"
+      alt=""
+    >
+
+
     <img
       src="black-hoodies.jpg"
       alt=""
     >
+
 
     <img
       src="birthday.jpg"
       alt=""
     >
 
+
     <img
       src="mirror.jpg"
       alt=""
     >
 
-    <img
-      src="MLS-160.jpg"
-      alt=""
-    >
 
     <img
       src="MLS-284.jpg"
       alt=""
     >
 
+
   </div>
 
 </section>
 
 
-<!-- FAMILY / FARMHOUSE -->
+<!-- ====================================================
+     FAMILY
+==================================================== -->
 
 <section class="family-feature">
 
   <div class="family-copy">
 
     <div class="section-label">
+
       FEATURING
+
     </div>
 
+
     <h2>
+
       Our Favourite People
+
     </h2>
 
+
     <p>
+
       The people who shaped us, supported us and now get
       to celebrate this next chapter alongside us.
+
     </p>
 
   </div>
@@ -1558,7 +2313,9 @@ footer {
 </section>
 
 
-<!-- WEDDING INFO -->
+<!-- ====================================================
+     WEDDING INFO
+==================================================== -->
 
 <section
   id="wedding-info"
@@ -1566,24 +2323,35 @@ footer {
 >
 
   <div class="section-label">
+
     BEFORE YOU WATCH
+
   </div>
 
+
   <h2 class="section-title">
+
     Wedding Info
+
   </h2>
+
 
   <div class="wedding-info-grid">
 
+
     <div class="info-box">
 
       <h3>
+
         Chowhan Farmhouse
+
       </h3>
 
       <p>
+
         Home to our Paath, Mehndi, Haldi,
         Jaggo and Choora + Chowhan BBQ celebrations.
+
       </p>
 
     </div>
@@ -1592,13 +2360,17 @@ footer {
     <div class="info-box">
 
       <h3>
+
         Anand Karaj
+
       </h3>
 
       <p>
+
         May 6 at Dashmesh Culture.
         Traditional attire is requested and
         head coverings are required.
+
       </p>
 
     </div>
@@ -1607,46 +2379,64 @@ footer {
     <div class="info-box">
 
       <h3>
+
         Reception
+
       </h3>
 
       <p>
+
         May 7 at Empire Banquet Hall.
         Join us for the finale of our wedding week.
+
       </p>
 
     </div>
+
 
   </div>
 
 </section>
 
 
-<!-- RSVP -->
+<!-- ====================================================
+     RSVP
+==================================================== -->
 
 <section id="rsvp">
 
   <div class="rsvp-inner">
 
     <div class="section-label">
+
       THE GUEST LIST
+
     </div>
 
+
     <h2>
+
       Will You Join Us?
+
     </h2>
 
+
     <p>
+
       RSVP details will be available here soon.
       We cannot wait to celebrate with you.
+
     </p>
+
 
     <a
       href="#"
       class="rsvp-button"
       onclick="return false;"
     >
+
       RSVP Coming Soon
+
     </a>
 
   </div>
@@ -1655,13 +2445,18 @@ footer {
 
 
 <footer>
+
   Khushi & Manjot · May 2–7, 2027 · Calgary
+
 </footer>
 
 
-<!-- EVENT OVERLAY -->
+<!-- ====================================================
+     EVENT OVERLAY
+==================================================== -->
 
 <div id="eventOverlay">
+
 
   <img
     id="eventImage"
@@ -1670,16 +2465,21 @@ footer {
     alt=""
   >
 
+
   <div class="event-gradient"></div>
 
+
   <div class="event-details">
+
 
     <div
       id="eventNumber"
       class="event-episode"
     ></div>
 
+
     <h2 id="eventTitle"></h2>
+
 
     <div class="event-meta">
 
@@ -1689,25 +2489,30 @@ footer {
 
     </div>
 
+
     <div
       id="eventVenue"
       class="event-venue"
     ></div>
+
 
     <div
       id="eventAddress"
       class="event-address"
     ></div>
 
+
     <div
       id="eventDress"
       class="event-dress"
     ></div>
 
+
     <p
       id="eventDescription"
       class="event-description"
     ></p>
+
 
     <div class="event-actions">
 
@@ -1715,10 +2520,13 @@ footer {
         class="event-button"
         onclick="closeEpisode()"
       >
+
         ← MORE EPISODES
+
       </button>
 
     </div>
+
 
   </div>
 
@@ -1727,119 +2535,243 @@ footer {
 
 <script>
 
-/* =========================================================
+
+/* ======================================================
    EVENTS
-========================================================= */
+====================================================== */
 
 const events = [
 
+
   {
-    title: "Paath",
-    date: "May 2, 2027",
-    time: "10:00 AM",
-    venue: "Chowhan Farmhouse",
-    address: "Calgary, Alberta",
-    dress: "Traditional attire",
+
+    title:
+      "Paath",
+
+    date:
+      "May 2, 2027",
+
+    time:
+      "10:00 AM",
+
+    venue:
+      "Chowhan Farmhouse",
+
+    address:
+      "Calgary, Alberta",
+
+    dress:
+      "Traditional attire",
+
     description:
       "A morning of prayer and blessings to officially begin our wedding week and launch the celebrations ahead.",
-    image: "farmhouse.jpg"
+
+    image:
+      "farmhouse.jpg"
+
   },
 
+
   {
-    title: "Mehndi",
-    date: "May 3, 2027",
-    time: "5:00 PM",
-    venue: "Chowhan Farmhouse",
-    address: "Calgary, Alberta",
-    dress: "Colourful traditional attire",
+
+    title:
+      "Mehndi",
+
+    date:
+      "May 3, 2027",
+
+    time:
+      "5:00 PM",
+
+    venue:
+      "Chowhan Farmhouse",
+
+    address:
+      "Calgary, Alberta",
+
+    dress:
+      "Colourful traditional attire",
+
     description:
       "An evening of mehndi, colour, music and celebration with our family and friends.",
-    image: "red-hoodie.jpg"
+
+    image:
+      "red-hoodie.jpg"
+
   },
 
+
   {
-    title: "Haldi",
-    date: "May 4, 2027",
-    time: "10:00 AM",
-    venue: "Chowhan Farmhouse",
-    address: "Calgary, Alberta",
-    dress: "Details to come",
+
+    title:
+      "Haldi",
+
+    date:
+      "May 4, 2027",
+
+    time:
+      "10:00 AM",
+
+    venue:
+      "Chowhan Farmhouse",
+
+    address:
+      "Calgary, Alberta",
+
+    dress:
+      "Details to come",
+
     description:
       "A joyful morning filled with colour, family and one of our favourite pre-wedding traditions.",
-    image: "birthday.jpg"
+
+    image:
+      "birthday.jpg"
+
   },
 
+
   {
-    title: "Jaggo",
-    date: "May 4, 2027",
-    time: "6:00 PM",
-    venue: "Chowhan Farmhouse",
-    address: "Calgary, Alberta",
-    dress: "Punjabi festive attire",
+
+    title:
+      "Jaggo",
+
+    date:
+      "May 4, 2027",
+
+    time:
+      "6:00 PM",
+
+    venue:
+      "Chowhan Farmhouse",
+
+    address:
+      "Calgary, Alberta",
+
+    dress:
+      "Punjabi festive attire",
+
     description:
       "The energy turns up for an evening of dhol, dancing and Punjabi wedding celebrations.",
-    image: "MLS-147.jpg"
+
+    image:
+      "MLS-147.jpg"
+
   },
 
+
   {
-    title: "Choora + Chowhan BBQ",
-    date: "May 5, 2027",
-    time: "3:00 PM",
-    venue: "Chowhan Farmhouse",
-    address: "Calgary, Alberta",
-    dress: "Details to come",
+
+    title:
+      "Choora + Chowhan BBQ",
+
+    date:
+      "May 5, 2027",
+
+    time:
+      "3:00 PM",
+
+    venue:
+      "Chowhan Farmhouse",
+
+    address:
+      "Calgary, Alberta",
+
+    dress:
+      "Details to come",
+
     description:
       "A meaningful Choora celebration followed by the Chowhan BBQ and an afternoon with family and friends.",
-    image: "black-hoodies.jpg"
+
+    image:
+      "black-hoodies.jpg"
+
   },
 
+
   {
-    title: "Anand Karaj",
-    date: "May 6, 2027",
-    time: "9:00 AM",
-    venue: "Dashmesh Culture",
-    address: "Calgary, Alberta",
+
+    title:
+      "Anand Karaj",
+
+    date:
+      "May 6, 2027",
+
+    time:
+      "9:00 AM",
+
+    venue:
+      "Dashmesh Culture",
+
+    address:
+      "Calgary, Alberta",
+
     dress:
       "Formal traditional attire · Head covering required",
+
     description:
       "The heart of our wedding week. Join us for our Anand Karaj as we begin our marriage surrounded by our families and loved ones.",
-    image: "MLS-262.jpg"
+
+    image:
+      "MLS-262.jpg"
+
   },
 
+
   {
-    title: "Reception",
-    date: "May 7, 2027",
-    time: "6:00 PM",
-    venue: "Empire Banquet Hall",
-    address: "Calgary, Alberta",
-    dress: "Formal attire",
+
+    title:
+      "Reception",
+
+    date:
+      "May 7, 2027",
+
+    time:
+      "6:00 PM",
+
+    venue:
+      "Empire Banquet Hall",
+
+    address:
+      "Calgary, Alberta",
+
+    dress:
+      "Formal attire",
+
     description:
       "The grand finale. Dinner, dancing and one final celebration together as we close out our wedding week.",
-    image: "formal.jpg"
+
+    image:
+      "formal.jpg"
+
   }
+
 
 ];
 
 
-/* =========================================================
-   BUILD EPISODES
-========================================================= */
+/* ======================================================
+   BUILD EPISODE CARDS
+====================================================== */
 
 const grid =
   document.getElementById(
     "episodeGrid"
   );
 
+
 events.forEach(
   (event,index) => {
+
 
     const card =
       document.createElement(
         "div"
       );
 
+
     card.className =
       "episode-card";
+
 
     card.innerHTML = `
 
@@ -1854,7 +2786,10 @@ events.forEach(
       <div class="episode-copy">
 
         <div class="episode-number">
-          EPISODE ${String(index + 1).padStart(2,"0")}
+
+          EPISODE
+          ${String(index + 1).padStart(2,"0")}
+
         </div>
 
         <h3>
@@ -1869,146 +2804,202 @@ events.forEach(
 
     `;
 
+
     card.addEventListener(
       "click",
       () => openEpisode(index)
     );
 
+
     grid.appendChild(card);
+
 
   }
 );
 
 
-/* =========================================================
-   OPEN EPISODE
-========================================================= */
+/* ======================================================
+   OPEN EVENT
+====================================================== */
 
 function openEpisode(index) {
 
+
+  userInteracted =
+    true;
+
+
   startBackgroundMusic();
+
 
   const event =
     events[index];
+
 
   const overlay =
     document.getElementById(
       "eventOverlay"
     );
 
+
   document.getElementById(
     "eventNumber"
   ).textContent =
     `EPISODE ${String(index + 1).padStart(2,"0")}`;
+
 
   document.getElementById(
     "eventTitle"
   ).textContent =
     event.title;
 
+
   document.getElementById(
     "eventDate"
   ).textContent =
     event.date;
+
 
   document.getElementById(
     "eventTime"
   ).textContent =
     event.time;
 
+
   document.getElementById(
     "eventVenue"
   ).textContent =
     event.venue;
+
 
   document.getElementById(
     "eventAddress"
   ).textContent =
     event.address;
 
+
   document.getElementById(
     "eventDress"
   ).textContent =
-    "Dress Code: " + event.dress;
+    "Dress Code: " +
+    event.dress;
+
 
   document.getElementById(
     "eventDescription"
   ).textContent =
     event.description;
 
+
   const image =
     document.getElementById(
       "eventImage"
     );
 
+
   image.src =
     event.image;
+
 
   image.alt =
     event.title;
 
+
   overlay.style.display =
     "block";
+
 
   document.body.classList.add(
     "locked"
   );
 
+
 }
 
 
+/* ======================================================
+   CLOSE EVENT
+====================================================== */
+
 function closeEpisode() {
+
 
   document.getElementById(
     "eventOverlay"
   ).style.display =
     "none";
 
+
   document.body.classList.remove(
     "locked"
   );
 
+
   document.getElementById(
     "episodes"
   ).scrollIntoView({
-    behavior: "smooth"
+
+    behavior:
+      "smooth"
+
   });
+
 
 }
 
+
+/* ESCAPE CLOSE */
 
 document.addEventListener(
   "keydown",
   function(event) {
 
+
     if (
-      event.key === "Escape"
+      event.key ===
+      "Escape"
     ) {
 
       closeEpisode();
 
     }
 
+
   }
 );
 
 
-/* =========================================================
+/* ======================================================
    PHOTO BURST
-========================================================= */
+====================================================== */
 
 const heroPhotos =
   Array.from(
+
     document.querySelectorAll(
       ".hero-photo"
     )
+
   );
+
 
 let heroBurstStarted =
   false;
 
 
+/*
+  CHANGE THIS NUMBER IF YOU EVER
+  WANT TO ADJUST THE BURST SPEED.
+
+  1000 = one second per photo.
+*/
+
+const burstSpeed =
+  1000;
+
+
 function startPhotoBurst() {
+
 
   if (
     heroBurstStarted
@@ -2018,12 +3009,15 @@ function startPhotoBurst() {
 
   }
 
+
   heroBurstStarted =
     true;
+
 
   heroPhotos[0].classList.add(
     "active"
   );
+
 
   let index =
     0;
@@ -2031,22 +3025,28 @@ function startPhotoBurst() {
 
   const burstTimer =
     setInterval(
+
       function() {
+
 
         heroPhotos[index].classList.remove(
           "active"
         );
 
+
         index += 1;
 
 
         if (
-          index >= heroPhotos.length
+          index >=
+          heroPhotos.length
         ) {
+
 
           clearInterval(
             burstTimer
           );
+
 
           heroPhotos[
             heroPhotos.length - 1
@@ -2054,7 +3054,9 @@ function startPhotoBurst() {
             "active"
           );
 
+
           return;
+
 
         }
 
@@ -2063,36 +3065,46 @@ function startPhotoBurst() {
           "active"
         );
 
+
       },
 
-      1000
+
+      burstSpeed
+
+
     );
+
 
 }
 
 
-/* =========================================================
-   MUSIC
-========================================================= */
+/* ======================================================
+   BACKGROUND MUSIC
+====================================================== */
 
 const backgroundMusic =
   document.getElementById(
     "backgroundMusic"
   );
 
+
 const musicToggle =
   document.getElementById(
     "musicToggle"
   );
 
+
 let musicStarted =
   false;
+
 
 let musicMuted =
   false;
 
+
 let musicFadeInterval =
   null;
+
 
 let userInteracted =
   false;
@@ -2100,68 +3112,108 @@ let userInteracted =
 
 async function startBackgroundMusic() {
 
+
   if (
     musicStarted
   ) {
+
 
     if (
       backgroundMusic.paused
     ) {
 
+
       try {
+
         await backgroundMusic.play();
+
       } catch(error) {}
+
 
     }
 
+
     return;
+
 
   }
 
 
   try {
 
-    backgroundMusic.volume = 0;
-    backgroundMusic.muted = false;
+
+    backgroundMusic.volume =
+      0;
+
+
+    backgroundMusic.muted =
+      false;
+
 
     await backgroundMusic.play();
 
-    musicStarted = true;
+
+    musicStarted =
+      true;
+
 
     musicToggle.style.display =
       "block";
 
-    let volume = 0;
 
-    const targetVolume = .48;
-    const fadeDuration = 6000;
-    const intervalTime = 100;
+    let volume =
+      0;
+
+
+    const targetVolume =
+      .48;
+
+
+    const fadeDuration =
+      6000;
+
+
+    const intervalTime =
+      100;
+
 
     const totalSteps =
-      fadeDuration / intervalTime;
+      fadeDuration /
+      intervalTime;
+
 
     const increase =
-      targetVolume / totalSteps;
+      targetVolume /
+      totalSteps;
 
 
     musicFadeInterval =
       setInterval(
+
         function() {
 
-          volume += increase;
+
+          volume +=
+            increase;
+
 
           if (
-            volume >= targetVolume
+            volume >=
+            targetVolume
           ) {
+
 
             volume =
               targetVolume;
+
 
             clearInterval(
               musicFadeInterval
             );
 
+
           }
+
 
           backgroundMusic.volume =
             Math.min(
@@ -2169,169 +3221,248 @@ async function startBackgroundMusic() {
               targetVolume
             );
 
+
         },
 
+
         intervalTime
+
+
       );
+
 
   } catch(error) {}
 
+
 }
 
+
+/* MUSIC BUTTON */
 
 musicToggle.addEventListener(
   "click",
   function() {
 
-    userInteracted = true;
+
+    userInteracted =
+      true;
+
 
     if (
       musicMuted
     ) {
 
+
       backgroundMusic.muted =
         false;
+
 
       musicToggle.textContent =
         "♫ MUSIC";
 
+
       musicMuted =
         false;
 
+
     } else {
+
 
       backgroundMusic.muted =
         true;
 
+
       musicToggle.textContent =
         "♫ MUTED";
+
 
       musicMuted =
         true;
 
+
     }
+
 
   }
 );
 
 
-/* =========================================================
+/* ======================================================
    HOME BUTTONS
-========================================================= */
+====================================================== */
 
 function showEpisodes() {
 
-  userInteracted = true;
+
+  userInteracted =
+    true;
+
 
   startBackgroundMusic();
+
 
   document.getElementById(
     "episodes"
   ).scrollIntoView({
-    behavior: "smooth"
+
+    behavior:
+      "smooth"
+
   });
+
 
 }
 
 
 function showInfo() {
 
-  userInteracted = true;
+
+  userInteracted =
+    true;
+
 
   startBackgroundMusic();
+
 
   document.getElementById(
     "more-info"
   ).scrollIntoView({
-    behavior: "smooth"
+
+    behavior:
+      "smooth"
+
   });
+
 
 }
 
 
-/* =========================================================
-   INTRO
-========================================================= */
+/* ======================================================
+   INTRO ELEMENTS
+====================================================== */
 
 const intro =
   document.getElementById(
     "intro"
   );
 
+
 const introVideo =
   document.getElementById(
     "introVideo"
   );
+
 
 const soundButton =
   document.getElementById(
     "soundButton"
   );
 
+
 const skipIntro =
   document.getElementById(
     "skipIntro"
   );
+
 
 const titleSequence =
   document.getElementById(
     "titleSequence"
   );
 
+
+const home =
+  document.getElementById(
+    "home"
+  );
+
+
+const navigation =
+  document.querySelector(
+    "nav"
+  );
+
+
 let introEnded =
   false;
 
 
-/* SOUND */
+/* ======================================================
+   INTRO SOUND
+====================================================== */
 
 soundButton.addEventListener(
   "click",
   async function() {
 
-    userInteracted = true;
+
+    userInteracted =
+      true;
+
 
     try {
+
 
       introVideo.muted =
         false;
 
+
       introVideo.volume =
         1;
 
+
       await introVideo.play();
+
 
       soundButton.textContent =
         "SOUND ON";
 
+
       setTimeout(
         function() {
+
 
           soundButton.style.display =
             "none";
 
+
         },
+
+
         800
+
+
       );
 
+
     } catch(error) {}
+
 
   }
 );
 
 
-/* SKIP */
+/* ======================================================
+   SKIP INTRO
+====================================================== */
 
 skipIntro.addEventListener(
   "click",
   function() {
 
-    userInteracted = true;
+
+    userInteracted =
+      true;
+
 
     finishIntro();
+
 
   }
 );
 
+
+/* VIDEO ENDS */
 
 introVideo.addEventListener(
   "ended",
@@ -2339,17 +3470,20 @@ introVideo.addEventListener(
 );
 
 
+/* VIDEO ERROR */
+
 introVideo.addEventListener(
   "error",
   finishIntro
 );
 
 
-/* =========================================================
-   INTRO → TITLE → BURST → NETFLIX HOME
-========================================================= */
+/* ======================================================
+   FINAL OPENING SEQUENCE
+====================================================== */
 
 function finishIntro() {
+
 
   if (
     introEnded
@@ -2359,7 +3493,14 @@ function finishIntro() {
 
   }
 
-  introEnded = true;
+
+  introEnded =
+    true;
+
+
+  /*
+    1. Fade intro video away.
+  */
 
   intro.classList.add(
     "hide"
@@ -2367,212 +3508,321 @@ function finishIntro() {
 
 
   setTimeout(
+
     function() {
+
 
       intro.style.display =
         "none";
 
 
-      /* TITLE SCREEN */
+      /*
+        2. Stay black.
+        Show BITTU title.
+      */
+
 
       titleSequence.classList.add(
         "show"
       );
 
-      setTimeout(
+
+      requestAnimationFrame(
         function() {
 
-          titleSequence.classList.add(
-            "titleSequence-active"
+
+          requestAnimationFrame(
+            function() {
+
+
+              titleSequence.classList.add(
+                "visible"
+              );
+
+
+            }
           );
 
-        },
-        120
+
+        }
       );
 
 
       /*
-        Start photo burst behind title
-        after title has been visible.
+        3. After Bittu has been on
+        screen, begin the photos.
       */
+
 
       setTimeout(
         function() {
 
-          const home =
-            document.getElementById(
-              "home"
-            );
 
           home.classList.add(
             "home-visible"
           );
 
+
           startPhotoBurst();
 
+
         },
-        1800
+
+
+        2200
+
+
       );
 
 
       /*
-        Fade title away while burst
-        is still running.
+        4. Fade BITTU away while
+        the burst is still running.
       */
+
 
       setTimeout(
         function() {
+
 
           titleSequence.classList.add(
-            "fade"
+            "fade-away"
           );
 
+
         },
-        3300
+
+
+        3400
+
+
       );
 
 
       /*
-        Remove title completely.
+        5. Remove BITTU completely.
       */
+
 
       setTimeout(
         function() {
+
 
           titleSequence.style.display =
             "none";
 
+
         },
-        4100
+
+
+        4300
+
+
       );
 
 
       /*
-        Netflix UI appears while burst
-        continues.
+        6. Netflix-style wording
+        appears while photos
+        continue changing.
       */
+
 
       setTimeout(
         function() {
 
-          document.getElementById(
-            "home"
-          ).classList.add(
+
+          home.classList.add(
             "copy-visible"
           );
 
+
+          navigation.classList.add(
+            "nav-visible"
+          );
+
+
         },
-        3550
+
+
+        4700
+
+
       );
 
 
       /*
-        Page becomes interactive.
+        7. Allow scrolling.
       */
+
 
       setTimeout(
         function() {
+
 
           document.body.classList.remove(
             "locked"
           );
+
 
           window.scrollTo(
             0,
             0
           );
 
+
         },
-        4100
+
+
+        5000
+
+
       );
+
+
+      /*
+        8. Start song if guest
+        already interacted.
+      */
 
 
       if (
         userInteracted
       ) {
 
+
         setTimeout(
           function() {
 
+
             startBackgroundMusic();
 
+
           },
-          1100
+
+
+          1300
+
+
         );
+
 
       }
 
+
     },
 
-    1600
+
+    1500
+
+
   );
+
 
 }
 
 
-/* =========================================================
-   LOAD
-========================================================= */
+/* ======================================================
+   PAGE LOAD
+====================================================== */
 
 window.addEventListener(
   "load",
   function() {
 
+
+    /*
+      PRELOAD PHOTOS
+    */
+
+
     heroPhotos.forEach(
       function(photo) {
+
 
         const preload =
           new Image();
 
+
         preload.src =
           photo.src;
+
 
       }
     );
 
+
+    /*
+      PLAY VIDEO MUTED
+    */
+
+
     introVideo.muted =
       true;
 
+
     const attempt =
       introVideo.play();
+
 
     if (
       attempt !== undefined
     ) {
 
+
       attempt.catch(
         function() {
 
+
           finishIntro();
+
 
         }
       );
 
+
     }
+
 
   }
 );
 
 
-/* SAFETY */
+/* ======================================================
+   SAFETY FALLBACK
+====================================================== */
 
 setTimeout(
   function() {
 
+
     if (
+
       !introEnded &&
+
       introVideo.readyState === 0
+
     ) {
+
 
       finishIntro();
 
+
     }
 
+
   },
+
+
   5000
+
+
 );
+
 
 </script>
 
+
 </body>
+
 </html>
